@@ -14,7 +14,7 @@ var gravity : float = 12.0
 # camera look
 var minLookAngle : float = -85.0
 var maxLookAngle : float = 85.0
-var lookSensitivity : float = 0.5
+var lookSensitivity : float = 1.5
 
 # vectors
 var vel : Vector3 = Vector3()
