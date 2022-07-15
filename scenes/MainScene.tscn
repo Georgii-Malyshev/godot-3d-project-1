@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://downloaded_assets/Models/Environment/Ground.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://downloaded_assets/Models/Environment/Tree_1.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://downloaded_assets/Models/Environment/Tree_2.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ConcavePolygonShape" id=1]
 data = PoolVector3Array( 0, 0, 0, 3, 0.3, 0, 3, 0, 0, 3, 0.3, 0, 0, 0, 0, 0, 0.3, 0, 0, 0.3, -3, 3, 0.3, 0, 0, 0.3, 0, 3, 0.3, 0, 0, 0.3, -3, 3, 0.3, -3, 3, 0, -3, 3, 0.3, 0, 3, 0.3, -3, 3, 0.3, 0, 3, 0, -3, 3, 0, 0, 3, 0, -3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, -3, 0, 0, -3, 0, 0.3, -3, 0, 0, 0, 0, 0, -3, 0, 0, 0, 0, 0.3, -3, 0, 0.3, 0, 3, 0, -3, 0, 0.3, -3, 0, 0, -3, 0, 0.3, -3, 3, 0, -3, 3, 0.3, -3 )
@@ -11,9 +12,9 @@ data = PoolVector3Array( 0, 0, 0, 3, 0.3, 0, 3, 0, 0, 3, 0.3, 0, 0, 0, 0, 0, 0.3
 
 [node name="Models" type="Node" parent="."]
 
-[node name="World" type="Node" parent="Models"]
+[node name="Environment" type="Node" parent="Models"]
 
-[node name="Ground" type="MeshInstance" parent="Models/World"]
+[node name="Ground" type="MeshInstance" parent="Models/Environment"]
 transform = Transform( 800, 0, 0, 0, 1, 0, 0, 0, 800, -1200, 0, 1200 )
 mesh = ExtResource( 1 )
 skeleton = NodePath("../../..")
@@ -21,13 +22,13 @@ material/0 = null
 material/1 = null
 material/2 = null
 
-[node name="StaticBody" type="StaticBody" parent="Models/World/Ground"]
+[node name="StaticBody" type="StaticBody" parent="Models/Environment/Ground"]
 transform = Transform( 7.352, 0, 0, 0, 1, 0, 0, 0, 7.441, 1.501, 0, -1.499 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Models/World/Ground/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Models/Environment/Ground/StaticBody"]
 shape = SubResource( 1 )
 
-[node name="Tree_1" type="MeshInstance" parent="Models/World"]
+[node name="Tree_1" type="MeshInstance" parent="Models/Environment"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 9.92849, 0, 1.424 )
 mesh = ExtResource( 2 )
 material/0 = null
@@ -44,7 +45,7 @@ material/10 = null
 material/11 = null
 material/12 = null
 
-[node name="Tree_2" type="MeshInstance" parent="Models/World"]
+[node name="Tree_2" type="MeshInstance" parent="Models/Environment"]
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, -24.4549, 0, -19.297 )
 mesh = ExtResource( 3 )
 material/0 = null
@@ -90,7 +91,7 @@ material/39 = null
 material/40 = null
 material/41 = null
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
+[node name="DirectionalLight" type="DirectionalLight" parent="Models/Environment"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0 )
 light_color = Color( 1, 0.329412, 0.329412, 1 )
 light_energy = 7.495
@@ -98,3 +99,5 @@ light_indirect_energy = 4.201
 light_specular = 2.555
 shadow_enabled = true
 shadow_bias = 0.833
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
