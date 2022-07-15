@@ -17,7 +17,7 @@ var maxLookAngle : float = 85.0
 var lookSensitivity : float = 1.5
 
 # vectors
-var vel : Vector3 = Vector3()
+var velocity : Vector3 = Vector3()
 var mouseDelta : Vector2 = Vector2()
 
 # player components
@@ -38,6 +38,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	# Controls
+	
 	# rotate camera along X axis
 	camera.rotation_degrees -= Vector3(rad2deg(mouseDelta.y), 0, 0) * lookSensitivity * delta	
 	
@@ -49,3 +52,45 @@ func _process(delta):
 	
 	# reset the mouse delta vector
 	mouseDelta = Vector2()
+
+
+# Called every physics step
+func _physics_process (Delta):
+	
+	# Player movement
+	
+	# reset the X and Z velocity
+	velocity.x = 0
+	velocity.z = 0
+	
+	var input = Vector2()
+	
+	if Input.is_action_pressed("move_forward"):
+		input.y -= 1
+	if Input.is_action_pressed("move_backward"):
+		input.y += 1
+	if Input.is_action_pressed("move_left"):
+		input.x -= 1
+	if Input.is_action_pressed("move_right"):
+		input.x += 1
+	
+	# normalize diagonal movement speed
+	input = input.normalized()
+	
+	# get player's forward and right direction to know which way the player is facing
+	var forward = global_transform.basis.z
+	var right = global_transform.basis.x
+	
+	# set player movement velocity
+	velocity.z = (forward * input.y + right * input.x).z * moveSpeed
+	velocity.z = (forward * input.y + right * input.x).z * moveSpeed
+	
+	# apply gravity
+	velocity.y -= gravity * Delta
+	
+	# move the player
+	velocity = move_and_slide(velocity, Vector3.UP)
+	
+	# jumping
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = jumpForce
