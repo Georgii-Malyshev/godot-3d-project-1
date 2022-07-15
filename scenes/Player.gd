@@ -83,7 +83,7 @@ func _physics_process (Delta):
 	
 	# set player movement velocity
 	velocity.z = (forward * input.y + right * input.x).z * moveSpeed
-	velocity.z = (forward * input.y + right * input.x).z * moveSpeed
+	velocity.x = (forward * input.y + right * input.x).x * moveSpeed
 	
 	# apply gravity
 	velocity.y -= gravity * Delta
