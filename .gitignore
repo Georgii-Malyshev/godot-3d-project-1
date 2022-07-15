@@ -1,0 +1,8 @@
+# Godot
+
+# Stores all the files Godot imports automatically based on source assets and their import flags
+.import
+# Binary imported translations generated from CSV files
+*.translation
+# Contains all the export presets for the project, including sensitive information
+export_presets.cfg
