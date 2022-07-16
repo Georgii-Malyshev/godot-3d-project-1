@@ -14,6 +14,16 @@ config/name="3d Project 1"
 run/main_scene="res://scenes/MainScene.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=320
+window/size/height=240
+window/size/resizable=false
+window/size/borderless=true
+window/size/fullscreen=true
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
 [input]
 
 move_forward={
