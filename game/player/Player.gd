@@ -28,8 +28,30 @@ onready var projectileScene = preload("res://game/actors/projectiles/Projectile.
 
 # Called whenever an input is detected
 func _input(event):
+	
+	# First-person camera movement
+	
 	if event is InputEventMouseMotion:
 		mouseDelta = event.relative  # get direction and length that the mouse moved
+		# rotate camera along X axis
+		camera.rotation_degrees -= Vector3(rad2deg(mouseDelta.y), 0, 0) * lookSensitivity * get_process_delta_time()
+		
+		# clamp vertical camera rotation
+		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, minLookAngle, maxLookAngle)
+		
+		# rotate player along Y axis
+		rotation_degrees -= Vector3(0, rad2deg(mouseDelta.x), 0) * lookSensitivity * get_process_delta_time()
+		
+		# reset the mouse delta vector
+		mouseDelta = Vector2()
+	
+	# Jumping
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = jumpForce
+	
+	# Actions
+	if Input.is_action_just_pressed("fire"):
+		fire_projectile()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -39,28 +61,14 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	# Controls
-	
-	# rotate camera along X axis
-	camera.rotation_degrees -= Vector3(rad2deg(mouseDelta.y), 0, 0) * lookSensitivity * delta	
-	
-	# clamp vertical camera rotation
-	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, minLookAngle, maxLookAngle)
-	
-	# rotate player along Y axis
-	rotation_degrees -= Vector3(0, rad2deg(mouseDelta.x), 0) * lookSensitivity * delta
-	
-	# reset the mouse delta vector
-	mouseDelta = Vector2()
-	
-	if Input.is_action_just_pressed("fire"):  # TODO keep input detection out of _process function
-		fire_projectile()
+#func _process(delta):
+#	pass
 
 
 # Called every physics step
-func _physics_process (Delta):
-	# Player movement
+func _physics_process (Delta):	
+	
+	# Player movement in space
 	
 	# reset the X and Z velocity
 	velocity.x = 0
@@ -93,10 +101,6 @@ func _physics_process (Delta):
 	
 	# move the player
 	velocity = move_and_slide(velocity, Vector3.UP)
-	
-	# jumping
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jumpForce
 
 
 func fire_projectile():
