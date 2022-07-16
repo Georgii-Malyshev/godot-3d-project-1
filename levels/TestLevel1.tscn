@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://downloaded_assets/Models/Environment/Ground.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://downloaded_assets/Models/Environment/Tree_1.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://downloaded_assets/Models/Environment/Tree_2.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://game/player/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://game/player/Player.gd" type="Script" id=5]
 [ext_resource path="res://levels/TestLevel1Env.tres" type="Environment" id=6]
 [ext_resource path="res://game/actors/creatures/flying_skull/FlyingSkull.tscn" type="PackedScene" id=7]
 [ext_resource path="res://game/actors/items/Pickup_Health.tscn" type="PackedScene" id=8]
@@ -106,7 +105,6 @@ shadow_bias = 0.833
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
-script = ExtResource( 5 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 6 )
