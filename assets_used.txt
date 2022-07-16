@@ -1,0 +1,3 @@
+Turbosquid:
+  - Standard 3D Model License: 
+    - https://www.turbosquid.com/3d-models/3d-skull-low-poly-model-1857648 3D skull low poly model by Federico Felici
