@@ -8,3 +8,7 @@
 export_presets.cfg
 # Exported project
 exported_project
+# 2D graphics and 3D models
+*.png
+*.obj
+icon.png.import
