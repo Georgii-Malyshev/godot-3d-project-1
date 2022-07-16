@@ -22,7 +22,7 @@ var mouseDelta : Vector2 = Vector2()
 
 # player components
 onready var camera = get_node("Camera")
-onready var muzzle = get_node("Camera/GunModel/Muzzle")
+onready var muzzle = get_node("Camera/Gun/Muzzle")
 onready var projectileScene = preload("res://scenes/Projectile.tscn")
 
 

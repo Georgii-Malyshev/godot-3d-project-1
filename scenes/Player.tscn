@@ -17,7 +17,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0 )
 current = true
 fov = 95.4781
 
-[node name="GunModel" type="MeshInstance" parent="Camera"]
+[node name="Gun" type="MeshInstance" parent="Camera"]
 transform = Transform( -9.99502, 0, -0.315501, 0, 10, 0, 0.315501, 0, -9.99502, 0.291, -0.232, -0.484 )
 mesh = ExtResource( 2 )
 material/0 = null
@@ -54,5 +54,5 @@ material/30 = null
 material/31 = null
 material/32 = null
 
-[node name="Muzzle" type="Spatial" parent="Camera/GunModel"]
+[node name="Muzzle" type="Spatial" parent="Camera/Gun"]
 transform = Transform( 0.3, 1.63305e-08, -1.86265e-09, -1.63305e-08, 0.3, 3.49246e-11, 1.86265e-09, -3.49243e-11, 0.3, -9.13218e-05, 0.00659145, 0.0405745 )
