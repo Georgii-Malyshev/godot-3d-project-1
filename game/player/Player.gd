@@ -4,7 +4,6 @@ extends KinematicBody
 var currentHp : int = 66
 var maxHp : int = 100
 var currentAmmo : int = 15
-var killsTotal : int = 0
 
 # physics
 var moveSpeed : float = 5.0
@@ -111,11 +110,6 @@ func fire_projectile():
 	projectile.scale = Vector3.ONE
 	
 	currentAmmo -= 1
-
-# Called when the player kills somebody
-# Receives the number of kills to add to the total
-func increase_kills_total(killsToAdd):
-	killsTotal += killsToAdd
 
 
 func take_damage(damage):

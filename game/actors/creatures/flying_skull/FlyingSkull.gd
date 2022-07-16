@@ -52,5 +52,4 @@ func take_damage(damage):
 
 
 func die():
-	player.increase_kills_total(1)
 	queue_free()
