@@ -1,5 +1,10 @@
 extends KinematicBody
 
+
+export var muzzleNodePath : NodePath
+export var fpsCameraNodePath : NodePath
+
+
 # stats
 var currentHp : int = 66
 var maxHp : int = 100
@@ -20,8 +25,8 @@ var velocity : Vector3 = Vector3()
 var mouseDelta : Vector2 = Vector2()
 
 # player components
-onready var camera = get_node("Camera")
-onready var muzzle = get_node("Camera/Muzzle")  # TODO don't use explicitly set node path
+onready var camera = get_node(fpsCameraNodePath)
+onready var muzzle = get_node(muzzleNodePath)
 onready var projectileScene = preload("res://game/actors/projectiles/Projectile.tscn")  # TODO don't use absolute path to scene
 
 
