@@ -60,7 +60,6 @@ func _process(delta):
 
 # Called every physics step
 func _physics_process (Delta):
-	
 	# Player movement
 	
 	# reset the X and Z velocity
@@ -108,3 +107,18 @@ func fire_projectile():
 	projectile.scale = Vector3.ONE
 	
 	currentAmmo -= 1
+
+# Called when the player kills somebody
+# Receives the number of kills to add to the total
+func increase_kills_total(killsToAdd):
+	killsTotal += killsToAdd
+
+
+func take_damage(damage):
+	currentHp -= damage
+	
+	if currentHp <= 0:
+		die()
+
+func die():
+	pass  # TODO implement some player death mechanic
