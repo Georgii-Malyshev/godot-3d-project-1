@@ -23,7 +23,8 @@ var mouseDelta : Vector2 = Vector2()
 # player components
 onready var camera = get_node("Camera")
 onready var muzzle = get_node("Camera/Gun/Muzzle")
-onready var projectileScene = preload("res://scenes/Projectile.tscn")
+# TODO don't use absolute path to the scene
+onready var projectileScene = preload("res://game/actors/projectiles/Projectile.tscn")
 
 
 # Called whenever an input is detected
@@ -100,8 +101,11 @@ func _physics_process (Delta):
 
 
 func fire_projectile():
+	# TODO only allow firing if currentAmmo is > 0
+	
 	var projectile = projectileScene.instance()
-	get_node("/root/MainScene").add_child(projectile)
+	# TODO get rid of absolute node path and don't use node that is higher up in the hierarchy
+	get_node("/root/TestLevel1").add_child(projectile)
 	
 	projectile.global_transform = muzzle.global_transform
 	projectile.scale = Vector3.ONE

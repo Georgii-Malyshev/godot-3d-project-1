@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scenes/Pickup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://game/actors/items/Pickup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://downloaded_assets/Models/Pickups/AmmoBoxModel.dae" type="PackedScene" id=2]
 
 [node name="Pickup_Ammo" instance=ExtResource( 1 )]

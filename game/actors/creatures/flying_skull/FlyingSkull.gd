@@ -10,7 +10,8 @@ var attackRate : float = 1.0
 var attackDistance : float = 2.0
 
 # components
-onready var player : Node = get_node("/root/MainScene/Player")
+# TODO get rid of absolute node path and don't use node that is higher up in the hierarchy
+onready var player : Node = get_node("/root/TestLevel1/Player")
 onready var timer : Timer = get_node("Timer")
 
 
