@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://downloaded_assets/Models/Weapon/shotgun.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://game/player/right_arm.obj" type="ArrayMesh" id=1]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -17,42 +17,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
 current = true
 fov = 95.4781
 
-[node name="Gun" type="MeshInstance" parent="Camera"]
-transform = Transform( -9.99502, 0, -0.315501, 0, 10, 0, 0.315501, 0, -9.99502, 0.291, -0.13, -0.484 )
-mesh = ExtResource( 2 )
+[node name="RightArm" type="MeshInstance" parent="Camera"]
+transform = Transform( -0.991634, -0.0977616, -0.0842881, -0.128511, 0.809009, 0.573577, 0.0121161, 0.57961, -0.814804, 0.4, -0.35, -0.04 )
+mesh = ExtResource( 1 )
 material/0 = null
-material/1 = null
-material/2 = null
-material/3 = null
-material/4 = null
-material/5 = null
-material/6 = null
-material/7 = null
-material/8 = null
-material/9 = null
-material/10 = null
-material/11 = null
-material/12 = null
-material/13 = null
-material/14 = null
-material/15 = null
-material/16 = null
-material/17 = null
-material/18 = null
-material/19 = null
-material/20 = null
-material/21 = null
-material/22 = null
-material/23 = null
-material/24 = null
-material/25 = null
-material/26 = null
-material/27 = null
-material/28 = null
-material/29 = null
-material/30 = null
-material/31 = null
-material/32 = null
 
-[node name="Muzzle" type="Spatial" parent="Camera/Gun"]
-transform = Transform( 0.3, 1.63305e-08, -1.86265e-09, -1.63305e-08, 0.3, 3.49246e-11, 1.86265e-09, -3.49243e-11, 0.3, -9.13218e-05, 0.00659145, 0.0405745 )
+[node name="Muzzle" type="Spatial" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0.295912, -0.0986996, -0.329109 )

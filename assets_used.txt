@@ -1,3 +1,5 @@
 Turbosquid:
   - Standard 3D Model License: 
     - https://www.turbosquid.com/3d-models/3d-skull-low-poly-model-1857648 3D skull low poly model by Federico Felici
+    - https://www.turbosquid.com/3d-models/unity3d-ar-3d-model-1681559 First Person Arms Pack 3D model by Nisanta08
+

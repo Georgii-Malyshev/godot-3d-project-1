@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/right_arm.obj-9011734e16f6acd5ff5ce5d34dd2bb0e.mesh"
+
+[deps]
+
+files=[ "res://.import/right_arm.obj-9011734e16f6acd5ff5ce5d34dd2bb0e.mesh" ]
+
+source_file="res://game/player/right_arm.obj"
+dest_files=[ "res://.import/right_arm.obj-9011734e16f6acd5ff5ce5d34dd2bb0e.mesh", "res://.import/right_arm.obj-9011734e16f6acd5ff5ce5d34dd2bb0e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
