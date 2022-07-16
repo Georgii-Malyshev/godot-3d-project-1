@@ -6,3 +6,5 @@
 *.translation
 # Contains all the export presets for the project, including sensitive information
 export_presets.cfg
+# Exported project
+exported_project
