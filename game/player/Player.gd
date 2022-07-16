@@ -21,8 +21,7 @@ var mouseDelta : Vector2 = Vector2()
 
 # player components
 onready var camera = get_node("Camera")
-onready var muzzle = get_node("Camera/Muzzle")  # TODO don't use absolute node path
-# TODO don't use absolute path to the scene
+onready var muzzle = get_node("Camera/Muzzle")  # TODO don't use explicitly set node path
 onready var projectileScene = preload("res://game/actors/projectiles/Projectile.tscn")  # TODO don't use absolute path to scene
 
 
