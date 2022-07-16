@@ -22,6 +22,8 @@ var mouseDelta : Vector2 = Vector2()
 
 # player components
 onready var camera = get_node("Camera")
+onready var muzzle = get_node("Camera/GunModel/Muzzle")
+onready var projectileScene = preload("res://scenes/Projectile.tscn")
 
 
 # Called whenever an input is detected
@@ -32,13 +34,12 @@ func _input(event):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Hide mouse cursor and don't allow it to leave the game's window
+	# Hide mouse cursor and lock it to the game's window
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	# Controls
 	
 	# rotate camera along X axis
@@ -52,6 +53,9 @@ func _process(delta):
 	
 	# reset the mouse delta vector
 	mouseDelta = Vector2()
+	
+	if Input.is_action_just_pressed("fire"):  # TODO keep input detection out of _process function
+		fire_projectile()
 
 
 # Called every physics step
@@ -94,3 +98,13 @@ func _physics_process (Delta):
 	# jumping
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jumpForce
+
+
+func fire_projectile():
+	var projectile = projectileScene.instance()
+	get_node("/root/MainScene").add_child(projectile)
+	
+	projectile.global_transform = muzzle.global_transform
+	projectile.scale = Vector3.ONE
+	
+	currentAmmo -= 1
