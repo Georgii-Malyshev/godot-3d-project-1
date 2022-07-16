@@ -13,12 +13,12 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.25
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
 current = true
 fov = 95.4781
 
 [node name="Gun" type="MeshInstance" parent="Camera"]
-transform = Transform( -9.99502, 0, -0.315501, 0, 10, 0, 0.315501, 0, -9.99502, 0.291, -0.232, -0.484 )
+transform = Transform( -9.99502, 0, -0.315501, 0, 10, 0, 0.315501, 0, -9.99502, 0.291, -0.13, -0.484 )
 mesh = ExtResource( 2 )
 material/0 = null
 material/1 = null

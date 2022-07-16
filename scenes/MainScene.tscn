@@ -112,7 +112,7 @@ script = ExtResource( 5 )
 environment = ExtResource( 6 )
 
 [node name="Enemy" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5463, 0.3, -40.8714 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.546, 1.7, -40.871 )
 
 [node name="Pickup_Health" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.90548, 0.5, -9.4461 )
