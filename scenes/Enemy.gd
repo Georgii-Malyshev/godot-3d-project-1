@@ -5,7 +5,7 @@ extends KinematicBody
 var maxHp : int = 30
 var currentHp : int = 30
 var moveSpeed : float = 1.0
-var damage : int = 5
+var attackDamage : int = 5
 var attackRate : float = 1.0
 var attackDistance : float = 2.0
 
@@ -41,7 +41,7 @@ func _physics_process(delta):
 
 
 func attack():
-	player.take_damage(damage)
+	player.take_damage(attackDamage)
 
 
 func take_damage(damage):

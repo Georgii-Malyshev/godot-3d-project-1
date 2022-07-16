@@ -122,3 +122,11 @@ func take_damage(damage):
 
 func die():
 	pass  # TODO implement some player death mechanic
+
+
+func add_health(amount):
+	currentHp += amount
+
+
+func add_ammo(amount):
+	currentAmmo += amount
