@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://levels/tile_2x2x0.1.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://game/player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://levels/test_level_1/TestLevel1Env.tres" type="Environment" id=6]
+[ext_resource path="res://game/actors/creatures/flying_skull/FlyingSkull.tscn" type="PackedScene" id=7]
+[ext_resource path="res://game/actors/items/Pickup_Health.tscn" type="PackedScene" id=8]
+[ext_resource path="res://game/actors/items/Pickup_Ammo.tscn" type="PackedScene" id=9]
+
+[sub_resource type="ConcavePolygonShape" id=1]
+data = PoolVector3Array( 0, 0.1, -2, 2, 0.1, -2, 0, 0.1, 0, 0, 0.1, 0, 2, 0.1, -2, 2, 0.1, 0, 2, 0.1, 0, 2, -0.1, 0, 0, 0.1, 0, 0, 0.1, 0, 2, -0.1, 0, 0, -0.1, 0, 0, 0.1, 0, 0, -0.1, 0, 0, 0.1, -2, 0, 0.1, -2, 0, -0.1, 0, 0, -0.1, -2, 2, -0.1, -2, 0, -0.1, -2, 2, -0.1, 0, 2, -0.1, 0, 0, -0.1, -2, 0, -0.1, 0, 2, 0.1, -2, 2, -0.1, -2, 2, 0.1, 0, 2, 0.1, 0, 2, -0.1, -2, 2, -0.1, 0, 0, 0.1, -2, 0, -0.1, -2, 2, 0.1, -2, 2, 0.1, -2, 0, -0.1, -2, 2, -0.1, -2 )
+
+[node name="TestLevel1" type="Spatial"]
+
+[node name="Models" type="Node" parent="."]
+
+[node name="Environment" type="Node" parent="Models"]
+
+[node name="Ground" type="MeshInstance" parent="Models/Environment"]
+transform = Transform( 500, 0, 0, 0, 1, 0, 0, 0, 500, -508.198, 0, 520.41 )
+mesh = ExtResource( 1 )
+skeleton = NodePath("../../..")
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Models/Environment/Ground"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Models/Environment/Ground/StaticBody"]
+shape = SubResource( 1 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Models/Environment"]
+transform = Transform( 1, 0, 0, 0, -0.998584, 0.0531901, 0, -0.0531901, -0.998584, 0, 12.2336, -25.7461 )
+light_color = Color( 0.827148, 0.895462, 0.945312, 1 )
+light_energy = 0.596
+light_indirect_energy = 0.238
+light_specular = 2.555
+shadow_enabled = true
+shadow_bias = 3.578
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 6 )
+
+[node name="Enemy" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.546, 1.7, -40.871 )
+
+[node name="Pickup_Health" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.90548, 0.5, -9.4461 )
+
+[node name="Pickup_Health2" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.31608, 0.5, -13.7109 )
+
+[node name="Pickup_Health3" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.13504, 0.5, -7.03112 )
+
+[node name="Pickup_Ammo" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.15431, 0.5, -25.2815 )
+
+[node name="Pickup_Ammo2" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7515, 0.5, -23.2867 )
+
+[node name="Pickup_Ammo3" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.61587, 0.5, -15.8022 )

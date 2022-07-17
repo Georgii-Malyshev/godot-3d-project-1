@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://game/actors/items/Pickup.tscn" type="PackedScene" id=1]
-[ext_resource path="res://downloaded_assets/Models/Pickups/AmmoBoxModel.dae" type="PackedScene" id=2]
+[ext_resource path="res://placeholder_assets/cube_0.5.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://placeholder_assets/Material.material" type="Material" id=3]
 
 [node name="Pickup_Ammo" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0 )
 type = 1
 
-[node name="AmmoBoxModel" parent="." index="1" instance=ExtResource( 2 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
+[node name="MeshInstance" type="MeshInstance" parent="." index="1"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.25, -0.25, 0.25 )
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 3 )

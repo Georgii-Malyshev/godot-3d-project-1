@@ -4,5 +4,4 @@
 
 [resource]
 background_sky = SubResource( 1 )
-background_energy = 6.16
-ambient_light_energy = 0.72
+background_energy = 0.0
