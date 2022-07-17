@@ -1,7 +1,7 @@
 extends Area
 
 
-var speed : float = 20.0
+var speed : float = 6.0
 var damage : int = 15
 
 

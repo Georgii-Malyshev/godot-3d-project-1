@@ -3,9 +3,9 @@
 [ext_resource path="res://placeholder_assets/outdoors_meshlib.tres" type="MeshLibrary" id=1]
 [ext_resource path="res://game/player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://levels/test_level_1/TestLevel1Env.tres" type="Environment" id=6]
-[ext_resource path="res://game/actors/creatures/flying_skull/FlyingSkull.tscn" type="PackedScene" id=7]
-[ext_resource path="res://game/actors/items/Pickup_Health.tscn" type="PackedScene" id=8]
-[ext_resource path="res://game/actors/items/Pickup_Ammo.tscn" type="PackedScene" id=9]
+[ext_resource path="res://game/creatures/flying_skull/FlyingSkull.tscn" type="PackedScene" id=7]
+[ext_resource path="res://game/items/Pickup_Health.tscn" type="PackedScene" id=8]
+[ext_resource path="res://game/items/Pickup_Ammo.tscn" type="PackedScene" id=9]
 
 [node name="TestLevel1" type="Spatial"]
 
