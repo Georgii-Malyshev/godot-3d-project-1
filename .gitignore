@@ -12,3 +12,8 @@ exported_project
 *.png
 *.obj
 icon.png.import
+
+# Misc
+
+# Assets downloaded from tutorials etc. that should not be included in and/or depended on in the project
+downloaded_assets
