@@ -14,6 +14,10 @@ config/name="3d Project 1"
 run/main_scene="res://levels/test_level_1/TestLevel1.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+SignalBus="*res://scripts/SignalBus.gd"
+
 [display]
 
 window/size/width=640
