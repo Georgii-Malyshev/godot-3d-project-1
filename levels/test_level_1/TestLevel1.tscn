@@ -28,13 +28,13 @@ material/0 = null
 shape = SubResource( 1 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Models/Environment"]
-transform = Transform( 1, 0, 0, 0, -0.998584, 0.0531901, 0, -0.0531901, -0.998584, 0, 12.2336, -25.7461 )
+transform = Transform( 1, 0, 0, 0, -0.994724, 0.102584, 0, -0.102584, -0.994724, 0, 3.85711, -35.9302 )
 light_color = Color( 0.827148, 0.895462, 0.945312, 1 )
 light_energy = 0.596
 light_indirect_energy = 0.238
 light_specular = 2.555
 shadow_enabled = true
-shadow_bias = 3.578
+shadow_bias = 0.447
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
@@ -43,7 +43,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 environment = ExtResource( 6 )
 
 [node name="Enemy" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.546, 1.7, -40.871 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.67589, 1.7, -30.4459 )
 
 [node name="Pickup_Health" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.90548, 0.5, -9.4461 )
