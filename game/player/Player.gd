@@ -21,9 +21,9 @@ var velocity : Vector3 = Vector3()
 var mouseDelta : Vector2 = Vector2()
 
 # player components
-onready var camera = $FpsCamera  # TODO need some decoupling
-onready var muzzle = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint  # TODO need some decoupling
-onready var projectileScene = preload("res://game/projectiles/Projectile.tscn")  # TODO don't use absolute path to scene
+onready var camera : Node = $FpsCamera  # TODO need some decoupling
+onready var muzzle : Node = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint  # TODO need some decoupling
+onready var projectileScene : PackedScene = preload("res://game/projectiles/Projectile.tscn")  # TODO don't use absolute path to scene
 
 
 # Called whenever an input is detected
