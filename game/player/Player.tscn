@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://game/player/right_arm.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://game/player/SpellcastingRightArm.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/player/Player.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
@@ -9,8 +9,6 @@ height = 1.5
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 2 )
-muzzleNodePath = NodePath("FpsCamera/Muzzle")
-fpsCameraNodePath = NodePath("FpsCamera")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.25, 0 )
@@ -19,13 +17,7 @@ shape = SubResource( 1 )
 [node name="FpsCamera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
 current = true
-fov = 95.4781
+fov = 75.0
 
-[node name="RightArm" type="MeshInstance" parent="FpsCamera"]
-transform = Transform( -0.991634, -0.0977616, -0.0842881, -0.128511, 0.809009, 0.573577, 0.0121161, 0.57961, -0.814804, 0.4, -0.35, -0.04 )
-cast_shadow = 0
-mesh = ExtResource( 1 )
-material/0 = null
-
-[node name="Muzzle" type="Spatial" parent="FpsCamera"]
-transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0.295912, -0.0986996, -0.329109 )
+[node name="SpellcastingRightArm" parent="FpsCamera" instance=ExtResource( 1 )]
+transform = Transform( 0.998259, 0.026061, -0.0529207, -0.0221263, 0.997041, 0.0736215, 0.0546827, -0.0723225, 0.995881, -0.05, 0.03, -0.15 )

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://game/player/right_arm.obj" type="ArrayMesh" id=1]
+
+[node name="SpellcastingRightArm" type="Spatial"]
+transform = Transform( 1, -1.39698e-09, -4.65661e-09, 1.39698e-09, 1, 2.98023e-08, -1.86265e-09, 0, 1, 0, 0, 0 )
+
+[node name="Model" type="MeshInstance" parent="."]
+transform = Transform( -0.991634, -0.0977616, -0.0842881, -0.128511, 0.809009, 0.573577, 0.0121161, 0.57961, -0.814804, 0.4, -0.35, -0.04 )
+cast_shadow = 0
+mesh = ExtResource( 1 )
+material/0 = null
+
+[node name="ProjectileSpawnPoint" type="Spatial" parent="."]
+transform = Transform( 0.994165, -0.0142261, -0.106918, -0.00916994, -0.998823, 0.047633, -0.10747, -0.0463747, -0.993126, 0.265103, -0.113944, -0.371749 )
