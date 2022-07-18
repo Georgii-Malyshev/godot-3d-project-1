@@ -6,14 +6,15 @@
 *.translation
 # Contains all the export presets for the project, including sensitive information
 export_presets.cfg
-# Exported project
-exported_project
-# 2D graphics and 3D models
-*.png
-*.obj
+# Godot's icon.png's import file
 icon.png.import
 
 # Misc
 
+# Exported project
+exported_project
 # Assets downloaded from tutorials etc. that should not be included in and/or depended on in the project
 downloaded_assets
+# 2D graphics and 3D models
+#*.png
+#*.obj
