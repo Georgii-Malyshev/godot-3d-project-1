@@ -6,7 +6,8 @@
 *.translation
 # Contains all the export presets for the project, including sensitive information
 export_presets.cfg
-# Godot's icon.png's import file
+# Godot's icon.png
+icon.png
 icon.png.import
 
 # Misc
