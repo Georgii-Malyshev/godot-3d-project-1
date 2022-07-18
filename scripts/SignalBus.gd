@@ -1,4 +1,5 @@
 extends Node
+#warning-ignore-all:unused_signal
 
 
 # A global signal bus. Should be added to the project's AutoLoad to be used 
