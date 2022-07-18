@@ -1,19 +1,14 @@
 extends Area
 
 
-var speed : float = 6.0
+var velocity : float = 6.0
 var damage : int = 15
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	# move projectile forwards
-	translation += global_transform.basis.z * speed * delta
+	# move projectile forwards in a straight line
+	translation += global_transform.basis.z * velocity * delta
 
 
 # Called when the collider enters another node's collider

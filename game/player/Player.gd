@@ -106,12 +106,13 @@ func _physics_process (Delta):
 func fire_projectile():
 	# TODO only allow firing if currentAmmo is > 0
 	
-	var projectile = projectileScene.instance()
-	# TODO get rid of absolute node path and don't use node that is higher up in the hierarchy
-	get_node("/root/TestLevel1").add_child(projectile)
+	SignalBus.emit_signal("shootProjectile", projectileScene, muzzle)
 	
-	projectile.global_transform = muzzle.global_transform
-	projectile.scale = Vector3.ONE
+	###
+	# TODO get rid of absolute node path and don't use node that is higher up in the hierarchy
+	#get_node("/root/TestLevel1").add_child(projectile)
+	#projectile.global_transform = muzzle.global_transform
+	###
 	
 	currentAmmo -= 1
 
