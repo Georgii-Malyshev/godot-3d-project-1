@@ -3,7 +3,7 @@ extends Area
 
 enum PickupType {
 	Health,
-	Ammo
+	Mana
 }
 
 
@@ -31,5 +31,5 @@ func _on_Pickup_body_entered(body):
 func pickup(player):
 	if type == PickupType.Health:
 		player.add_health(amount)
-	elif type == PickupType.Ammo:
-		player.add_ammo(amount)
+	elif type == PickupType.Mana:
+		player.add_mana(amount)

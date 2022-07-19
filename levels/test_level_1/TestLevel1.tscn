@@ -6,7 +6,7 @@
 [ext_resource path="res://levels/test_level_1/TestLevel1Env.tres" type="Environment" id=6]
 [ext_resource path="res://game/creatures/flying_skull/FlyingSkull.tscn" type="PackedScene" id=7]
 [ext_resource path="res://game/items/Pickup_Health.tscn" type="PackedScene" id=8]
-[ext_resource path="res://game/items/Pickup_Ammo.tscn" type="PackedScene" id=9]
+[ext_resource path="res://game/items/Pickup_Mana.tscn" type="PackedScene" id=9]
 
 [node name="TestLevel1" type="Spatial"]
 script = ExtResource( 2 )

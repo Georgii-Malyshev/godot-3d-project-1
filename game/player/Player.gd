@@ -2,9 +2,9 @@ extends KinematicBody
 
 
 # stats
-var currentHp : int = 66
-var maxHp : int = 100
-var currentAmmo : int = 15
+var currentHealth : int = 66
+var maxHealth : int = 100
+var currentMana : int = 15
 
 # physics
 var moveSpeed : float = 5.0
@@ -104,7 +104,7 @@ func _physics_process (Delta):
 
 
 func fire_projectile():
-	# TODO only allow firing if currentAmmo is > 0
+	# TODO only allow firing if currentMana is > 0
 	
 	SignalBus.emit_signal("shootProjectile", projectileScene, muzzle)
 	
@@ -114,13 +114,13 @@ func fire_projectile():
 	#projectile.global_transform = muzzle.global_transform
 	###
 	
-	currentAmmo -= 1
+	currentMana -= 1
 
 
 func take_damage(damage):
-	currentHp -= damage
+	currentHealth -= damage
 	
-	if currentHp <= 0:
+	if currentHealth <= 0:
 		die()
 
 func die():
@@ -128,8 +128,8 @@ func die():
 
 
 func add_health(amount):
-	currentHp += amount
+	currentHealth += amount
 
 
-func add_ammo(amount):
-	currentAmmo += amount
+func add_mana(amount):
+	currentMana += amount

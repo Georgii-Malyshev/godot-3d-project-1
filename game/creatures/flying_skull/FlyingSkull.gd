@@ -2,8 +2,8 @@ extends KinematicBody
 
 
 # stats
-var maxHp : int = 30
-var currentHp : int = 30
+var maxHealth : int = 30
+var currentHealth : int = 30
 var moveSpeed : float = 1.0
 var attackDamage : int = 5
 var attackRate : float = 1.0
@@ -46,8 +46,8 @@ func attack():
 
 
 func take_damage(damage):
-	currentHp -= damage
-	if currentHp <= 0:
+	currentHealth -= damage
+	if currentHealth <= 0:
 		die()
 
 
