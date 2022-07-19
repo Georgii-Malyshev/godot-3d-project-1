@@ -104,17 +104,9 @@ func _physics_process (Delta):
 
 
 func fire_projectile():
-	# TODO only allow firing if currentMana is > 0
-	
-	SignalBus.emit_signal("shootProjectile", projectileScene, muzzle)
-	
-	###
-	# TODO get rid of absolute node path and don't use node that is higher up in the hierarchy
-	#get_node("/root/TestLevel1").add_child(projectile)
-	#projectile.global_transform = muzzle.global_transform
-	###
-	
-	currentMana -= 1
+	if currentMana > 0:
+		SignalBus.emit_signal("shootProjectile", projectileScene, muzzle)
+		currentMana -= 1
 
 
 func take_damage(damage):
