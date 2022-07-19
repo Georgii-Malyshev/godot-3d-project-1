@@ -21,11 +21,6 @@ func _ready():
 	timer.start()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 func _on_Timer_timeout():
 	# try attacking the player if he's within attack distance
 	if translation.distance_to(player.translation) <= attackDistance:
