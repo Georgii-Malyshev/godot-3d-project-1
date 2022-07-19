@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://placeholder_assets/outdoors_meshlib.tres" type="MeshLibrary" id=1]
-[ext_resource path="res://levels/test_level_1/TestLevel1.gd" type="Script" id=2]
 [ext_resource path="res://game/player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://levels/test_level_1/TestLevel1Env.tres" type="Environment" id=6]
 [ext_resource path="res://game/creatures/flying_skull/FlyingSkull.tscn" type="PackedScene" id=7]
@@ -9,7 +8,6 @@
 [ext_resource path="res://game/items/Pickup_Mana.tscn" type="PackedScene" id=9]
 
 [node name="TestLevel1" type="Spatial"]
-script = ExtResource( 2 )
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource( 1 )
