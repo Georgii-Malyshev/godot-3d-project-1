@@ -48,11 +48,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.31608, 0.5, -13.7109 )
 [node name="Pickup_Health3" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.13504, 0.5, -7.03112 )
 
-[node name="Pickup_Ammo" parent="." instance=ExtResource( 9 )]
+[node name="Pickup_Mana" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.15431, 0.5, -25.2815 )
 
-[node name="Pickup_Ammo2" parent="." instance=ExtResource( 9 )]
+[node name="Pickup_Mana2" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7515, 0.5, -23.2867 )
 
-[node name="Pickup_Ammo3" parent="." instance=ExtResource( 9 )]
+[node name="Pickup_Mana3" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.61587, 0.5, -15.8022 )
