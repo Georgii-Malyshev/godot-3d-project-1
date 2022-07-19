@@ -23,7 +23,7 @@ var mouseDelta : Vector2 = Vector2()
 # player components
 onready var camera : Node = $FpsCamera  # TODO need some decoupling
 onready var muzzle : Node = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint  # TODO need some decoupling
-onready var projectileScene : PackedScene = preload("res://game/projectiles/Projectile.tscn")  # TODO don't use absolute path to scene
+onready var projectile : PackedScene = preload("res://game/projectiles/Projectile.tscn")  # TODO don't use absolute path to scene
 
 
 # Called whenever an input is detected
@@ -105,7 +105,7 @@ func _physics_process (Delta):
 
 func fire_projectile():
 	if currentMana > 0:
-		SignalBus.emit_signal("shootProjectile", projectileScene, muzzle)
+		SignalBus.emit_signal("shootProjectile", projectile, muzzle)
 		currentMana -= 1
 
 

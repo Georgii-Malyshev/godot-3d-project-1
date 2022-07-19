@@ -26,4 +26,5 @@ extends Node
 # Here, 'SignalBus' is the source node and 'self' is the target node
 
 
-signal shootProjectile(projectile, spawnPoint)
+signal spawnPlayer(spawnLocation)
+signal shootProjectile(projectileScene, spawnPoint)

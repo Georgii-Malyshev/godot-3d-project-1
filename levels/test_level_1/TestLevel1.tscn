@@ -1,13 +1,14 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://placeholder_assets/outdoors_meshlib.tres" type="MeshLibrary" id=1]
-[ext_resource path="res://game/player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://levels/test_level_1/TestLevel1.gd" type="Script" id=2]
 [ext_resource path="res://levels/test_level_1/TestLevel1Env.tres" type="Environment" id=6]
 [ext_resource path="res://game/creatures/flying_skull/FlyingSkull.tscn" type="PackedScene" id=7]
 [ext_resource path="res://game/items/Pickup_Health.tscn" type="PackedScene" id=8]
 [ext_resource path="res://game/items/Pickup_Mana.tscn" type="PackedScene" id=9]
 
 [node name="TestLevel1" type="Spatial"]
+script = ExtResource( 2 )
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource( 1 )
@@ -30,9 +31,6 @@ light_indirect_energy = 0.238
 light_specular = 2.555
 shadow_enabled = true
 shadow_bias = 1.143
-
-[node name="Player" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 
 [node name="Enemy" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.67589, 1.7, -30.4459 )
