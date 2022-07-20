@@ -9,7 +9,7 @@ export_presets.cfg
 
 
 # Map autosaves made by Trenchbroom
-levels/autosave/*
+levels/*/autosave/*
 
 # Misc
 
