@@ -2,23 +2,28 @@ extends KinematicBody
 
 
 # stats
-var currentHealth : int = 66
-var maxHealth : int = 100
-var currentMana : int = 15
+var current_health : int = 66
+var max_health : int = 100
+var current_mana : int = 15
 
 # physics
-var moveSpeed : float = 5.0
-var jumpForce : float = 5.0
+var move_speed : float = 5.2
+var sneak_speed_modifier : float = 0.2
+var run_speed_modifier : float = 1.5
+var jump_force : float = 5.0
 var gravity : float = 12.0
 
+# Must be reset to 1 every frame for input handling to work correctly
+var speed_modifier : float = 1
+
 # camera look
-var minLookAngle : float = -85.0
-var maxLookAngle : float = 85.0
-var lookSensitivity : float = 1.5
+var min_look_angle : float = -85.0
+var max_look_angle : float = 85.0
+var look_sensitivity : float = 1.5
 
 # vectors
 var velocity : Vector3 = Vector3()
-var mouseDelta : Vector2 = Vector2()
+var mouse_delta : Vector2 = Vector2()
 
 # player components
 onready var camera : Node = $FpsCamera  # TODO need some decoupling
@@ -32,41 +37,42 @@ func _input(event):
 	# First-person camera movement
 	
 	if event is InputEventMouseMotion:
-		mouseDelta = event.relative  # get direction and length that the mouse moved
+		mouse_delta = event.relative  # get direction and length that the mouse moved
 		# rotate camera along X axis
-		camera.rotation_degrees -= Vector3(rad2deg(mouseDelta.y), 0, 0) * lookSensitivity * get_process_delta_time()
+		camera.rotation_degrees -= Vector3(rad2deg(mouse_delta.y), 0, 0) * look_sensitivity * get_process_delta_time()
 		
 		# clamp vertical camera rotation
-		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, minLookAngle, maxLookAngle)
+		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, min_look_angle, max_look_angle)
 		
 		# rotate player along Y axis
-		rotation_degrees -= Vector3(0, rad2deg(mouseDelta.x), 0) * lookSensitivity * get_process_delta_time()
+		rotation_degrees -= Vector3(0, rad2deg(mouse_delta.x), 0) * look_sensitivity * get_process_delta_time()
 		
 		# reset the mouse delta vector
-		mouseDelta = Vector2()
+		mouse_delta = Vector2()
 	
 	# Jumping
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jumpForce
+		velocity.y = jump_force
 	
 	# Actions
 	if Input.is_action_just_pressed("fire"):
 		fire_projectile()
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	# Hide mouse cursor and lock it to the game's window
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	
+	# Must be reset to 1 every frame for input handling to work correctly
+	speed_modifier = 1
 
 
 # Called every physics step
-func _physics_process (Delta):	
+func _physics_process (Delta):
 	
 	# Player movement in space
 	
@@ -85,6 +91,11 @@ func _physics_process (Delta):
 	if Input.is_action_pressed("move_right"):
 		input.x += 1
 	
+	if Input.is_action_pressed("run"):
+		speed_modifier = run_speed_modifier
+	elif Input.is_action_pressed("sneak"):
+		speed_modifier = sneak_speed_modifier
+	
 	# normalize diagonal movement speed
 	input = input.normalized()
 	
@@ -93,8 +104,8 @@ func _physics_process (Delta):
 	var right = global_transform.basis.x
 	
 	# set player movement velocity
-	velocity.z = (forward * input.y + right * input.x).z * moveSpeed
-	velocity.x = (forward * input.y + right * input.x).x * moveSpeed
+	velocity.z = (forward * input.y + right * input.x).z * move_speed * speed_modifier
+	velocity.x = (forward * input.y + right * input.x).x * move_speed * speed_modifier
 	
 	# apply gravity
 	velocity.y -= gravity * Delta
@@ -104,15 +115,15 @@ func _physics_process (Delta):
 
 
 func fire_projectile():
-	if currentMana > 0:
+	if current_mana > 0:
 		SignalBus.emit_signal("shootProjectile", projectile, muzzle)
-		currentMana -= 1
+		current_mana -= 1
 
 
 func take_damage(damage):
-	currentHealth -= damage
+	current_health -= damage
 	
-	if currentHealth <= 0:
+	if current_health <= 0:
 		die()
 
 func die():
@@ -120,8 +131,8 @@ func die():
 
 
 func add_health(amount):
-	currentHealth += amount
+	current_health += amount
 
 
 func add_mana(amount):
-	currentMana += amount
+	current_mana += amount
