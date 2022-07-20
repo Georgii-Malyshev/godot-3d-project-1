@@ -1,16 +1,15 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://placeholder_assets/outdoors_meshlib.tres" type="MeshLibrary" id=1]
-[ext_resource path="res://levels/test_level_1/TestLevel1.gd" type="Script" id=2]
+[ext_resource path="res://levels/AbstractLevel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/test_level_1/TestLevel1Env.tres" type="Environment" id=6]
 [ext_resource path="res://game/creatures/flying_skull/FlyingSkull.tscn" type="PackedScene" id=7]
 [ext_resource path="res://game/items/Pickup_Health.tscn" type="PackedScene" id=8]
 [ext_resource path="res://game/items/Pickup_Mana.tscn" type="PackedScene" id=9]
 
-[node name="TestLevel1" type="Spatial"]
-script = ExtResource( 2 )
+[node name="TestLevel1" instance=ExtResource( 2 )]
 
-[node name="GridMap" type="GridMap" parent="."]
+[node name="GridMap" type="GridMap" parent="." index="0"]
 mesh_library = ExtResource( 1 )
 cell_center_y = false
 data = {
@@ -20,13 +19,13 @@ __meta__ = {
 "_editor_clip_": 0
 }
 
-[node name="PlayerSpawnPoint" type="Spatial" parent="."]
+[node name="PlayerSpawnPoint" type="Spatial" parent="." index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.43712, 0 )
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2"]
 environment = ExtResource( 6 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
+[node name="DirectionalLight" type="DirectionalLight" parent="." index="3"]
 transform = Transform( 0.0344002, 0.350819, 0.935811, -0.91066, -0.374747, 0.173961, 0.411721, -0.858191, 0.306585, 4.90821, 8.16706, 6.65329 )
 light_color = Color( 0.827148, 0.895462, 0.945312, 1 )
 light_energy = 0.596
@@ -35,23 +34,23 @@ light_specular = 2.555
 shadow_enabled = true
 shadow_bias = 1.143
 
-[node name="Pickup_Health" parent="." instance=ExtResource( 8 )]
+[node name="Pickup_Health" parent="." index="4" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.90548, 0.5, -9.4461 )
 
-[node name="Pickup_Health2" parent="." instance=ExtResource( 8 )]
+[node name="Pickup_Health2" parent="." index="5" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.31608, 0.5, -13.7109 )
 
-[node name="Pickup_Health3" parent="." instance=ExtResource( 8 )]
+[node name="Pickup_Health3" parent="." index="6" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.13504, 0.5, -7.03112 )
 
-[node name="Pickup_Mana" parent="." instance=ExtResource( 9 )]
+[node name="Pickup_Mana" parent="." index="7" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.15431, 0.5, -25.2815 )
 
-[node name="Pickup_Mana2" parent="." instance=ExtResource( 9 )]
+[node name="Pickup_Mana2" parent="." index="8" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7515, 0.5, -23.2867 )
 
-[node name="Pickup_Mana3" parent="." instance=ExtResource( 9 )]
+[node name="Pickup_Mana3" parent="." index="9" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.61587, 0.5, -15.8022 )
 
-[node name="Enemy" parent="." instance=ExtResource( 7 )]
+[node name="Enemy" parent="." index="10" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54311, -34.0855 )
