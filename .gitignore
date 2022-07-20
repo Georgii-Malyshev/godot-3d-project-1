@@ -7,6 +7,10 @@
 # Contains all the export presets for the project, including sensitive information
 export_presets.cfg
 
+
+# Map autosaves made by Trenchbroom
+levels/autosave/*
+
 # Misc
 
 # Exported project
