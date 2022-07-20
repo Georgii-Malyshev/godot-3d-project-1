@@ -1,9 +1,6 @@
-[gd_resource type="MeshLibrary" load_steps=7 format=2]
-
-[ext_resource path="res://placeholder_assets/textures/Grass003_128_Color.png" type="Texture" id=1]
+[gd_resource type="MeshLibrary" load_steps=6 format=2]
 
 [sub_resource type="SpatialMaterial" id=1]
-albedo_texture = ExtResource( 1 )
 roughness_texture_channel = 3
 uv1_triplanar = true
 
