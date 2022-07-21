@@ -1,6 +1,6 @@
 extends Spatial
 
-# Abstrack scene which all levels should extend. 
+# Abstract scene which all levels should extend. 
 
 onready var spawnLocation := $PlayerSpawnPoint
 

@@ -13,4 +13,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -67.4961, 0, 10.1921 )
 
 [node name="LevelSwitcher" parent="." instance=ExtResource( 5 )]
 
-[node name="AbstractLevel" parent="." instance=ExtResource( 4 )]
+[node name="Level1" parent="." instance=ExtResource( 4 )]

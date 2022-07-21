@@ -7,7 +7,6 @@ func _enter_tree():
 
 
 func _on_Player_spawn(spawnPoint):
-	print("function _on_Player_spawn called")  # TODO delete after debug
 	var player = $Player
 	player.set_global_transform(spawnPoint.global_transform)
 
