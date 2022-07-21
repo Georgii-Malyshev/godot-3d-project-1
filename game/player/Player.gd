@@ -10,8 +10,8 @@ var current_mana : int = 15
 var move_speed : float = 3.0
 var sneak_speed_modifier : float = 0.3
 var run_speed_modifier : float = 4.5
-var jump_force : float = 5.0
-var gravity : float = 12.0
+var gravity : float = 9.8
+var snap := Vector3.DOWN
 
 # Must be reset to 1 every frame for input handling to work correctly
 var speed_modifier : float = 1
@@ -22,7 +22,7 @@ var max_look_angle : float = 85.0
 var look_sensitivity : float = 1.5
 
 # vectors
-var velocity : Vector3 = Vector3()
+var velocity : Vector3 = Vector3.ZERO
 var mouse_delta : Vector2 = Vector2()
 
 # player components
@@ -49,11 +49,8 @@ func _input(event):
 		
 		# reset the mouse delta vector
 		mouse_delta = Vector2()
-	
-	# Jumping
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_force
-	
+
+
 	# Actions
 	if Input.is_action_just_pressed("fire"):
 		fire_projectile()
@@ -80,7 +77,7 @@ func _physics_process (Delta):
 	velocity.x = 0
 	velocity.z = 0
 	
-	var input = Vector2()
+	var input = Vector2()  # TODO move declaration out of function and only reset to 0 in the function call?
 	
 	if Input.is_action_pressed("move_forward"):
 		input.y -= 1
@@ -110,8 +107,11 @@ func _physics_process (Delta):
 	# apply gravity
 	velocity.y -= gravity * Delta
 	
-	# move the player
-	velocity = move_and_slide(velocity, Vector3.UP)
+	# move the player, snap to the ground, stop on slopes
+	var velocity_itermediate := move_and_slide_with_snap(velocity, snap, Vector3.UP, true, 4, deg2rad(46))
+	if is_on_wall():
+		velocity_itermediate.y = min(0, velocity.y)
+	velocity = velocity_itermediate
 
 
 func fire_projectile():
