@@ -9,8 +9,8 @@ var current_mana : int = 15
 # physics
 var move_speed : float = 3.0
 var sneak_speed_modifier : float = 0.3
-var run_speed_modifier : float = 4.5
-var gravity : float = 9.8
+var run_speed_modifier : float = 9
+var gravity : float = 20.0
 var snap := Vector3.DOWN
 
 # Must be reset to 1 every frame for input handling to work correctly
@@ -108,7 +108,7 @@ func _physics_process (Delta):
 	velocity.y -= gravity * Delta
 	
 	# move the player, snap to the ground, stop on slopes
-	var velocity_itermediate := move_and_slide_with_snap(velocity, snap, Vector3.UP, true, 4, deg2rad(46))
+	var velocity_itermediate := move_and_slide_with_snap(velocity, snap, Vector3.UP, true, 4, deg2rad(45))
 	if is_on_wall():
 		velocity_itermediate.y = min(0, velocity.y)
 	velocity = velocity_itermediate
