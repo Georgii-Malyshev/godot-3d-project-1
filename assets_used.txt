@@ -5,6 +5,11 @@ Turbosquid:
   - Standard 3D Model License: 
     - https://www.turbosquid.com/3d-models/3d-skull-low-poly-model-1857648 3D skull low poly model by Federico Felici
     - https://www.turbosquid.com/3d-models/unity3d-ar-3d-model-1681559 First Person Arms Pack 3D model by Nisanta08
+    - https://www.turbosquid.com/3d-models/dead-tree-model-1868329 Dead Tree model by FATIH ORHAN
+    - https://www.turbosquid.com/3d-models/free-tree-branch-3d-model/603556 Horror Tree by bodyhun 
+    - https://www.turbosquid.com/3d-models/free-blend-mode-trees/710724 Trees by L.Easton
+    - https://www.turbosquid.com/3d-models/free-tree-3d-model/592617 lowpoly tree by stanloshka
+    - https://www.turbosquid.com/3d-models/dead-tree-3d-model-1486006 Dead Tree 3D model by bentoBAUX
 
 sharetextures.com: 
   - CC0 license
