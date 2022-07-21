@@ -158,9 +158,14 @@ shape = SubResource( 17 )
 shape = SubResource( 18 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="." index="2"]
-transform = Transform( -0.683276, -0.120962, 0.720071, 0.016159, 0.983436, 0.180537, -0.729982, 0.134992, -0.670003, 5.73121, 18.3371, 26.1031 )
+transform = Transform( 0.591667, -0.154959, 0.79115, 0.016159, 0.983436, 0.180537, -0.806021, -0.0940334, 0.58437, 19.2898, 18.3371, 26.1031 )
+light_color = Color( 0.862745, 0.733333, 0.666667, 1 )
+light_energy = 0.5
+light_indirect_energy = 0.2
+light_bake_mode = 0
 shadow_enabled = true
-shadow_bias = 0.3
+directional_shadow_bias_split_scale = 0.39
+directional_shadow_max_distance = 250.0
 
 [node name="PlayerSpawnPoint" type="Spatial" parent="." index="3"]
 transform = Transform( -0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, -0.939693, -47.337, 0, -29.512 )
