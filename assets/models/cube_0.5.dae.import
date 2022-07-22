@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/cube_0.5.dae-acecb7177fc7e41a28b88224a73ed8a9.scn"
+path="res://.import/cube_0.5.dae-d994f659ff92011ebe93c2600e7a6225.scn"
 
 [deps]
 
-source_file="res://placeholder_assets/cube_0.5.dae"
-dest_files=[ "res://.import/cube_0.5.dae-acecb7177fc7e41a28b88224a73ed8a9.scn" ]
+source_file="res://assets/models/cube_0.5.dae"
+dest_files=[ "res://.import/cube_0.5.dae-d994f659ff92011ebe93c2600e7a6225.scn" ]
 
 [params]
 

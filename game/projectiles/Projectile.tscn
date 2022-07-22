@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://placeholder_assets/cube_0.5.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://assets/models/cube_0.5.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://game/projectiles/Projectile.gd" type="Script" id=2]
 
 [sub_resource type="SpatialMaterial" id=2]
