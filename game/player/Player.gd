@@ -7,9 +7,9 @@ var max_health : int = 100
 var current_mana : int = 15
 
 # physics
-var move_speed : float = 3.0
+var move_speed : float = 3.5
 var sneak_speed_modifier : float = 0.3
-var run_speed_modifier : float = 9
+var run_speed_modifier : float = 7
 var gravity : float = 20.0
 var snap := Vector3.DOWN
 
@@ -19,7 +19,7 @@ var speed_modifier : float = 1
 # camera look
 var min_look_angle : float = -85.0
 var max_look_angle : float = 85.0
-var look_sensitivity : float = 1.5
+var look_sensitivity : float = 0.66
 
 # vectors
 var velocity : Vector3 = Vector3.ZERO
