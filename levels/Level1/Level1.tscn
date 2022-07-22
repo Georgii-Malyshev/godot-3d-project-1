@@ -280,7 +280,7 @@ environment = ExtResource( 10 )
 
 [node name="QodotMap" type="Spatial" parent="." index="1"]
 script = ExtResource( 1 )
-map_file = "/home/george/dev/godot/godot-3d-project-1/levels/Level1/Level1.map"
+map_file = "/home/malyshevgv/dev/personal_projects/godot-3d-project-1/levels/Level1/Level1.map"
 inverse_scale_factor = 16.0
 entity_fgd = ExtResource( 2 )
 base_texture_dir = "res://textures"
