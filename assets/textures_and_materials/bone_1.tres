@@ -1,6 +1,6 @@
 [gd_resource type="SpatialMaterial" load_steps=2 format=2]
 
-[ext_resource path="res://assets/textures_and_materials/bone1_128_Color.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures_and_materials/bone_1_128_Color.png" type="Texture" id=1]
 
 [resource]
 albedo_texture = ExtResource( 1 )
