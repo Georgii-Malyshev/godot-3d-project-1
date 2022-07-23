@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://addons/qodot/src/nodes/qodot_map.gd" type="Script" id=1]
 [ext_resource path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" type="Resource" id=2]
 [ext_resource path="res://levels/AbstractLevel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://textures/Bricks075B_256x128_Color.png" type="Texture" id=4]
 [ext_resource path="res://levels/pitch_black_env.tres" type="Environment" id=5]
+[ext_resource path="res://game/creatures/flying_skull/FlyingSkull.tscn" type="PackedScene" id=6]
 
 [sub_resource type="SpatialMaterial" id=1]
 
@@ -145,3 +146,6 @@ shadow_enabled = true
 omni_range = 49.338
 omni_attenuation = 0.5
 omni_shadow_mode = 0
+
+[node name="Enemy" parent="." index="4" instance=ExtResource( 6 )]
+transform = Transform( -0.999674, 0, 0.0255489, 0, 1, 0, -0.0255489, 0, -0.999674, -7.95871, 0, 13.3844 )

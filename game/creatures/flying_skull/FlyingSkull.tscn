@@ -11,7 +11,7 @@ radius = 0.13
 script = ExtResource( 1 )
 
 [node name="Model" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.968143, -0.250397, 0, 0.250397, 0.968143, -0.05, 1, 0.016 )
+transform = Transform( 1, 0, 0, 0, 0.968143, -0.250397, 0, 0.250397, 0.968143, -0.05, 1.75, 0.016 )
 mesh = ExtResource( 2 )
 software_skinning_transform_normals = false
 material/0 = ExtResource( 3 )
@@ -19,7 +19,7 @@ material/0 = ExtResource( 3 )
 [node name="Timer" type="Timer" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.968143, -0.250397, 0, 0.250397, 0.968143, 0.000971925, 0.989749, 0.000264163 )
+transform = Transform( 1, 0, 0, 0, 0.968143, -0.250397, 0, 0.250397, 0.968143, 0.001, 1.75, 0 )
 shape = SubResource( 3 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -7,10 +7,10 @@ var max_health : int = 100
 var current_mana : int = 15
 
 # physics
-var move_speed : float = 3.5
-var sneak_speed_modifier : float = 0.35
-var run_speed_modifier : float = 2.0
-var gravity : float = 20.0
+var move_speed : float = 3.6
+var sneak_speed_modifier : float = 0.36
+var run_speed_modifier : float = 2.5
+var gravity : float = 18.0
 var snap := Vector3.DOWN
 
 # Must be reset to 1 every frame for input handling to work correctly
