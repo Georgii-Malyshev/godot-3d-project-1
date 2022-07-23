@@ -9,7 +9,6 @@
 script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -67.4961, 0, 10.1921 )
 
 [node name="LevelSwitcher" parent="." instance=ExtResource( 5 )]
 

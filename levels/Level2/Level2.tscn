@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/qodot/src/nodes/qodot_map.gd" type="Script" id=1]
 [ext_resource path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" type="Resource" id=2]
 [ext_resource path="res://levels/AbstractLevel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://textures/Bricks075B_256x128_Color.png" type="Texture" id=4]
+[ext_resource path="res://levels/pitch_black_env.tres" type="Environment" id=5]
 
 [sub_resource type="SpatialMaterial" id=1]
 
@@ -132,3 +133,15 @@ shape = SubResource( 16 )
 
 [node name="PlayerSpawnPoint" type="Spatial" parent="." index="1"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.183, 2, -5.412 )
+
+[node name="Environment" type="WorldEnvironment" parent="." index="2"]
+environment = ExtResource( 5 )
+
+[node name="OmniLight" type="OmniLight" parent="." index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4693, 8.20837, -4.2422 )
+light_color = Color( 0.933333, 0.913725, 0.878431, 1 )
+light_energy = 2.5
+shadow_enabled = true
+omni_range = 49.338
+omni_attenuation = 0.5
+omni_shadow_mode = 0
