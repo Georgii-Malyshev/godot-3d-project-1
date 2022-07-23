@@ -22,4 +22,7 @@ material/0 = ExtResource( 3 )
 transform = Transform( 1, 0, 0, 0, 0.968143, -0.250397, 0, 0.250397, 0.968143, 0.001, 1.75, 0 )
 shape = SubResource( 3 )
 
+[node name="Timer2" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
