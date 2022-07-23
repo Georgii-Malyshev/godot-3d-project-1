@@ -4,7 +4,7 @@ Skills:
   Silencing stare: 
     Stare at the enemy for a few seconds without him leaving the screen to silence him for a long time, not letting him use any magic;
   Corpse totem: 
-    Target a corpse or a pile of bones at a distance to reforge it into a bonestructure that shoots homing bone projectiles at enemies;
+    Target a corpse or a pile of bones at a distance to reforge it into a bonestructure that shoot homing bone barrages at enemies;
   Corrupting Bonespikes:
     Target an area on any flat, big enough surface and summon several violently protruding spikes that damage any enemies they hit and apply decay;
   Reap:
@@ -18,5 +18,15 @@ Skills:
   Dark Stab:
     A fast-buildup summoning of a fast spectral dagger that stabs a single target within a medium-melee range, dealing damage and short-lived Dark DoT;
   Whimpers:
-    Summon several whimpering, slow-moving spirits that will home in and fly at the target, dealing damage and medium-lived Dark DoT;
+    Summon several whimpering, slow-moving spirits that will home in and fly at the single target, dealing damage and medium-lived Dark DoT;
+  Bone Barrage: 
     
+Enemies:
+  Most enemies are levitating to use as little animation as humanly possibe;
+  Pretty easily killed jump-scare screamers (with knives or something) that can get in VERY FAST which makes them scary and dangerous;
+  Levitating skull-somethings that try to keep their distance and build up a curse on you (bloodborne 'Winter Lantern'-style) when you're in their line of sight;
+  Flying skulls (medium speed, have to get in close to attack), easy to kill;
+  Ghosts - flying spectral beings that make horrifying sounds, go right through walls and can build up Curse with melee attacks;
+  Flying something - keeps medium distance, shoots projectiles;
+  Specters - flying dark specters with goat skulls, shoot homing projectiles;
+  Zombies - close in on you with medium speed and spikes protrude from their bodies when they are in the medium-melee range;
