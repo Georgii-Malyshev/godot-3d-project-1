@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://addons/qodot/src/nodes/qodot_map.gd" type="Script" id=1]
 [ext_resource path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" type="Resource" id=2]
@@ -6,6 +6,11 @@
 [ext_resource path="res://textures/Bricks075B_256x128_Color.png" type="Texture" id=4]
 [ext_resource path="res://levels/pitch_black_env.tres" type="Environment" id=5]
 [ext_resource path="res://game/creatures/flying_skull/FlyingSkull.tscn" type="PackedScene" id=6]
+
+[sub_resource type="NavigationMesh" id=17]
+agent/height = 1.75
+agent/max_climb = 1.6
+agent/max_slope = 15.0
 
 [sub_resource type="SpatialMaterial" id=1]
 
@@ -67,7 +72,12 @@ points = PoolVector3Array( -7, 2.5, -4, -7, 1, -4, -6, 1, -4, -6, 2.5, -4, -7, 2
 
 [node name="Level2" instance=ExtResource( 3 )]
 
-[node name="QodotMap" type="Spatial" parent="." index="0"]
+[node name="Navigation" type="Navigation" parent="." index="0"]
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation" index="0"]
+navmesh = SubResource( 17 )
+
+[node name="QodotMap" type="Spatial" parent="Navigation/NavigationMeshInstance" index="0"]
 script = ExtResource( 1 )
 map_file = "/home/malyshevgv/dev/personal_projects/godot-3d-project-1/levels/Level2/Level2.map"
 inverse_scale_factor = 32.0
@@ -86,50 +96,50 @@ use_trenchbroom_group_hierarchy = false
 tree_attach_batch_size = 16
 set_owner_batch_size = 16
 
-[node name="entity_0_worldspawn" type="StaticBody" parent="QodotMap" index="0"]
+[node name="entity_0_worldspawn" type="StaticBody" parent="Navigation/NavigationMeshInstance/QodotMap" index="0"]
 
-[node name="entity_0_mesh_instance" type="MeshInstance" parent="QodotMap/entity_0_worldspawn" index="0"]
+[node name="entity_0_mesh_instance" type="MeshInstance" parent="Navigation/NavigationMeshInstance/QodotMap/entity_0_worldspawn" index="0"]
 use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = null
 
-[node name="entity_0_brush_0_collision_shape" type="CollisionShape" parent="QodotMap/entity_0_worldspawn" index="1"]
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/QodotMap/entity_0_worldspawn" index="1"]
 shape = SubResource( 4 )
 
-[node name="entity_0_brush_1_collision_shape" type="CollisionShape" parent="QodotMap/entity_0_worldspawn" index="2"]
+[node name="entity_0_brush_1_collision_shape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/QodotMap/entity_0_worldspawn" index="2"]
 shape = SubResource( 5 )
 
-[node name="entity_0_brush_2_collision_shape" type="CollisionShape" parent="QodotMap/entity_0_worldspawn" index="3"]
+[node name="entity_0_brush_2_collision_shape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/QodotMap/entity_0_worldspawn" index="3"]
 shape = SubResource( 6 )
 
-[node name="entity_0_brush_3_collision_shape" type="CollisionShape" parent="QodotMap/entity_0_worldspawn" index="4"]
+[node name="entity_0_brush_3_collision_shape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/QodotMap/entity_0_worldspawn" index="4"]
 shape = SubResource( 7 )
 
-[node name="entity_0_brush_4_collision_shape" type="CollisionShape" parent="QodotMap/entity_0_worldspawn" index="5"]
+[node name="entity_0_brush_4_collision_shape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/QodotMap/entity_0_worldspawn" index="5"]
 shape = SubResource( 8 )
 
-[node name="entity_0_brush_5_collision_shape" type="CollisionShape" parent="QodotMap/entity_0_worldspawn" index="6"]
+[node name="entity_0_brush_5_collision_shape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/QodotMap/entity_0_worldspawn" index="6"]
 shape = SubResource( 9 )
 
-[node name="entity_0_brush_6_collision_shape" type="CollisionShape" parent="QodotMap/entity_0_worldspawn" index="7"]
+[node name="entity_0_brush_6_collision_shape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/QodotMap/entity_0_worldspawn" index="7"]
 shape = SubResource( 10 )
 
-[node name="entity_0_brush_7_collision_shape" type="CollisionShape" parent="QodotMap/entity_0_worldspawn" index="8"]
+[node name="entity_0_brush_7_collision_shape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/QodotMap/entity_0_worldspawn" index="8"]
 shape = SubResource( 11 )
 
-[node name="entity_0_brush_8_collision_shape" type="CollisionShape" parent="QodotMap/entity_0_worldspawn" index="9"]
+[node name="entity_0_brush_8_collision_shape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/QodotMap/entity_0_worldspawn" index="9"]
 shape = SubResource( 12 )
 
-[node name="entity_0_brush_9_collision_shape" type="CollisionShape" parent="QodotMap/entity_0_worldspawn" index="10"]
+[node name="entity_0_brush_9_collision_shape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/QodotMap/entity_0_worldspawn" index="10"]
 shape = SubResource( 13 )
 
-[node name="entity_0_brush_10_collision_shape" type="CollisionShape" parent="QodotMap/entity_0_worldspawn" index="11"]
+[node name="entity_0_brush_10_collision_shape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/QodotMap/entity_0_worldspawn" index="11"]
 shape = SubResource( 14 )
 
-[node name="entity_0_brush_11_collision_shape" type="CollisionShape" parent="QodotMap/entity_0_worldspawn" index="12"]
+[node name="entity_0_brush_11_collision_shape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/QodotMap/entity_0_worldspawn" index="12"]
 shape = SubResource( 15 )
 
-[node name="entity_0_brush_12_collision_shape" type="CollisionShape" parent="QodotMap/entity_0_worldspawn" index="13"]
+[node name="entity_0_brush_12_collision_shape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/QodotMap/entity_0_worldspawn" index="13"]
 shape = SubResource( 16 )
 
 [node name="PlayerSpawnPoint" type="Spatial" parent="." index="1"]
