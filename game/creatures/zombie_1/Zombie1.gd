@@ -49,7 +49,8 @@ func _physics_process(delta):
 			path_node_index += 1  # start using the next node in the path
 		else:
 			# move towards the current node along the direction vector
-			move_and_slide_with_snap(direction.normalized() * movement_speed, Vector3.DOWN, Vector3.UP) 
+			#move_and_slide_with_snap(direction.normalized() * movement_speed, Vector3.DOWN, Vector3.UP)
+			move_and_slide_with_snap(direction * movement_speed, Vector3.DOWN, Vector3.UP)
 
 
 func update_path_to(target_pos):
