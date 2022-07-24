@@ -16,11 +16,11 @@ shape = SubResource( 1 )
 [node name="FpsCamera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
 current = true
-fov = 60.0
+fov = 66.0
 near = 0.1
-far = 750.0
+far = 500.0
 
 [node name="SpellcastingRightArm" parent="FpsCamera" instance=ExtResource( 1 )]
-transform = Transform( 0.998259, 0.026061, -0.0529207, -0.0221263, 0.997041, 0.0736215, 0.0546827, -0.0723225, 0.995881, -0.05, 0.03, -0.15 )
+transform = Transform( 0.998346, 0.0221501, -0.053068, -0.0221813, 0.999754, 0, 0.0530549, 0.00117712, 0.998591, -0.05, 0.03, -0.204225 )
 
 [editable path="FpsCamera/SpellcastingRightArm"]

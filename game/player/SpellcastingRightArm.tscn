@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/models/spellcasting_right_arm.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/textures_and_materials/human_skin_3.tres" type="Material" id=2]
-[ext_resource path="res://placeholder_assets/parallelepiped_1m_long.obj" type="ArrayMesh" id=3]
 
 [node name="SpellcastingRightArm" type="Spatial"]
 transform = Transform( 1, -1.39698e-09, -4.65661e-09, 1.39698e-09, 1, 2.98023e-08, -1.86265e-09, 0, 1, 0, 0, 0 )
@@ -15,8 +14,3 @@ material/0 = ExtResource( 2 )
 
 [node name="ProjectileSpawnPoint" type="Spatial" parent="."]
 transform = Transform( 0.994165, -0.0142261, -0.106918, -0.00916994, -0.998823, 0.047633, -0.10747, -0.0463747, -0.993126, 0.265103, -0.113944, -0.481671 )
-
-[node name="Parallelepiped1mLong" type="MeshInstance" parent="."]
-transform = Transform( 0.0672316, 1.30306e-09, 0.997737, 3.10379e-08, 1, 2.64048e-08, -0.997737, 1.39382e-09, 0.0672316, -3.34576e-09, -0.231197, -0.649138 )
-mesh = ExtResource( 3 )
-material/0 = null
