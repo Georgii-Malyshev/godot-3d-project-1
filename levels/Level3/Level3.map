@@ -1,0 +1,16 @@
+// Game: Qodot_3d_Project_1
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+"_tb_textures" "textures"
+// brush 0
+{
+( 0 -128 -32 ) ( 0 -127 -32 ) ( 0 -128 -31 ) Grass003_128_Color 0 0 0 0.5 0.5
+( 0 -128 -32 ) ( 0 -128 -31 ) ( 1 -128 -32 ) Grass003_128_Color 0 0 0 0.5 0.5
+( 0 -128 -16 ) ( 1 -128 -16 ) ( 0 -127 -16 ) Grass003_128_Color 0 0 0 0.5 0.5
+( 128 0 0 ) ( 128 1 0 ) ( 129 0 0 ) Grass003_128_Color 0 0 0 0.5 0.5
+( 128 0 0 ) ( 129 0 0 ) ( 128 0 1 ) Grass003_128_Color 0 0 0 0.5 0.5
+( 128 0 0 ) ( 128 0 1 ) ( 128 1 0 ) Grass003_128_Color 0 0 0 0.5 0.5
+}
+}

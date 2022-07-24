@@ -16,6 +16,7 @@ shape = SubResource( 1 )
 [node name="FpsCamera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
 current = true
+fov = 60.0
 near = 0.1
 far = 750.0
 

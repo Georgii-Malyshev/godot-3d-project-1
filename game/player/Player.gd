@@ -7,7 +7,7 @@ var max_health : int = 100
 var current_mana : int = 15
 
 # physics
-var move_speed : float = 3.6
+var move_speed : float = 3.0
 var sneak_speed_modifier : float = 0.36
 var run_speed_modifier : float = 2.5
 var gravity : float = 18.0
