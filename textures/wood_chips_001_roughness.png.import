@@ -2,28 +2,29 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wood_chips_001_256.png-c49e34160903342d38bcb6ed3ae6160b.stex"
+path.s3tc="res://.import/wood_chips_001_roughness.png-06244a2abc5ea2b28ee795ad21279f97.s3tc.stex"
 metadata={
-"vram_texture": false
+"imported_formats": [ "s3tc" ],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://textures/wood_chips_001_256.png"
-dest_files=[ "res://.import/wood_chips_001_256.png-c49e34160903342d38bcb6ed3ae6160b.stex" ]
+source_file="res://textures/wood_chips_001_roughness.png"
+dest_files=[ "res://.import/wood_chips_001_roughness.png-06244a2abc5ea2b28ee795ad21279f97.s3tc.stex" ]
 
 [params]
 
-compress/mode=3
+compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=true
-flags/filter=false
+flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=false
-flags/srgb=1
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wood_chips_001_256_displacement.png-354476d885fa107bd3cfab62aaef0bc7.stex"
+path="res://.import/wood_chips_001.png-cb65bedc1dd06b3c17009276d12830a4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/wood_chips_001_256_displacement.png"
-dest_files=[ "res://.import/wood_chips_001_256_displacement.png-354476d885fa107bd3cfab62aaef0bc7.stex" ]
+source_file="res://textures/wood_chips_001.png"
+dest_files=[ "res://.import/wood_chips_001.png-cb65bedc1dd06b3c17009276d12830a4.stex" ]
 
 [params]
 
