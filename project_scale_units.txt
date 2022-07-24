@@ -1,0 +1,7 @@
+Assume these translations of in-editor distance (scale) units to game world distance (scale) units: 
+ Godot: 1 unit = 1 m
+ Trenchbroom: 1 X/Y/Z coordinate unit (not the grid!) = 1/128 meter (128x128x128 cube in Trenchbroom map is a 1x1x1 m cube in Godot's project)
+
+Notes: 
+ - when importing Trenchbroom maps, set inverse scale factor in Godot to 128
+ 
