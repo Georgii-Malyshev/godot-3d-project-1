@@ -9,8 +9,6 @@ var attackDamage : int = 5
 var attackRate : float = 1.0
 var attackDistance : float = 0.5
 
-var gravity : float =  18.0
-
 # pathfinding
 var path = []
 var path_node_index = 0
@@ -37,10 +35,11 @@ func _on_Timer_timeout():
 
 func _physics_process(delta):
 	
+	# reset movement direction vector
 	var direction : Vector3 = Vector3.ZERO
 	
 	# apply gravity
-	direction.y -= gravity * delta
+	direction.y -= GlobalVars.get_global_gravity() * delta
 	
 	if path_node_index < path.size():  # if current node isn't the last one on the path
 		var pathfinding_direction : Vector3 = (path[path_node_index] - global_transform.origin)
