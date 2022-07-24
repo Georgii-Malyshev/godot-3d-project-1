@@ -4,7 +4,7 @@ extends KinematicBody
 # stats
 var max_health : int = 100
 var current_health : int = 100
-var movement_speed : float = 3
+var movement_speed : float = 2.6
 var attackDamage : int = 5
 var attackRate : float = 1.0
 var attackDistance : float = 0.5
