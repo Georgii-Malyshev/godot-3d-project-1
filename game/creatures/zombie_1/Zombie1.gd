@@ -37,20 +37,26 @@ func _on_Timer_timeout():
 
 func _physics_process(delta):
 	
-	var direction : Vector3
+	var direction : Vector3 = Vector3.ZERO
 	
 	# apply gravity
 	direction.y -= gravity * delta
 	
 	if path_node_index < path.size():  # if current node isn't the last one on the path
-		direction = direction + (path[path_node_index] - global_transform.origin)
+		var pathfinding_direction : Vector3 = (path[path_node_index] - global_transform.origin)
+		# TODO rewrite into something less verbose
+		# Enemies that don't fly can move "deliberately" only on X&Z axes, 
+		# so reset the Y coordinate of their "intended" direction of movement to zero
+		# and let their navigation meshes provide info that will be used to calculate path
+		# to positions that are higher/lower than current Y coordinate
+		pathfinding_direction.y = 0
+		direction = direction + pathfinding_direction 
 		
 		if direction.length() < 0.5:
 			path_node_index += 1  # start using the next node in the path
 		else:
 			# move towards the current node along the direction vector
-			#move_and_slide_with_snap(direction.normalized() * movement_speed, Vector3.DOWN, Vector3.UP)
-			move_and_slide_with_snap(direction * movement_speed, Vector3.DOWN, Vector3.UP)
+			move_and_slide_with_snap(direction.normalized() * movement_speed, Vector3.DOWN, Vector3.UP)
 
 
 func update_path_to(target_pos):
