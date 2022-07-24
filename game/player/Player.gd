@@ -69,7 +69,7 @@ func _process(delta):
 
 
 # Called every physics step
-func _physics_process (Delta):
+func _physics_process (delta):
 	
 	# Player movement in space
 	
@@ -105,7 +105,7 @@ func _physics_process (Delta):
 	velocity.x = (forward * input.y + right * input.x).x * move_speed * speed_modifier
 	
 	# apply gravity
-	velocity.y -= gravity * Delta
+	velocity.y -= gravity * delta
 	
 	# move the player, snap to the ground, stop on slopes
 	var velocity_itermediate := move_and_slide_with_snap(velocity, snap, Vector3.UP, true, 4, deg2rad(45))

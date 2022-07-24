@@ -11,7 +11,7 @@ var attackDistance : float = 2.0
 
 # pathfinding
 var path = []
-var path_node = 0
+var path_node_index = 0
 
 # components
 onready var nav : Node = get_parent()  # get navigation node  # TODO decouple from parent?
@@ -37,10 +37,10 @@ func _on_Timer_timeout():
 
 
 func _physics_process(delta):
-	if path_node < path.size():  # if current node isn't the last one on the path
-		var direction : Vector3 = (path[path_node] - global_transform.origin)
+	if path_node_index < path.size():  # if current node isn't the last one on the path
+		var direction : Vector3 = (path[path_node_index] - global_transform.origin)
 		if direction.length() < 0.5:
-			path_node += 1  # use the next node next
+			path_node_index += 1  # use the next node next
 		else:
 			# move towards the current node along the direction vector
 			move_and_slide(direction.normalized() * movement_speed, Vector3.UP)
@@ -56,7 +56,7 @@ func _physics_process(delta):
 
 func update_path_to(target_pos):
 	path = nav.get_simple_path(global_transform.origin, target_pos)
-	path_node = 0
+	path_node_index = 0
 
 
 func attack():

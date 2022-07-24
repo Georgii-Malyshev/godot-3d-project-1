@@ -3,6 +3,8 @@ AmbientCG.com:
 
 Turbosquid:
   - Standard 3D Model License: 
+
+    # Various models
     - https://www.turbosquid.com/3d-models/3d-skull-low-poly-model-1857648 3D skull low poly model by Federico Felici
     - https://www.turbosquid.com/3d-models/unity3d-ar-3d-model-1681559 First Person Arms Pack 3D model by Nisanta08
     - https://www.turbosquid.com/3d-models/dead-tree-model-1868329 Dead Tree model by FATIH ORHAN
@@ -10,6 +12,36 @@ Turbosquid:
     - https://www.turbosquid.com/3d-models/free-blend-mode-trees/710724 Trees by L.Easton
     - https://www.turbosquid.com/3d-models/free-tree-3d-model/592617 lowpoly tree by stanloshka
     - https://www.turbosquid.com/3d-models/dead-tree-3d-model-1486006 Dead Tree 3D model by bentoBAUX
+    - https://www.turbosquid.com/3d-models/3d-decoration-08-sea-urchin-1498760 3D Decoration 08 Sea Urchin by cgcentury
+    - https://www.turbosquid.com/3d-models/animal-skull-statuette-model-1733471 Animal skull statuette model by HQ3DMOD
+    - https://www.turbosquid.com/3d-models/skull-3d-1452999 Skull 3D by iMaro
+    - https://www.turbosquid.com/3d-models/3d-male-anatomy-body-1389574 3D Male body anatomy by sculpt_m
+    - https://www.turbosquid.com/3d-models/male-anatomy-model-1333572 Free Male Anatomy model by niyoo
+    - https://www.turbosquid.com/3d-models/free-c4d-mode-anatomy-body/623330 Skull by samc4d
+    - https://www.turbosquid.com/3d-models/free-heart-3d-model/957963 Heart by Ringo3D
+    - https://www.turbosquid.com/3d-models/maya-hand-zbrush-resolution/767390 Hand by Jeffo89
+    - https://www.turbosquid.com/3d-models/free-3ds-mode-skelton/598105 Skeleton by viebi
+    - https://www.turbosquid.com/3d-models/body-skeleton-blend-free/659093 Skeleton by Bubles Studio
+    - https://www.turbosquid.com/3d-models/free-tooth-roots-3d-model/763377 tooth by nemesla
+    - https://www.turbosquid.com/3d-models/free-3ds-model-incisive-tooth/543341 Incisive Tooth by beghelli
+    - https://www.turbosquid.com/3d-models/free-max-mode-vertebra-backbone/752336 Vertebra by agamerswork
+    - https://www.turbosquid.com/3d-models/free-hand-3d-model/807267 low_poly_arm by pryme8
+    - https://www.turbosquid.com/3d-models/skull-blend-free/447848 skull by wingsbg
+    - https://www.turbosquid.com/3d-models/bone-obj/269707 Bone by 3DaMaze
+    - https://www.turbosquid.com/3d-models/human-skull-no-jaw-3d-model-abb-3d-1905570 Human Skull - No Jaw - 3D Model - ABB 3D by SheriffCurly
+    - https://www.turbosquid.com/3d-models/sculpture-horror-unreal-3d-model-1708656 MeatCubeArm 3D model by Dpotatoes
+    - https://www.turbosquid.com/3d-models/ram-skull-model-1390373 Ram skul model by EinSteph
+    - https://www.turbosquid.com/3d-models/deer-skull-max-free/996309 Deer Skull by Reece Taylor
+    - https://www.turbosquid.com/3d-models/print-ring-3d-3ds/1030529 Ring skull by printRoom
+    - https://www.turbosquid.com/3d-models/3d-model-sword-bone/994439 Bone Sword by Danzl0
+    - https://www.turbosquid.com/3d-models/money-coin-model-1507052 Coin (skull) model by OwenJones
+
+    # Characters
+    - https://www.turbosquid.com/3d-models/free-x-model-zombie/1012761 High Quality Zombie by Modellers
+    - https://www.turbosquid.com/3d-models/zombie-monster-model-1695349 zombie mine monster model by konared
+    - https://www.turbosquid.com/3d-models/egyptian-mummy-3d-1434214 Egyptian Mummy 3D by Mimoun KECHE
+    - https://www.turbosquid.com/3d-models/ant-animation-running-3ds-free/856094 Ant (Anim_run) by ZERG_LURKER
+
 
 sharetextures.com: 
   - CC0 license

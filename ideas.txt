@@ -23,10 +23,10 @@ Skills:
     
 Enemies:
   Most enemies are levitating to use as little animation as humanly possibe;
-  Pretty easily killed jump-scare screamers (with knives or something) that can get in VERY FAST which makes them scary and dangerous;
+  Pretty easily killed jump-scare screamers (with knives or something) that can get in close VERY FAST which makes them scary and dangerous;
   Levitating skull-somethings that try to keep their distance and build up a curse on you (bloodborne 'Winter Lantern'-style) when you're in their line of sight;
   Flying skulls (medium speed, have to get in close to attack), easy to kill;
   Ghosts - flying spectral beings that make horrifying sounds, go right through walls and can build up Curse with melee attacks;
   Flying something - keeps medium distance, shoots projectiles;
   Specters - flying dark specters with goat skulls, shoot homing projectiles;
-  Zombies - close in on you with medium speed and spikes protrude from their bodies when they are in the medium-melee range;
+  Zombies - close in on you with medium speed and corrupting spikes protrude from their bodies when they are in the medium-melee range;
