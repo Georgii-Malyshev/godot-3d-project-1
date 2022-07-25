@@ -11,7 +11,7 @@ var attackDistance: float = 0.5
 
 # pathfinding
 var path: Array = []
-var path_node_index := 0
+var path_node_index: int = 0
 
 # components
 onready var nav: Node = get_parent()  # get navigation node  # TODO decouple from parent?
@@ -30,9 +30,24 @@ func _ready():
 	timer1.start()
 
 
-func _on_player_detected_by_ray(signaling_node, collision_position) -> void:
+func _check_if_player_is_in_sight() -> void:
+	
+	# check if player is inside FoV and range
+	var fov_overlapping_bodies: Array = $FieldOfViewArea.get_overlapping_bodies()
+	for body in fov_overlapping_bodies:
+		if body is Player:
+			# check if player is in line of sight (not blocked by obstacles)
+			$FieldOfViewArea/PlayerDetectionRay._cast_ray_to_player()
+			break
+		else:
+			# only cast line-of-sight checking ray if player is actually in FoV and range
+			$FieldOfViewArea/PlayerDetectionRay._disable_ray_cast_to_player()
+
+
+func _on_player_detected_by_ray(signaling_node: Node, collision_position: Vector3) -> void:
+	# check if a signal is initially coming from this node's FoV
 	if signaling_node.get_parent().get_parent().get_name() == self.get_name():
-		look_at(player.translation, Vector3.UP)
+		look_at(collision_position, Vector3.UP)
 
 
 func _on_Timer_timeout():
@@ -42,16 +57,7 @@ func _on_Timer_timeout():
 
 func _physics_process(_delta : float) -> void:
 
-	# Vision
-	
-	# check if player is in FOV
-	var fov_overlapping_bodies: Array = $FieldOfViewArea.get_overlapping_bodies()
-	for body in fov_overlapping_bodies:
-		if body is Player:
-			$FieldOfViewArea/PlayerDetectionRay._cast_ray_to_player()
-			break
-		else:
-			$FieldOfViewArea/PlayerDetectionRay._disable_ray_cast_to_player()
+	_check_if_player_is_in_sight()
 	
 	# Movement
 	
