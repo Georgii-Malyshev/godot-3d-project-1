@@ -24,8 +24,15 @@ onready var timer2: Timer = $Timer2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	SignalBus.connect("player_detected_by_ray", self, "_on_player_detected_by_ray")
+	
 	timer1.set_wait_time(attackRate)
 	timer1.start()
+
+
+func _on_player_detected_by_ray(signaling_node, collision_position) -> void:
+	if signaling_node.get_parent().get_parent().get_name() == self.get_name():
+		look_at(player.translation, Vector3.UP)
 
 
 func _on_Timer_timeout():
@@ -97,7 +104,3 @@ func _on_FieldOfViewArea_body_exited(fieldOfViewArea: Node, body: Node) -> void:
 	if fieldOfViewArea.get_parent().get_name() == self.get_name():
 		if body is Player:
 			$FieldOfViewArea/PlayerDetectionRay._disable_ray_cast_to_player()
-
-
-func _turn_to_player() -> void:
-	look_at(player.translation, Vector3.UP)

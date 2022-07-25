@@ -1,6 +1,6 @@
 extends RayCast
 
-var collider : Object = null
+var collider: Object = null
 
 
 func _cast_ray_to_player() -> void:
@@ -12,9 +12,9 @@ func _cast_ray_to_player() -> void:
 	if is_colliding():
 		collider = get_collider()
 		if collider is Player:
-			print("Ray hit the player")
-			# TODO move this logic into enemy's script and call it from here
-			self.get_parent().get_parent()._turn_to_player()
+			SignalBus.emit_signal(
+				"player_detected_by_ray", self, collider.translation
+				)
 
 
 func _disable_ray_cast_to_player() -> void:

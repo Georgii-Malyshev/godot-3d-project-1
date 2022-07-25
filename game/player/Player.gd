@@ -9,7 +9,7 @@ var current_mana : int = 15
 # physics
 var move_speed : float = 2.3
 var sneak_speed_modifier : float = 0.35
-var run_speed_modifier : float = 3.5
+var run_speed_modifier : float = 5
 var gravity : float = 18.0
 var snap := Vector3.DOWN
 
