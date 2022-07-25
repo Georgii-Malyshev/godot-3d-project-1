@@ -16,6 +16,7 @@ func _cast_ray_to_player() -> void:
 		collider = get_collider()
 		if collider is Player:
 			print("Ray hit the player")  # TODO call respective logic
+			self.get_parent().get_parent()._turn_to_player()  # TODO move this logic into enemy's script and call it from here
 
 
 func _stop_ray_casting_to_player() -> void:

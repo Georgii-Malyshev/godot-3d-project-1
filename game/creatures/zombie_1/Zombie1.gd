@@ -39,10 +39,6 @@ func _on_Timer_timeout():
 		attack()
 
 
-func _process(_delta : float) -> void:
-	look_at(player.translation, Vector3.UP)
-
-
 func _physics_process(_delta : float) -> void:
 
 	# Movement
@@ -91,6 +87,7 @@ func _on_Timer2_timeout():
 	update_path_to(player.global_transform.origin)
 
 
+# TODO signals can't work here, must check player's visibility every frame, not only on entering and exiting!
 func _on_FieldOfViewArea_body_entered(fieldOfViewArea: Node, body: Node) -> void:
 
 	# check if singal is initially coming from this node's field of view
@@ -105,3 +102,7 @@ func _on_FieldOfViewArea_body_exited(fieldOfViewArea: Node, body: Node) -> void:
 	if fieldOfViewArea.get_parent().get_name() == self.get_name():
 		if body is Player:
 			$FieldOfViewArea/PlayerDetectionRay._stop_ray_casting_to_player()
+
+
+func _turn_to_player() -> void:
+	look_at(player.translation, Vector3.UP)
