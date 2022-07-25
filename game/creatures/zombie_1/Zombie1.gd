@@ -34,6 +34,10 @@ func _on_Timer_timeout():
 		attack()
 
 
+func _process(delta : float) -> void:
+	look_at(player.translation, Vector3.UP)
+
+
 func _physics_process(delta):
 	
 	# reset movement direction vector

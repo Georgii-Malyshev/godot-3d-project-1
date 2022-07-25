@@ -1,5 +1,5 @@
 extends KinematicBody
-
+class_name Player
 
 # stats
 var current_health : int = 66

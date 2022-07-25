@@ -210,7 +210,7 @@ shape = SubResource( 41 )
 shape = SubResource( 42 )
 
 [node name="Zombie1" parent="Navigation" index="1" instance=ExtResource( 7 )]
-transform = Transform( -0.999366, 0, -0.0355973, 0, 1, 0, 0.0355973, 0, -0.999366, -4.83949, 1.90735e-06, 57.7458 )
+transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -4.83949, 1.90735e-06, 57.7458 )
 
 [node name="PlayerSpawnPoint" type="Spatial" parent="." index="1"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.39479, 0, 2.13088 )
