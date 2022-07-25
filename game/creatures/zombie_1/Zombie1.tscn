@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/models/Skeleton.gltf" type="PackedScene" id=1]
 [ext_resource path="res://game/creatures/zombie_1/Zombie1.gd" type="Script" id=2]
-[ext_resource path="res://game/creatures/zombie_1/PlayerDetectionRayCast.gd" type="Script" id=3]
+[ext_resource path="res://game/creatures/zombie_1/PlayerDetectionRay.gd" type="Script" id=3]
+[ext_resource path="res://game/creatures/field_of_view_collision_shape_1.tres" type="Shape" id=4]
+[ext_resource path="res://game/creatures/zombie_1/FieldOfViewArea.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.303463
@@ -24,10 +26,19 @@ shape = SubResource( 1 )
 process_mode = 0
 autostart = true
 
-[node name="PlayerDetectionRayCast" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05482, 0.0651466 )
+[node name="FieldOfViewArea" type="Area" parent="."]
+script = ExtResource( 5 )
+
+[node name="FieldOfViewCollisionShape" type="CollisionShape" parent="FieldOfViewArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.055, -0.05 )
+shape = ExtResource( 4 )
+
+[node name="PlayerDetectionRay" type="RayCast" parent="FieldOfViewArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.055, -0.05 )
 enabled = true
-cast_to = Vector3( 0, 0, -20 )
+cast_to = Vector3( 0, 0, -1 )
+debug_shape_custom_color = Color( 1, 0, 0, 1 )
+debug_shape_thickness = 1
 script = ExtResource( 3 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

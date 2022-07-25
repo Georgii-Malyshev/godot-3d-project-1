@@ -18,9 +18,9 @@ extends Node
 
 # In the emitter node use the global signal bus to emit a signal: 
 
-# SignalBus.emit_signal("ExampleSignal1", self.whatever_you_need_to_pass_from_emitter)
+# SignalBus.emit_signal("ExampleSignal1", any, number, of, arguments, that, must, be, passed)
 
-# In the node that needs to connect to this signal, again, use the global signal bus:
+# In the node that needs to connect to this signal, again, use the global signal bus like so:
 
 # SignalBus.connect("ExampleSignal1", self, "<target_function>" 
 # Here, 'SignalBus' is the source node and 'self' is the target node
@@ -28,3 +28,6 @@ extends Node
 
 signal spawnPlayer(spawnLocation)
 signal shootProjectile(projectileScene, spawnPoint)
+
+signal fieldOfViewArea_body_entered(fieldOfViewArea, body)
+signal fieldOfViewArea_body_exited(fieldOfViewArea, body)
