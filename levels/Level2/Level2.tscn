@@ -224,3 +224,10 @@ shadow_enabled = true
 omni_range = 29.2549
 omni_attenuation = 0.659754
 omni_shadow_mode = 0
+
+[node name="OmniLight2" type="OmniLight" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.14783, 3.11736, 23.7811 )
+shadow_enabled = true
+omni_range = 29.2549
+omni_attenuation = 0.659754
+omni_shadow_mode = 0

@@ -2,6 +2,7 @@ extends Node
 
 
 func _enter_tree():
+	# TODO don't use signals to start behavior
 	SignalBus.connect("spawnPlayer", self, "_on_Player_spawn")
 	SignalBus.connect("shootProjectile", self, "_on_Player_shoot")
 
