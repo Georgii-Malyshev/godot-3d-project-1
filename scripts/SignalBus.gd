@@ -28,6 +28,3 @@ extends Node
 
 signal spawnPlayer(spawnLocation)
 signal shootProjectile(projectileScene, spawnPoint)
-
-signal fieldOfViewArea_body_entered(fieldOfViewArea, body)
-signal fieldOfViewArea_body_exited(fieldOfViewArea, body)

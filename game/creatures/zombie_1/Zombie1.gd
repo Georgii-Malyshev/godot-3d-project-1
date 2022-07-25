@@ -2,45 +2,50 @@ extends KinematicBody
 
 
 # stats
-var max_health : int = 100
-var current_health : int = 100
-var movement_speed : float = 2
-var attackDamage : int = 5
-var attackRate : float = 1.0
-var attackDistance : float = 0.5
+var max_health: int = 100
+var current_health: int = 100
+var movement_speed: float = 2
+var attackDamage: int = 5
+var attackRate: float = 1.0
+var attackDistance: float = 0.5
 
 # pathfinding
-var path = []
-var path_node_index = 0
+var path: Array = []
+var path_node_index := 0
 
 # components
-onready var nav : Node = get_parent()  # get navigation node  # TODO decouple from parent?
+onready var nav: Node = get_parent()  # get navigation node  # TODO decouple from parent?
 # TODO get rid of absolute node path and don't use node that is higher up in the hierarchy
-onready var player : Node = get_node("/root/Main/Player")
+onready var player: Node = get_node("/root/Main/Player")
 
-onready var timer1 : Timer = $Timer
-onready var timer2 : Timer = $Timer2
+onready var timer1: Timer = $Timer
+onready var timer2: Timer = $Timer2
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	# for player detection
-	SignalBus.connect("fieldOfViewArea_body_entered", self, "_on_FieldOfViewArea_body_entered")
-	SignalBus.connect("fieldOfViewArea_body_exited", self, "_on_FieldOfViewArea_body_exited")
-	
 	timer1.set_wait_time(attackRate)
 	timer1.start()
 
 
 func _on_Timer_timeout():
-	# try attacking the player if he's within attack distance
 	if translation.distance_to(player.translation) <= attackDistance:
 		attack()
 
 
 func _physics_process(_delta : float) -> void:
 
+	# Vision
+	
+	# check if player is in FOV
+	var fov_overlapping_bodies: Array = $FieldOfViewArea.get_overlapping_bodies()
+	for body in fov_overlapping_bodies:
+		if body is Player:
+			$FieldOfViewArea/PlayerDetectionRay._cast_ray_to_player()
+			break
+		else:
+			$FieldOfViewArea/PlayerDetectionRay._disable_ray_cast_to_player()
+	
 	# Movement
 	
 	# reset movement direction vector
@@ -87,21 +92,11 @@ func _on_Timer2_timeout():
 	update_path_to(player.global_transform.origin)
 
 
-# TODO signals can't work here, must check player's visibility every frame, not only on entering and exiting!
-func _on_FieldOfViewArea_body_entered(fieldOfViewArea: Node, body: Node) -> void:
-
-	# check if singal is initially coming from this node's field of view
-	if fieldOfViewArea.get_parent().get_name() == self.get_name():
-		if body is Player:
-			$FieldOfViewArea/PlayerDetectionRay._cast_ray_to_player()
-
-
 func _on_FieldOfViewArea_body_exited(fieldOfViewArea: Node, body: Node) -> void:
 
-	# check if singal is initially coming from this node's field of view
 	if fieldOfViewArea.get_parent().get_name() == self.get_name():
 		if body is Player:
-			$FieldOfViewArea/PlayerDetectionRay._stop_ray_casting_to_player()
+			$FieldOfViewArea/PlayerDetectionRay._disable_ray_cast_to_player()
 
 
 func _turn_to_player() -> void:
