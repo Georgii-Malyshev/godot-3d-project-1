@@ -93,11 +93,6 @@ func _attack_player():
 	print("Attacking player!")  # TODO implement attack mechanics
 
 
-# TODO delete
-#func attack():
-#	player.take_damage(attack_damage)
-
-
 func take_damage(damage):
 	current_health -= damage
 	if current_health <= 0:
