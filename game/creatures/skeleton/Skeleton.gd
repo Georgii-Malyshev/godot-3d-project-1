@@ -1,6 +1,5 @@
 extends KinematicBody
 
-
 # stats
 var max_health: int = 100
 var current_health: int = 100
@@ -30,23 +29,29 @@ func _ready():
 
 
 func _check_if_player_is_in_sight() -> void:
-	
-	# check if player is inside FoV and range
+	# check if player is inside FoV area
+	var ray_cast = $LineOfSightRayCast
 	var fov_overlapping_bodies: Array = $FieldOfViewArea.get_overlapping_bodies()
 	for body in fov_overlapping_bodies:
 		if body is Player:
-			# check if player is in line of sight (not blocked by obstacles)
-			$FieldOfViewArea/PlayerDetectionRay._cast_ray_to_player()
+			# check if player is in line of sight (not blocked by bodies)
+			
+			var player_height_adjustment := Vector3(0, 1.8, 0)
+			var player_global_position_adjusted := (GlobalVars.get_player_global_position() + player_height_adjustment)
+			var player_local_position_adjusted : Vector3 = ray_cast.to_local(player_global_position_adjusted)
+			
+			ray_cast.set_enabled(true)
+			ray_cast.set_cast_to(player_local_position_adjusted)
+			
+			if ray_cast.is_colliding():
+				var collider: Object = ray_cast.get_collider()
+				if collider is Player:
+					# TODO use behavior tree for AI behavior
+					look_at(player_local_position_adjusted, Vector3.UP)
 			break
 		else:
-			# only cast line-of-sight checking ray if player is actually in FoV and range
-			$FieldOfViewArea/PlayerDetectionRay._disable_ray_cast_to_player()
-
-
-func _on_player_detected_by_ray(signaling_node: Node, collision_position: Vector3) -> void:
-	# check if a signal is initially coming from this node's FoV
-	if signaling_node.get_parent().get_parent().get_name() == self.get_name():
-		look_at(collision_position, Vector3.UP)
+			# don't spend resources checking line of sight if player isn't in FoV area
+			ray_cast.set_enabled(false)
 
 
 func _on_Timer_timeout():
@@ -56,7 +61,6 @@ func _on_Timer_timeout():
 
 
 func _physics_process(_delta : float) -> void:
-
 	_check_if_player_is_in_sight()
 	
 	# Movement
@@ -103,10 +107,3 @@ func die():
 # TODO rename Timer and Timer2 to something explanatory, use signals only through signal bus
 func _on_Timer2_timeout():
 	update_path_to(player.global_transform.origin)
-
-
-func _on_FieldOfViewArea_body_exited(fieldOfViewArea: Node, body: Node) -> void:
-
-	if fieldOfViewArea.get_parent().get_name() == self.get_name():
-		if body is Player:
-			$FieldOfViewArea/PlayerDetectionRay._disable_ray_cast_to_player()

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/models/Skeleton.gltf" type="PackedScene" id=1]
 [ext_resource path="res://game/creatures/skeleton/Skeleton.gd" type="Script" id=2]
-[ext_resource path="res://game/creatures/PlayerDetectionRay.gd" type="Script" id=3]
 [ext_resource path="res://game/creatures/field_of_view_collision_shape_1.tres" type="Shape" id=4]
+[ext_resource path="res://game/creatures/skeleton/BehaviorTree.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/behavior_tree/src/blackboard.gd" type="Script" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.303463
@@ -31,12 +32,18 @@ autostart = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.055, -0.05 )
 shape = ExtResource( 4 )
 
-[node name="PlayerDetectionRay" type="RayCast" parent="FieldOfViewArea"]
+[node name="LineOfSightRayCast" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.055, -0.05 )
 cast_to = Vector3( 0, 0, -1 )
 debug_shape_custom_color = Color( 1, 0, 0, 1 )
 debug_shape_thickness = 1
-script = ExtResource( 3 )
+
+[node name="Blackboard" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="BehaviorTree" parent="." instance=ExtResource( 5 )]
+_blackboard = NodePath("../Blackboard")
+_agent = NodePath("..")
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
