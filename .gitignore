@@ -20,3 +20,6 @@ downloaded_assets
 # 2D graphics and 3D models
 #*.png
 #*.obj
+
+# Linux lock files
+.~lock.*
