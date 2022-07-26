@@ -3,10 +3,8 @@ extends KinematicBody
 # stats
 var max_health: int = 100
 var current_health: int = 100
-var movement_speed: float = 2
-var attack_damage: int = 25
-var attack_rate: float = 1.0
-var attack_range: float = 1.5
+var movement_speed: float = 2.5
+var attack_range: float = 3.0
 
 # pathfinding
 var path: Array = []
@@ -20,7 +18,6 @@ var distance_to_player: float = 99999
 onready var nav: Node = get_parent()  # TODO decouple from parent?
 # TODO decouple from player?
 onready var player: Node = get_node(GlobalVars.get_player_node_path())
-onready var timer2: Timer = $Timer2
 
 
 func _turn_to_player():
@@ -41,6 +38,7 @@ func _check_if_player_is_in_sight() -> bool:
 			var player_global_position_adjusted := (GlobalVars.get_player_global_position() + player_height_adjustment)
 			var player_local_position_adjusted : Vector3 = ray_cast.to_local(player_global_position_adjusted)
 			
+			# Disable ray cast when player is not in FOV area
 			ray_cast.set_enabled(true)
 			ray_cast.set_cast_to(player_local_position_adjusted)
 			
@@ -50,11 +48,13 @@ func _check_if_player_is_in_sight() -> bool:
 					return true
 	return false
 
+func _move_within_attack_range_to_player() -> void:
+	_move_on_path()
+
 
 func _physics_process(delta : float) -> void:
 	sees_player = _check_if_player_is_in_sight()
 	distance_to_player = _calculate_distance_to_player()
-	_move_on_path(delta)
 
 
 func _calculate_distance_to_player() -> float:
@@ -62,7 +62,9 @@ func _calculate_distance_to_player() -> float:
 	return translation.distance_to(GlobalVars.get_player_global_position())
 
 
-func _move_on_path(delta : float) -> void:
+func _move_on_path() -> void:
+	var delta: float = get_physics_process_delta_time()
+	
 	# reset movement direction vector
 	var direction : Vector3 = Vector3.ZERO
 	
@@ -103,6 +105,6 @@ func die():
 	queue_free()
 
 
-# TODO rename Timer2 to something explanatory, use signals only through signal bus
-func _on_Timer2_timeout():
-	_update_path_to(player.global_transform.origin)
+# TODO rename Timer to something explanatory, use signals only through signal bus
+func _on_Timer_timeout():
+	_update_path_to(GlobalVars.get_player_global_position())

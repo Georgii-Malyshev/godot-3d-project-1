@@ -20,10 +20,6 @@ transform = Transform( -0.058, 0, -5.07052e-09, 0, 0.058, 0, 5.07052e-09, 0, -0.
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.10057, -0.0110152 )
 shape = SubResource( 1 )
 
-[node name="Timer2" type="Timer" parent="."]
-process_mode = 0
-autostart = true
-
 [node name="FieldOfViewArea" type="Area" parent="."]
 
 [node name="FieldOfViewCollisionShape" type="CollisionShape" parent="FieldOfViewArea"]
@@ -45,4 +41,8 @@ _blackboard = NodePath("../Blackboard")
 _agent = NodePath("..")
 sync_mode = 1
 
-[connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
