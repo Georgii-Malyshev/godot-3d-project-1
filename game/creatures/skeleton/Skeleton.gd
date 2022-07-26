@@ -7,7 +7,7 @@ var current_health: int = 100
 var movement_speed: float = 2
 var attackDamage: int = 5
 var attackRate: float = 1.0
-var attackDistance: float = 0.5
+var attackDistance: float = 1
 
 # pathfinding
 var path: Array = []
@@ -15,8 +15,8 @@ var path_node_index: int = 0
 
 # components
 onready var nav: Node = get_parent()  # TODO decouple from parent?
-# TODO decouple from player & get rid of absolute node path
-onready var player: Node = get_node("/root/Main/Player")
+# TODO decouple from player?
+onready var player: Node = get_node(GlobalVars.get_player_node_path())
 
 onready var timer1: Timer = $Timer
 onready var timer2: Timer = $Timer2
@@ -50,7 +50,8 @@ func _on_player_detected_by_ray(signaling_node: Node, collision_position: Vector
 
 
 func _on_Timer_timeout():
-	if translation.distance_to(player.translation) <= attackDistance:
+	if translation.distance_to(GlobalVars.get_player_global_position()) <= attackDistance:
+		print(self.get_name() + " attacks player!")  # TODO delete after debug
 		attack()
 
 

@@ -37,4 +37,4 @@ func set_player_global_position(_value : Vector3) -> void:
 
 
 func get_player_global_position() -> Vector3:
-	return get_node("/root/Main/Player").global_transform.origin
+	return get_node(player_node_path).global_transform.origin
