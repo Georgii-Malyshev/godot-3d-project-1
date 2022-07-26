@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/models/Skeleton.gltf" type="PackedScene" id=1]
-[ext_resource path="res://game/creatures/zombie_1/Zombie1.gd" type="Script" id=2]
-[ext_resource path="res://game/creatures/zombie_1/PlayerDetectionRay.gd" type="Script" id=3]
+[ext_resource path="res://game/creatures/skeleton/Skeleton.gd" type="Script" id=2]
+[ext_resource path="res://game/creatures/skeleton/PlayerDetectionRay.gd" type="Script" id=3]
 [ext_resource path="res://game/creatures/field_of_view_collision_shape_1.tres" type="Shape" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
