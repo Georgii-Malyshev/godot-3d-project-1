@@ -9,7 +9,7 @@
 radius = 0.303463
 height = 1.59071
 
-[node name="Zombie1" type="KinematicBody"]
+[node name="Skeleton" type="KinematicBody"]
 script = ExtResource( 2 )
 
 [node name="AnimatedModel" parent="." instance=ExtResource( 1 )]
