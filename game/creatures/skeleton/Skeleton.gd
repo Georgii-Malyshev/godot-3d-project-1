@@ -32,7 +32,6 @@ func _ready():
 
 
 func face_player():
-	print("Skeleton face_player() called!")  # TODO delete after debug
 	look_at(GlobalVars.get_player_global_position(), Vector3.UP)
 
 
@@ -58,7 +57,7 @@ func _check_if_player_is_in_sight() -> void:
 					sees_player = true
 			break
 		else:
-			# don't spend resources checking line of sight if player isn't in FoV area
+			# don't check line of sight if player isn't in FoV area
 			ray_cast.set_enabled(false)
 
 
@@ -68,16 +67,17 @@ func _on_Timer_timeout():
 		attack()
 
 
-func _physics_process(_delta : float) -> void:
+func _physics_process(delta : float) -> void:
 	_check_if_player_is_in_sight()
-	
-	# Movement
-	
+	_move_on_path(delta)
+
+
+func _move_on_path(delta : float) -> void:
 	# reset movement direction vector
 	var direction : Vector3 = Vector3.ZERO
 	
 	# apply gravity
-	direction.y -= GlobalVars.get_global_gravity() * _delta
+	direction.y -= GlobalVars.get_global_gravity() * delta
 	
 	if path_node_index < path.size():  # if current node isn't the last one on the path
 		var pathfinding_direction : Vector3 = (path[path_node_index] - global_transform.origin)
@@ -86,14 +86,15 @@ func _physics_process(_delta : float) -> void:
 		pathfinding_direction.y = 0
 		direction = direction + pathfinding_direction 
 		
-		if direction.length() < 0.5:
-			path_node_index += 1  # start using the next node in the path
+		# if close to current node, start using the next node on the path
+		if direction.length() < 1:
+			path_node_index += 1
 		else:
 			# move towards the current node along the direction vector
 			move_and_slide_with_snap(direction.normalized() * movement_speed, Vector3.DOWN, Vector3.UP)
 
 
-func update_path_to(target_pos):
+func _update_path_to(target_pos):
 	path = nav.get_simple_path(global_transform.origin, target_pos)
 	path_node_index = 0
 
@@ -114,4 +115,4 @@ func die():
 
 # TODO rename Timer and Timer2 to something explanatory, use signals only through signal bus
 func _on_Timer2_timeout():
-	update_path_to(player.global_transform.origin)
+	_update_path_to(player.global_transform.origin)
