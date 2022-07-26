@@ -1,6 +1,6 @@
 Skills: 
   Decaying Touch: 
-    Get withing close-melee distance and touth a single enemy to set decay, making him take continuous medium damage over medium period of time;
+    Get withing close-melee distance and touch a single enemy to set decay, making him take continuous medium damage over medium period of time;
   Silencing stare: 
     Stare at the enemy for a few seconds without him leaving the screen to silence him for a long time, not letting him use any magic;
   Corpse totem: 
