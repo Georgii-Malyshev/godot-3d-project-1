@@ -28,5 +28,3 @@ extends Node
 
 signal spawnPlayer(spawnLocation)
 signal shootProjectile(projectileScene, spawnPoint)
-
-signal player_detected_by_ray(signaling_node, collision_position)
