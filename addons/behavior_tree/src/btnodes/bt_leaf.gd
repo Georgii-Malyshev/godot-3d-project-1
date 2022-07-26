@@ -11,9 +11,3 @@ extends BTNode
 func _ready():
 	assert(get_child_count() == 0, "A BTLeaf cannot have children.")
 
-
-func _tick(agent: Node, _blackboard: Blackboard) -> bool:
-	# TODO add assert?
-	# TODO consider "best practice" ways to run agent's action
-	agent.face_player()
-	return succeed()

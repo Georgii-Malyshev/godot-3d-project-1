@@ -31,7 +31,7 @@ func _ready():
 	timer1.start()
 
 
-func face_player():
+func turn_to_player():
 	look_at(GlobalVars.get_player_global_position(), Vector3.UP)
 
 
