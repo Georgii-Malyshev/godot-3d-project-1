@@ -21,7 +21,6 @@ onready var timer1 : Timer = get_node("Timer")
 onready var timer2 : Timer = get_node("Timer2")
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	timer1.set_wait_time(attackRate)
 	timer1.start()

@@ -26,12 +26,12 @@ var velocity : Vector3 = Vector3.ZERO
 var mouse_delta : Vector2 = Vector2()
 
 # player components
-onready var camera : Node = $FpsCamera  # TODO need some decoupling
-onready var muzzle : Node = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint  # TODO need some decoupling
-onready var projectile : PackedScene = preload("res://game/projectiles/Projectile.tscn")  # TODO don't use absolute path to scene
+onready var camera : Node = $FpsCamera
+onready var muzzle : Node = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
+# TODO decouple & don't use absolute path to scene
+onready var projectile : PackedScene = preload("res://game/projectiles/Projectile.tscn")
 
 
-# Called whenever an input is detected
 func _input(event):
 	
 	# First-person camera movement
@@ -62,22 +62,19 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
-func _process(delta):
-	
+func _process(_delta) -> void:	
 	# Must be reset to 1 every frame for input handling to work correctly
 	speed_modifier = 1
 
 
-# Called every physics step
 func _physics_process (delta):
-	
 	# Player movement in space
 	
 	# reset the X and Z velocity
 	velocity.x = 0
 	velocity.z = 0
 	
-	var input = Vector2()  # TODO move declaration out of function and only reset to 0 in the function call?
+	var input = Vector2()
 	
 	if Input.is_action_pressed("move_forward"):
 		input.y -= 1
@@ -127,7 +124,7 @@ func take_damage(damage):
 		die()
 
 func die():
-	pass  # TODO implement some player death mechanic
+	print("Player dies!")  # TODO implement player death mechanic
 
 
 func add_health(amount):

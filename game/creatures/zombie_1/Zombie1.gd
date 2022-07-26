@@ -14,15 +14,14 @@ var path: Array = []
 var path_node_index: int = 0
 
 # components
-onready var nav: Node = get_parent()  # get navigation node  # TODO decouple from parent?
-# TODO get rid of absolute node path and don't use node that is higher up in the hierarchy
+onready var nav: Node = get_parent()  # TODO decouple from parent?
+# TODO decouple from player & get rid of absolute node path
 onready var player: Node = get_node("/root/Main/Player")
 
 onready var timer1: Timer = $Timer
 onready var timer2: Timer = $Timer2
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	SignalBus.connect("player_detected_by_ray", self, "_on_player_detected_by_ray")
 	
