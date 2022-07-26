@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://addons/behavior_tree/src/behavior_tree.gd" type="Script" id=1]
 [ext_resource path="res://addons/behavior_tree/src/btnodes/composites/bt_selector.gd" type="Script" id=2]
@@ -6,8 +6,10 @@
 [ext_resource path="res://game/creatures/skeleton/turn_to_player.gd" type="Script" id=4]
 [ext_resource path="res://game/creatures/skeleton/conditions/player_in_sight.gd" type="Script" id=5]
 [ext_resource path="res://addons/behavior_tree/src/btnodes/leaves/bt_wait.gd" type="Script" id=6]
+[ext_resource path="res://game/creatures/skeleton/player_in_attack_range.gd" type="Script" id=7]
+[ext_resource path="res://game/creatures/skeleton/attack_player.gd" type="Script" id=8]
 
-[node name="BehaviorTree" type="Node"]
+[node name="SkeletonBehaviorTree" type="Node"]
 script = ExtResource( 1 )
 
 [node name="BTSelector" type="Node" parent="."]
@@ -22,9 +24,11 @@ script = ExtResource( 5 )
 [node name="Turn to player" type="Node" parent="BTSelector/BTSequence/Player in sight\?"]
 script = ExtResource( 4 )
 
-[node name="BTWait_delete_after_debug" type="Node" parent="BTSelector/BTSequence"]
-script = ExtResource( 6 )
-wait_time = 0.1
+[node name="Player in attack range\?" type="Node" parent="BTSelector/BTSequence"]
+script = ExtResource( 7 )
+
+[node name="Attack player" type="Node" parent="BTSelector/BTSequence/Player in attack range\?"]
+script = ExtResource( 8 )
 
 [node name="BTWait_delete_after_debug" type="Node" parent="BTSelector"]
 script = ExtResource( 6 )

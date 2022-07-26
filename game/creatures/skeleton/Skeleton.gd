@@ -4,9 +4,9 @@ extends KinematicBody
 var max_health: int = 100
 var current_health: int = 100
 var movement_speed: float = 2
-var attackDamage: int = 25
-var attackRate: float = 1.0
-var attackDistance: float = 1
+var attack_damage: int = 25
+var attack_rate: float = 1.0
+var attack_range: float = 1.5
 
 # pathfinding
 var path: Array = []
@@ -14,35 +14,28 @@ var path_node_index: int = 0
 
 # behavior tree-related
 var sees_player: bool = false
+var distance_to_player: float = 99999
 
 # components
 onready var nav: Node = get_parent()  # TODO decouple from parent?
 # TODO decouple from player?
 onready var player: Node = get_node(GlobalVars.get_player_node_path())
-
-onready var timer1: Timer = $Timer
 onready var timer2: Timer = $Timer2
 
 
-func _ready():
-	SignalBus.connect("player_detected_by_ray", self, "_on_player_detected_by_ray")
-	
-	timer1.set_wait_time(attackRate)
-	timer1.start()
-
-
-func turn_to_player():
+func _turn_to_player():
+	# TODO make it a slow turn, not an instant transformation
 	look_at(GlobalVars.get_player_global_position(), Vector3.UP)
 
 
-func _check_if_player_is_in_sight() -> void:
-	sees_player = false
+func _check_if_player_is_in_sight() -> bool:
 	# check if player is inside FoV area
-	var ray_cast = $LineOfSightRayCast
 	var fov_overlapping_bodies: Array = $FieldOfViewArea.get_overlapping_bodies()
 	for body in fov_overlapping_bodies:
 		if body is Player:
 			# check if player is in line of sight (not blocked by bodies)
+			
+			var ray_cast = $LineOfSightRayCast
 			
 			var player_height_adjustment := Vector3(0, 1.8, 0)
 			var player_global_position_adjusted := (GlobalVars.get_player_global_position() + player_height_adjustment)
@@ -54,22 +47,19 @@ func _check_if_player_is_in_sight() -> void:
 			if ray_cast.is_colliding():
 				var collider: Object = ray_cast.get_collider()
 				if collider is Player:
-					sees_player = true
-			break
-		else:
-			# don't check line of sight if player isn't in FoV area
-			ray_cast.set_enabled(false)
-
-
-func _on_Timer_timeout():
-	if translation.distance_to(GlobalVars.get_player_global_position()) <= attackDistance:
-		print(self.get_name() + " attacks player!")  # TODO delete after debug
-		attack()
+					return true
+	return false
 
 
 func _physics_process(delta : float) -> void:
-	_check_if_player_is_in_sight()
+	sees_player = _check_if_player_is_in_sight()
+	distance_to_player = _calculate_distance_to_player()
 	_move_on_path(delta)
+
+
+func _calculate_distance_to_player() -> float:
+	# TODO consider using global_transform.origin of current node
+	return translation.distance_to(GlobalVars.get_player_global_position())
 
 
 func _move_on_path(delta : float) -> void:
@@ -99,8 +89,13 @@ func _update_path_to(target_pos):
 	path_node_index = 0
 
 
-func attack():
-	player.take_damage(attackDamage)
+func _attack_player():
+	print("Attacking player!")  # TODO implement attack mechanics
+
+
+# TODO delete
+#func attack():
+#	player.take_damage(attack_damage)
 
 
 func take_damage(damage):
@@ -113,6 +108,6 @@ func die():
 	queue_free()
 
 
-# TODO rename Timer and Timer2 to something explanatory, use signals only through signal bus
+# TODO rename Timer2 to something explanatory, use signals only through signal bus
 func _on_Timer2_timeout():
 	_update_path_to(player.global_transform.origin)
