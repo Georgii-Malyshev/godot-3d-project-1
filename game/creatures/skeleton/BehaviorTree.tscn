@@ -24,6 +24,8 @@ script = ExtResource( 4 )
 
 [node name="BTWait_delete_after_debug" type="Node" parent="BTSelector/BTSequence"]
 script = ExtResource( 6 )
+wait_time = 0.1
 
 [node name="BTWait_delete_after_debug" type="Node" parent="BTSelector"]
 script = ExtResource( 6 )
+wait_time = 0.1
