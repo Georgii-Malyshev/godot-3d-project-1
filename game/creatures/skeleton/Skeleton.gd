@@ -12,6 +12,9 @@ var attackDistance: float = 1
 var path: Array = []
 var path_node_index: int = 0
 
+# behavior tree-related
+var sees_player: bool = false
+
 # components
 onready var nav: Node = get_parent()  # TODO decouple from parent?
 # TODO decouple from player?
@@ -28,7 +31,13 @@ func _ready():
 	timer1.start()
 
 
+func face_player():
+	print("Skeleton face_player() called!")  # TODO delete after debug
+	look_at(GlobalVars.get_player_global_position(), Vector3.UP)
+
+
 func _check_if_player_is_in_sight() -> void:
+	sees_player = false
 	# check if player is inside FoV area
 	var ray_cast = $LineOfSightRayCast
 	var fov_overlapping_bodies: Array = $FieldOfViewArea.get_overlapping_bodies()
@@ -46,8 +55,7 @@ func _check_if_player_is_in_sight() -> void:
 			if ray_cast.is_colliding():
 				var collider: Object = ray_cast.get_collider()
 				if collider is Player:
-					# TODO use behavior tree for AI behavior
-					look_at(player_local_position_adjusted, Vector3.UP)
+					sees_player = true
 			break
 		else:
 			# don't spend resources checking line of sight if player isn't in FoV area

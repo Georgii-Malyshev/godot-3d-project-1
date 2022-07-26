@@ -42,6 +42,7 @@ debug_shape_thickness = 1
 script = ExtResource( 6 )
 
 [node name="BehaviorTree" parent="." instance=ExtResource( 5 )]
+is_active = true
 _blackboard = NodePath("../Blackboard")
 _agent = NodePath("..")
 
