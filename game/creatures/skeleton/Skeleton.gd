@@ -65,7 +65,13 @@ func _move_to_player() -> void:
 
 func _physics_process(_delta : float) -> void:
 	sees_player = _check_if_player_is_in_sight()
+	# TODO calculate only when necessary?
 	distance_to_player = _calculate_distance_to_player()
+	
+	# apply gravity
+	var direction: Vector3 = Vector3.ZERO
+	direction.y -= GlobalVars.get_global_gravity() * _delta
+	move_and_slide_with_snap(direction.normalized(), Vector3.DOWN, Vector3.UP)
 
 
 func _calculate_distance_to_player() -> float:
@@ -87,10 +93,6 @@ func _move_on_current_path() -> void:
 	
 	# reset movement direction vector
 	var direction : Vector3 = Vector3.ZERO
-	
-	# apply gravity
-	# TODO apply gravity in every physics step, outside of this function?
-	direction.y -= GlobalVars.get_global_gravity() * delta
 	
 	if currently_toggled_path_node_index < current_path.size():  # if current node isn't the last one on the path
 		var pathfinding_direction : Vector3 = (
