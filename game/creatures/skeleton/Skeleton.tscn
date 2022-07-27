@@ -41,8 +41,8 @@ _blackboard = NodePath("../Blackboard")
 _agent = NodePath("..")
 sync_mode = 1
 
-[node name="UpdatePathTimer" type="Timer" parent="."]
-wait_time = 0.599
-autostart = true
+[node name="RecalculateCurrentPathTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
 
-[connection signal="timeout" from="UpdatePathTimer" to="." method="_on_UpdatePathTimer_timeout"]
+[connection signal="timeout" from="RecalculateCurrentPathTimer" to="." method="_on_RecalculateCurrentPathTimer_timeout"]

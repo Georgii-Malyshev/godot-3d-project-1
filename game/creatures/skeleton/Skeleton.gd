@@ -7,8 +7,9 @@ var movement_speed: float = 2.5
 var attack_range: float = 3.0
 
 # pathfinding
-var path: Array = []
-var path_node_index: int = 0
+var current_target_position: Vector3 = Vector3.ZERO
+var current_path: Array = []
+var currently_toggled_path_node_index: int = 0
 
 # behavior tree-related
 var sees_player: bool = false
@@ -59,7 +60,9 @@ func _check_if_player_is_in_sight() -> bool:
 	return false
 
 func _move_to_player() -> void:
-	_move_on_path()
+	current_target_position = GlobalVars.get_player_global_position()
+	_move_to_current_target_position()
+
 
 
 func _physics_process(delta : float) -> void:
@@ -72,17 +75,29 @@ func _calculate_distance_to_player() -> float:
 	return translation.distance_to(GlobalVars.get_player_global_position())
 
 
-func _move_on_path() -> void:
+func _move_to_current_target_position() -> void:
+	
+	if $RecalculateCurrentPathTimer.is_stopped():
+		$RecalculateCurrentPathTimer.start()
+		_recalculate_current_path()
+	
+	_move_on_current_path()
+
+
+func _move_on_current_path() -> void:
 	var delta: float = get_physics_process_delta_time()
 	
 	# reset movement direction vector
 	var direction : Vector3 = Vector3.ZERO
 	
 	# apply gravity
+	# TODO apply gravity in every physics step, outside of this function
 	direction.y -= GlobalVars.get_global_gravity() * delta
 	
-	if path_node_index < path.size():  # if current node isn't the last one on the path
-		var pathfinding_direction : Vector3 = (path[path_node_index] - global_transform.origin)
+	if currently_toggled_path_node_index < current_path.size():  # if current node isn't the last one on the path
+		var pathfinding_direction : Vector3 = (
+			current_path[currently_toggled_path_node_index] - global_transform.origin
+			)
 		# Enemies that don't fly can't move "deliberately" on Y axis, 
 		# so discard the Y of their "intended" direction of movement
 		pathfinding_direction.y = 0
@@ -90,15 +105,15 @@ func _move_on_path() -> void:
 		
 		# if close to current node, start using the next node on the path
 		if direction.length() < 1:
-			path_node_index += 1
+			currently_toggled_path_node_index += 1
 		else:
 			# move towards the current node along the direction vector
 			move_and_slide_with_snap(direction.normalized() * movement_speed, Vector3.DOWN, Vector3.UP)
 
 
-func _update_path_to(position):
-	path = nav.get_simple_path(global_transform.origin, position)
-	path_node_index = 0
+func _recalculate_current_path() -> void:
+	current_path = nav.get_simple_path(global_transform.origin, current_target_position)
+	currently_toggled_path_node_index = 0
 
 
 func _attack_player():
@@ -115,5 +130,5 @@ func die():
 	queue_free()
 
 
-func _on_UpdatePathTimer_timeout():
-	_update_path_to(GlobalVars.get_player_global_position())
+func _on_RecalculateCurrentPathTimer_timeout():
+	_recalculate_current_path()
