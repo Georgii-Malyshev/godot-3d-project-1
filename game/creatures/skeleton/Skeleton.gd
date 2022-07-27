@@ -58,7 +58,7 @@ func _check_if_player_is_in_sight() -> bool:
 	ray_cast.set_enabled(false)
 	return false
 
-func _move_within_attack_range_to_player() -> void:
+func _move_to_player() -> void:
 	_move_on_path()
 
 
@@ -96,8 +96,8 @@ func _move_on_path() -> void:
 			move_and_slide_with_snap(direction.normalized() * movement_speed, Vector3.DOWN, Vector3.UP)
 
 
-func _update_path_to(target_pos):
-	path = nav.get_simple_path(global_transform.origin, target_pos)
+func _update_path_to(position):
+	path = nav.get_simple_path(global_transform.origin, position)
 	path_node_index = 0
 
 
@@ -115,6 +115,5 @@ func die():
 	queue_free()
 
 
-# TODO rename Timer to something explanatory, use signals only through signal bus
-func _on_Timer_timeout():
+func _on_UpdatePathTimer_timeout():
 	_update_path_to(GlobalVars.get_player_global_position())
