@@ -17,8 +17,6 @@ var distance_to_player: float = 99999
 
 # components
 onready var nav: Node = get_parent()  # TODO decouple from parent?
-# TODO decouple from player?
-onready var player: Node = get_node(GlobalVars.get_player_node_path())
 
 
 func _turn_to_player():
@@ -65,7 +63,7 @@ func _move_to_player() -> void:
 
 
 
-func _physics_process(delta : float) -> void:
+func _physics_process(_delta : float) -> void:
 	sees_player = _check_if_player_is_in_sight()
 	distance_to_player = _calculate_distance_to_player()
 
@@ -91,7 +89,7 @@ func _move_on_current_path() -> void:
 	var direction : Vector3 = Vector3.ZERO
 	
 	# apply gravity
-	# TODO apply gravity in every physics step, outside of this function
+	# TODO apply gravity in every physics step, outside of this function?
 	direction.y -= GlobalVars.get_global_gravity() * delta
 	
 	if currently_toggled_path_node_index < current_path.size():  # if current node isn't the last one on the path
