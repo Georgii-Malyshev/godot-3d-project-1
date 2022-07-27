@@ -209,8 +209,8 @@ shape = SubResource( 41 )
 [node name="entity_0_brush_23_collision_shape" type="CollisionShape" parent="Navigation/NavigationMesh/QodotMap/entity_0_worldspawn" index="24"]
 shape = SubResource( 42 )
 
-[node name="Zombie1" parent="Navigation" index="1" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.52177, 1.90735e-06, 57.7458 )
+[node name="Skeleton" parent="Navigation" index="1" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.72417, 1.90735e-06, 58.4546 )
 
 [node name="PlayerSpawnPoint" type="Spatial" parent="." index="1"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.39479, 0, 2.13088 )

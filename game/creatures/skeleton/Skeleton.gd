@@ -26,19 +26,23 @@ func _turn_to_player():
 
 
 func _check_if_player_is_in_sight() -> bool:
-	# check if player is inside FoV area
+	
+	var ray_cast : Node = $LineOfSightRayCast
 	var fov_overlapping_bodies: Array = $FieldOfViewArea.get_overlapping_bodies()
+	
+	# check if player is inside FoV area
 	for body in fov_overlapping_bodies:
 		if body is Player:
-			# check if player is in line of sight (not blocked by bodies)
 			
-			var ray_cast = $LineOfSightRayCast
-			
+			# Check if player is in line of sight (not blocked by bodies)
+
+			# adjust position to cast ray to, taking into account the player's height
 			var player_height_adjustment := Vector3(0, 1.8, 0)
 			var player_global_position_adjusted := (GlobalVars.get_player_global_position() + player_height_adjustment)
+			
+			# convert position to cast ray to to coordinates relative to the raycast node itself
 			var player_local_position_adjusted : Vector3 = ray_cast.to_local(player_global_position_adjusted)
 			
-			# Disable ray cast when player is not in FOV area
 			ray_cast.set_enabled(true)
 			ray_cast.set_cast_to(player_local_position_adjusted)
 			
@@ -46,6 +50,12 @@ func _check_if_player_is_in_sight() -> bool:
 				var collider: Object = ray_cast.get_collider()
 				if collider is Player:
 					return true
+			else:
+				# player is not in sight, exit function
+				return false
+	
+	# player is not in FOV area, disable ray cast
+	ray_cast.set_enabled(false)
 	return false
 
 func _move_within_attack_range_to_player() -> void:
@@ -54,6 +64,8 @@ func _move_within_attack_range_to_player() -> void:
 
 func _physics_process(delta : float) -> void:
 	sees_player = _check_if_player_is_in_sight()
+	var ray_cast : Node = $LineOfSightRayCast  # TODO delete after debug
+	#print(ray_cast.is_enabled())  # TODO delete after debug
 	distance_to_player = _calculate_distance_to_player()
 
 
@@ -92,7 +104,7 @@ func _update_path_to(target_pos):
 
 
 func _attack_player():
-	print("Attacking player!")  # TODO implement attack mechanics
+	pass  # TODO implement attack mechanics
 
 
 func take_damage(damage):
