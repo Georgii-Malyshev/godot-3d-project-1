@@ -3,12 +3,12 @@
 [ext_resource path="res://addons/behavior_tree/src/behavior_tree.gd" type="Script" id=1]
 [ext_resource path="res://addons/behavior_tree/src/btnodes/composites/bt_selector.gd" type="Script" id=2]
 [ext_resource path="res://addons/behavior_tree/src/btnodes/composites/bt_sequence.gd" type="Script" id=3]
-[ext_resource path="res://game/creatures/skeleton/turn_to_player.gd" type="Script" id=4]
+[ext_resource path="res://game/creatures/skeleton/leafs/turn_to_player.gd" type="Script" id=4]
 [ext_resource path="res://game/creatures/skeleton/conditions/player_in_sight.gd" type="Script" id=5]
 [ext_resource path="res://addons/behavior_tree/src/btnodes/leaves/bt_wait.gd" type="Script" id=6]
-[ext_resource path="res://game/creatures/skeleton/player_in_attack_range.gd" type="Script" id=7]
-[ext_resource path="res://game/creatures/skeleton/move_within_attack_range_to_player.gd" type="Script" id=8]
-[ext_resource path="res://game/creatures/skeleton/attack_player.gd" type="Script" id=9]
+[ext_resource path="res://game/creatures/skeleton/conditions/player_in_attack_range.gd" type="Script" id=7]
+[ext_resource path="res://game/creatures/skeleton/leafs/move_within_attack_range_to_player.gd" type="Script" id=8]
+[ext_resource path="res://game/creatures/skeleton/leafs/attack_player.gd" type="Script" id=9]
 
 [node name="SkeletonBehaviorTree" type="Node"]
 script = ExtResource( 1 )
