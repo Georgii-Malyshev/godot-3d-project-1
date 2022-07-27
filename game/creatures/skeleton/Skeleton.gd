@@ -19,7 +19,7 @@ var distance_to_player: float = 99999
 onready var nav: Node = get_parent()  # TODO decouple from parent?
 
 
-func _turn_to_player():
+func turn_to_player():
 	# TODO make it a slow turn, not an instant transformation
 	look_at(GlobalVars.get_player_global_position(), Vector3.UP)
 
@@ -57,10 +57,9 @@ func _check_if_player_is_in_sight() -> bool:
 	ray_cast.set_enabled(false)
 	return false
 
-func _move_to_player() -> void:
+func move_to_player() -> void:
 	current_target_position = GlobalVars.get_player_global_position()
 	_move_to_current_target_position()
-
 
 
 func _physics_process(_delta : float) -> void:
@@ -116,7 +115,7 @@ func _recalculate_current_path() -> void:
 	currently_toggled_path_node_index = 0
 
 
-func _attack_player():
+func attack_player():
 	pass  # TODO implement attack mechanics
 
 
