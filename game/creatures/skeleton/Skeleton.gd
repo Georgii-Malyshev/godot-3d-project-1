@@ -64,8 +64,6 @@ func _move_within_attack_range_to_player() -> void:
 
 func _physics_process(delta : float) -> void:
 	sees_player = _check_if_player_is_in_sight()
-	var ray_cast : Node = $LineOfSightRayCast  # TODO delete after debug
-	#print(ray_cast.is_enabled())  # TODO delete after debug
 	distance_to_player = _calculate_distance_to_player()
 
 
