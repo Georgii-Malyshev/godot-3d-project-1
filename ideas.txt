@@ -20,6 +20,7 @@ Skills:
   Whimpers:
     Summon several whimpering, slow-moving spirits that will home in and fly at the single target, dealing damage and medium-lived Dark DoT;
   Bone Barrage: 
+    Shoots a violent barrage of fast piercing splintered bones and teeth
     
 Enemies:
   Most enemies are levitating to use as little animation as humanly possibe;
