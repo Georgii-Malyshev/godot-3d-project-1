@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/behavior_tree/src/behavior_tree.gd" type="Script" id=1]
 [ext_resource path="res://addons/behavior_tree/src/btnodes/composites/bt_selector.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://game/creatures/skeleton/conditions/player_in_attack_range.gd" type="Script" id=7]
 [ext_resource path="res://game/creatures/skeleton/leafs/move_within_attack_range_to_player.gd" type="Script" id=8]
 [ext_resource path="res://game/creatures/skeleton/leafs/attack_player.gd" type="Script" id=9]
+[ext_resource path="res://game/creatures/skeleton/move_to_players_last_seen_location.gd" type="Script" id=10]
+[ext_resource path="res://game/creatures/skeleton/agitated.gd" type="Script" id=11]
 
 [node name="SkeletonBehaviorTree" type="Node"]
 script = ExtResource( 1 )
@@ -37,6 +39,12 @@ script = ExtResource( 9 )
 [node name="Move within attack range to player" type="Node" parent="BTSelector/BTSequence/BTSelector"]
 script = ExtResource( 8 )
 
-[node name="BTWait_delete_after_debug" type="Node" parent="BTSelector"]
+[node name="Agitated\?" type="Node" parent="BTSelector"]
+script = ExtResource( 11 )
+
+[node name="Move to player\'s last seen location" type="Node" parent="BTSelector/Agitated\?"]
+script = ExtResource( 10 )
+
+[node name="BTWait" type="Node" parent="BTSelector"]
 script = ExtResource( 6 )
-wait_time = 0.1
+wait_time = 1.0
