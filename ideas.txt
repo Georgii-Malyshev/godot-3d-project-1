@@ -1,3 +1,9 @@
+Various ideas and themes:
+  Disturbing nightmare-like scenes that appear randomly after death (but not on the first death!), Yume Nikki-style:
+    - Morgue;
+    - Dinner with a dead girl, Masodov-style;
+    - Endless grey-and-black stairs and floors, Sokurov's 'The Stone' style;
+
 Skills: 
   Decaying Touch: 
     Get withing close-melee distance and touch a single enemy to set decay, making him take continuous medium damage over medium period of time;
@@ -31,3 +37,9 @@ Enemies:
   Flying something - keeps medium distance, shoots projectiles;
   Specters - flying dark specters with goat skulls, shoot homing projectiles;
   Zombies - close in on you with medium speed and corrupting spikes protrude from their bodies when they are in the medium-melee range;
+
+Locations: 
+  Cursed Woods
+  Abandoned Village (S.T.A.L.K.E.R. ShoC's 'Bloodsucker Village'-style)
+  Haunted Dungeons
+  
