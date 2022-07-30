@@ -25,4 +25,4 @@ extends Node
 
 # TODO rename signal to 'spawn_player' or something like that
 signal spawnPlayer(spawnLocation)
-signal spawn_projectile(projectileScene, spawnPoint)
+signal spawn_projectile(original_emitter, projectile_scene, projectile_spawn_spatial)
