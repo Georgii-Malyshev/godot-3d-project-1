@@ -1,8 +1,9 @@
 Various ideas and themes:
   Disturbing nightmare-like scenes that appear randomly after death (but not on the first death!), Yume Nikki-style:
     - Morgue;
-    - Dinner with a dead girl, Masodov-style;
+    - Sitting at a table with a dead girl, Masodov-style;
     - Endless grey-and-black stairs and floors, Sokurov's 'The Stone' style;
+  Most dreadful spells are also used at some locations/storypoints to move further (E.Y.E. Divine Cybermancy-style);
 
 Skills: 
   Decaying Touch: 
