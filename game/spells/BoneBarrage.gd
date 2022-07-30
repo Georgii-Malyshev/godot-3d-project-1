@@ -6,6 +6,7 @@ var projectile: PackedScene = preload("res://game/spells/AbstractProjectile.tscn
 onready var CooldownTimer: Timer = $CooldownTimer
 onready var BarrageRateTimer: Timer = $BarrageRateTimer
 
+
 func cast(caster: NodePath, spatial_to_cast_in: Spatial) -> void:
 	if CooldownTimer.is_stopped():
 		BarrageRateTimer.start()
