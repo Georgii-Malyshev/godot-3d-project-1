@@ -48,9 +48,10 @@ func _input(event):
 		# reset the mouse delta vector
 		mouse_delta = Vector2()
 
-
 	# Actions
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_just_pressed("cast_spell1"):
+		# TODO add movement slowdown when casting, 
+		# define amount of slowdown in each spell
 		cast_spell1()
 
 

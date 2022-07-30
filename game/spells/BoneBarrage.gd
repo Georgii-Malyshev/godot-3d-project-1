@@ -1,13 +1,13 @@
 extends Node
 
 var projectiles_number: int = 4
-# TODO use specific projectile
-var projectile: PackedScene = preload("res://game/spells/AbstractProjectile.tscn")
+var projectile: PackedScene = preload("res://game/spells/BoneBarrageProjectile.tscn")
 onready var CooldownTimer: Timer = $CooldownTimer
 onready var BarrageRateTimer: Timer = $BarrageRateTimer
 
 
 func cast(caster: NodePath, spatial_to_cast_in: Spatial) -> void:
+	# TODO add backfire, random spread and a "warm-up" timer
 	if CooldownTimer.is_stopped():
 		BarrageRateTimer.start()
 		for i in projectiles_number:
