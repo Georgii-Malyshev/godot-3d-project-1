@@ -23,5 +23,6 @@ extends Node
 # Here, 'SignalBus' is the source node and 'self' is the target node
 
 
+# TODO rename signal to 'spawn_player' or something like that
 signal spawnPlayer(spawnLocation)
-signal shootProjectile(projectileScene, spawnPoint)
+signal spawn_projectile(projectileScene, spawnPoint)

@@ -3,7 +3,7 @@ extends Node
 
 func _enter_tree():
 	SignalBus.connect("spawnPlayer", self, "_on_Player_spawn")
-	SignalBus.connect("shootProjectile", self, "_on_Player_shoot")
+	SignalBus.connect("spawn_projectile", self, "_on_Player_shoot")
 
 
 func _on_Player_spawn(spawnPoint):

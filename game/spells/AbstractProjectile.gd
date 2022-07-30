@@ -1,6 +1,5 @@
 extends Area
 
-
 var velocity : float = 6.0
 var damage : int = 15
 

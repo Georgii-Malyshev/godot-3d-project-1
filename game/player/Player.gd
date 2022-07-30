@@ -2,34 +2,34 @@ extends KinematicBody
 class_name Player
 
 # stats
-var current_health : int = 66
-var max_health : int = 100
-var current_mana : int = 15
+var current_health: int = 66
+var max_health: int = 100
+var current_mana: int = 15
 
 # physics
-var move_speed : float = 2.3
-var sneak_speed_modifier : float = 0.35
-var run_speed_modifier : float = 8
-var gravity : float = 18.0
-var snap := Vector3.DOWN
+var move_speed: float = 2.3
+var sneak_speed_modifier: float = 0.35
+var run_speed_modifier: float = 8
+var gravity: float = 18.0
+var snap: Vector3 = Vector3.DOWN
 
 # Must be reset to 1 every frame for input handling to work correctly
-var speed_modifier : float = 1
+var speed_modifier: float = 1
 
 # camera look
-var min_look_angle : float = -85.0
-var max_look_angle : float = 85.0
-var look_sensitivity : float = 0.66
+var min_look_angle: float = -85.0
+var max_look_angle: float = 85.0
+var look_sensitivity: float = 0.66
 
 # vectors
-var velocity : Vector3 = Vector3.ZERO
-var mouse_delta : Vector2 = Vector2()
+var velocity: Vector3 = Vector3.ZERO
+var mouse_delta: Vector2 = Vector2()
 
 # player components
-onready var camera : Node = $FpsCamera
-onready var muzzle : Node = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
-# TODO decouple & don't use absolute path to scene
-onready var projectile : PackedScene = preload("res://game/projectiles/Projectile.tscn")
+# TODO decouple
+var spell: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
+onready var camera: Node = $FpsCamera
+onready var projectile_spawn_point: Node = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
 
 
 func _input(event):
@@ -53,13 +53,20 @@ func _input(event):
 
 	# Actions
 	if Input.is_action_just_pressed("fire"):
-		fire_projectile()
+		cast_spell1()
+
+
+func cast_spell1():
+	if current_mana > 0:
+		spell.cast(self.get_path(), projectile_spawn_point)
+		current_mana -= 1
 
 
 func _ready():
-	
-	# Hide mouse cursor and lock it to the game's window
+	# hide mouse cursor and lock it to the game's window
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# make preloaded&instanced scene a child of player
+	add_child(spell)
 
 
 func _process(_delta) -> void:	
@@ -109,12 +116,6 @@ func _physics_process (delta):
 	if is_on_wall():
 		velocity_itermediate.y = min(0, velocity.y)
 	velocity = velocity_itermediate
-
-
-func fire_projectile():
-	if current_mana > 0:
-		SignalBus.emit_signal("shootProjectile", projectile, muzzle)
-		current_mana -= 1
 
 
 func take_damage(damage):
