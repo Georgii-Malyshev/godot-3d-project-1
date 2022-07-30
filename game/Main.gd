@@ -2,14 +2,14 @@ extends Node
 
 
 func _enter_tree():
-	SignalBus.connect("spawnPlayer", self, "_on_Player_spawn")
+	SignalBus.connect("spawn_player", self, "_on_spawn_player")
 	SignalBus.connect("spawn_projectile", self, "_on_spawn_projectile")
 
 
 # TODO define args types, return type
-func _on_Player_spawn(spawnPoint):
+func _on_spawn_player(spawn_point: Spatial):
 	var player = $Player
-	player.set_global_transform(spawnPoint.global_transform)
+	player.set_global_transform(spawn_point.global_transform)
 
 
 func _on_spawn_projectile(

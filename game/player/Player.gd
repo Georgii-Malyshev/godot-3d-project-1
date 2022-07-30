@@ -10,11 +10,9 @@ var current_mana: int = 15
 var move_speed: float = 2.3
 var sneak_speed_modifier: float = 0.35
 var run_speed_modifier: float = 8
+var speed_modifier: float = 1  # reset don't change here
 var gravity: float = 18.0
 var snap: Vector3 = Vector3.DOWN
-
-# Must be reset to 1 every frame for input handling to work correctly
-var speed_modifier: float = 1
 
 # camera look
 var min_look_angle: float = -85.0
@@ -69,17 +67,14 @@ func _ready():
 	add_child(spell)
 
 
-func _process(_delta) -> void:	
-	# Must be reset to 1 every frame for input handling to work correctly
-	speed_modifier = 1
-
-
 func _physics_process (delta):
+	
 	# Player movement in space
 	
-	# reset the X and Z velocity
 	velocity.x = 0
 	velocity.z = 0
+	
+	speed_modifier = 1
 	
 	var input = Vector2()
 	
