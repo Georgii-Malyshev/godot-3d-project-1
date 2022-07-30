@@ -12,10 +12,9 @@ var current_path: Array = []
 var currently_toggled_path_node_index: int = 0
 
 # behavior tree-related
-var agitated: bool = false
 var sees_player: bool = false
-var distance_to_player: float = 99999
-var player_last_seen_position: Vector3 = Vector3.ZERO
+var chasing: bool = false
+var distance_to_player: float = 999999
 
 # components
 onready var nav: Node = get_parent()  # TODO decouple from parent?
@@ -51,9 +50,8 @@ func _check_if_player_is_in_sight() -> bool:
 			if ray_cast.is_colliding():
 				var collider: Object = ray_cast.get_collider()
 				if collider is Player:
-					player_last_seen_position = player_global_position
-					agitated = true
-					$AgitatedTimer.start()
+					chasing = true
+					$ChasingTimer.start()
 					return true
 			else:
 				# player is not in sight, exit function
@@ -66,11 +64,6 @@ func _check_if_player_is_in_sight() -> bool:
 
 func move_to_player() -> void:
 	current_target_position = GlobalVars.get_player_global_position()
-	_move_to_current_target_position()
-
-
-func move_to_player_last_seen_position() -> void:
-	current_target_position = player_last_seen_position
 	_move_to_current_target_position()
 
 
@@ -146,5 +139,5 @@ func _on_RecalculateCurrentPathTimer_timeout():
 	_recalculate_current_path()
 
 
-func _on_AgitatedTimer_timeout():
-	agitated = false
+func _on_ChasingTimer_timeout():
+	chasing = false

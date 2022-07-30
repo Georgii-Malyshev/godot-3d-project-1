@@ -42,12 +42,14 @@ _agent = NodePath("..")
 sync_mode = 1
 
 [node name="RecalculateCurrentPathTimer" type="Timer" parent="."]
+process_mode = 0
 wait_time = 0.5
 one_shot = true
 
-[node name="AgitatedTimer" type="Timer" parent="."]
+[node name="ChasingTimer" type="Timer" parent="."]
+process_mode = 0
 wait_time = 10.0
 one_shot = true
 
 [connection signal="timeout" from="RecalculateCurrentPathTimer" to="." method="_on_RecalculateCurrentPathTimer_timeout"]
-[connection signal="timeout" from="AgitatedTimer" to="." method="_on_AgitatedTimer_timeout"]
+[connection signal="timeout" from="ChasingTimer" to="." method="_on_ChasingTimer_timeout"]
