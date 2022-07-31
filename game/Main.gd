@@ -6,8 +6,7 @@ func _enter_tree():
 	SignalBus.connect("spawn_projectile", self, "_on_spawn_projectile")
 
 
-# TODO define args types, return type
-func _on_spawn_player(spawn_point: Spatial):
+func _on_spawn_player(spawn_point: Spatial) -> void:
 	var player = $Player
 	player.set_global_transform(spawn_point.global_transform)
 
