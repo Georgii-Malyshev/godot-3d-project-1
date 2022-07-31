@@ -7,12 +7,15 @@ var max_health: int = 100
 var current_mana: int = 15
 
 # physics
-var move_speed: float = 2.3
-var sneak_speed_modifier: float = 0.35
-var run_speed_modifier: float = 8
-var speed_modifier: float = 1  # reset don't change here
 var gravity: float = 18.0
 var snap: Vector3 = Vector3.DOWN
+
+var move_speed: float = 2.5
+var sneak_speed_modifier: float = 0.35
+var run_speed_modifier: float = 5
+var default_speed_modifier: float = 1
+var speed_modifier: float = default_speed_modifier  # speed_modifier gets reset, don't change here
+var speed_modifier_input: float = default_speed_modifier  # speed_modifier gets reset, don't change here
 
 # camera look
 var min_look_angle: float = -85.0
@@ -22,6 +25,8 @@ var look_sensitivity: float = 0.66
 # vectors
 var velocity: Vector3 = Vector3.ZERO
 var mouse_delta: Vector2 = Vector2()
+
+var is_casting: bool = false
 
 # player components
 # TODO decouple
@@ -50,13 +55,20 @@ func _input(event):
 
 	# Actions
 	if Input.is_action_just_pressed("cast_spell1"):
-		# TODO add movement slowdown when casting, 
-		# define amount of slowdown in each spell
 		cast_spell1()
 
 
 func cast_spell1():
+	# TODO don't allow casting another spell1 or spell2 while casting is in progress
+	
+	# TODO take into account spell's mana cost
 	if current_mana > 0:
+		
+		is_casting = true
+		
+		$CastSpellTimer.start(spell.get_cast_time())
+		speed_modifier = speed_modifier * spell.get_cast_slowdown_modifier()
+		
 		spell.cast(self.get_path(), projectile_spawn_point)
 		current_mana -= 1
 
@@ -74,8 +86,7 @@ func _physics_process (delta):
 	
 	velocity.x = 0
 	velocity.z = 0
-	
-	speed_modifier = 1
+	_reset_speed_modifier_input()
 	
 	var input = Vector2()
 	
@@ -89,9 +100,9 @@ func _physics_process (delta):
 		input.x += 1
 	
 	if Input.is_action_pressed("run"):
-		speed_modifier = run_speed_modifier
+		speed_modifier_input = run_speed_modifier
 	elif Input.is_action_pressed("sneak"):
-		speed_modifier = sneak_speed_modifier
+		speed_modifier_input = sneak_speed_modifier
 	
 	# normalize diagonal movement speed
 	input = input.normalized()
@@ -101,8 +112,8 @@ func _physics_process (delta):
 	var right = global_transform.basis.x
 	
 	# set player movement velocity
-	velocity.z = (forward * input.y + right * input.x).z * move_speed * speed_modifier
-	velocity.x = (forward * input.y + right * input.x).x * move_speed * speed_modifier
+	velocity.z = (forward * input.y + right * input.x).z * move_speed * speed_modifier_input * speed_modifier
+	velocity.x = (forward * input.y + right * input.x).x * move_speed * speed_modifier_input * speed_modifier
 	
 	# apply gravity
 	velocity.y -= gravity * delta
@@ -130,3 +141,16 @@ func add_health(amount):
 
 func add_mana(amount):
 	current_mana += amount
+
+
+func _reset_speed_modifier():
+	speed_modifier = default_speed_modifier
+
+
+func _reset_speed_modifier_input():
+	speed_modifier_input = default_speed_modifier
+
+
+func _on_CastSpellTimer_timeout():
+	is_casting = false
+	_reset_speed_modifier()
