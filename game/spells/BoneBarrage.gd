@@ -37,14 +37,14 @@ func cast(caster: NodePath, cast_transform: Transform) -> bool:
 		# begin casting
 		CooldownTimer.start()
 		WarmupTimer.start()
-		yield(WarmupTimer,"timeout")
+		yield(WarmupTimer, "timeout")
 		
 		# shoot projectile barrage
 		# TODO add backfire, random spread
 		BarrageRateTimer.start()
 		for i in projectiles_number:
 			SignalBus.emit_signal("spawn_projectile", caster, projectile, cast_transform)
-			yield(BarrageRateTimer,"timeout")
+			yield(BarrageRateTimer, "timeout")
 		BarrageRateTimer.stop()
 		return true
 	else:
