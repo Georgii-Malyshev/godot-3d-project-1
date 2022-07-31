@@ -7,9 +7,9 @@
 [ext_resource path="res://game/creatures/skeleton/conditions/player_in_sight.gd" type="Script" id=5]
 [ext_resource path="res://addons/behavior_tree/src/btnodes/leaves/bt_wait.gd" type="Script" id=6]
 [ext_resource path="res://game/creatures/skeleton/conditions/player_in_attack_range.gd" type="Script" id=7]
-[ext_resource path="res://game/creatures/skeleton/leafs/move_within_attack_range_to_player.gd" type="Script" id=8]
+[ext_resource path="res://game/creatures/skeleton/leafs/move_to_player.gd" type="Script" id=8]
 [ext_resource path="res://game/creatures/skeleton/leafs/attack_player.gd" type="Script" id=9]
-[ext_resource path="res://game/creatures/skeleton/chasing_timer_running.gd" type="Script" id=12]
+[ext_resource path="res://game/creatures/skeleton/conditions/chasing_timer_running.gd" type="Script" id=12]
 
 [node name="SkeletonBehaviorTree" type="Node"]
 script = ExtResource( 1 )
