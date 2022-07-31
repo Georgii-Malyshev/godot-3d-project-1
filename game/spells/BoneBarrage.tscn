@@ -5,10 +5,13 @@
 [node name="BoneBarrage" type="Node"]
 script = ExtResource( 1 )
 
-[node name="BarrageRateTimer" type="Timer" parent="."]
-process_mode = 0
-wait_time = 0.1
+[node name="WarmupTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
 
 [node name="CooldownTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="BarrageRateTimer" type="Timer" parent="."]
+wait_time = 0.1
