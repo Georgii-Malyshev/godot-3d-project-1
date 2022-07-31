@@ -14,7 +14,7 @@ func _ready():
 	DestroyTimer.set_wait_time(projectile_expire_time)
 	DestroyTimer.start()
 	
-	# Add random spread
+	# rotate projectile for random spread
 	phi_for_x = rand_range(-0.01, 0.01)
 	phi_for_y = rand_range(-0.01, 0.01)
 	global_transform.rotated(Vector3(1, 0, 0), phi_for_x)  # rotate projectile on X axis
@@ -22,9 +22,12 @@ func _ready():
 
 
 func _process(delta):
+	
 	# make sure that inheriting projectiles have started DestroyTimer so they don't travel indefinitely
 	assert(not DestroyTimer.is_stopped())
-	# move projectile on a Z axis in a straight line and add previously generated random deviations
+	
+	# move projectile on a Z axis in a straight line 
+	# and add previously generated random deviations for random spread
 	translation += (
 		(global_transform.basis.z * velocity * delta) 
 		+ (global_transform.basis.x * phi_for_x) 

@@ -1,6 +1,6 @@
 extends Node
 
-# Fires a barrage of piercing bone projectiles
+# Fires a barrage of piercing bone projectiles with a small random spread
 
 # stats
 var projectiles_number: int = 4
