@@ -14,8 +14,8 @@ var move_speed: float = 2.5
 var sneak_speed_modifier: float = 0.35
 var run_speed_modifier: float = 5
 var default_speed_modifier: float = 1
-var speed_modifier: float = default_speed_modifier  # speed_modifier gets reset, don't change here
-var speed_modifier_input: float = default_speed_modifier  # speed_modifier gets reset, don't change here
+var speed_modifier: float = default_speed_modifier  # gets reset, don't change here
+var speed_modifier_input: float = default_speed_modifier  # gets reset, don't change here
 
 # camera look
 var min_look_angle: float = -85.0
