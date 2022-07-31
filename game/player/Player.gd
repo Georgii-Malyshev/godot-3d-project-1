@@ -58,19 +58,15 @@ func _input(event):
 		cast_spell1()
 
 
-func cast_spell1():
-	# TODO don't allow casting another spell1 or spell2 while casting is in progress
-	
+func cast_spell1():	
 	# TODO take into account spell's mana cost
-	if current_mana > 0:
-		
-		is_casting = true
-		
-		$CastSpellTimer.start(spell.get_cast_time())
-		speed_modifier = speed_modifier * spell.get_cast_slowdown_modifier()
-		
-		spell.cast(self.get_path(), projectile_spawn_point)
-		current_mana -= 1
+	if (not is_casting) and (current_mana > 0):
+		# try to cast spell
+		if spell.cast(self.get_path(), projectile_spawn_point):
+			is_casting = true
+			$CastSpellTimer.start(spell.get_cast_time())
+			speed_modifier = speed_modifier * spell.get_cast_slowdown_modifier()
+			current_mana -= 1  # TODO take into account spell's mana cost
 
 
 func _ready():
