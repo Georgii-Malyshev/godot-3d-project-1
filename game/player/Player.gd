@@ -32,7 +32,16 @@ var is_casting: bool = false
 # TODO decouple
 var spell: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
 onready var camera: Node = $FpsCamera
-onready var cast_transform: Node = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
+onready var cast_spatial: Spatial = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
+onready var cast_transform: Transform setget set_cast_transform, get_cast_transform
+
+
+func set_cast_transform(_value: Transform) -> void:
+	print("Attempt to set cast_transform, ignoring")
+
+
+func get_cast_transform() -> Transform:
+	return cast_spatial.get_global_transform()
 
 
 func _input(event):
@@ -58,11 +67,11 @@ func _input(event):
 		cast_spell1()
 
 
-func cast_spell1():	
+func cast_spell1():
 	# TODO take into account spell's mana cost
 	if (not is_casting) and (current_mana > 0):
 		# try to cast spell
-		if spell.cast(self.get_path(), cast_transform.get_global_transform()):
+		if spell.cast(self.get_path()):
 			is_casting = true
 			$CastSpellTimer.start(spell.get_cast_time())
 			speed_modifier = speed_modifier * spell.get_cast_slowdown_modifier()
