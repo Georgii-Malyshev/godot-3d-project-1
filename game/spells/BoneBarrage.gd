@@ -1,5 +1,7 @@
 extends Node
 
+# Fires a barrage of piercing bone projectiles
+
 # stats
 var projectiles_number: int = 4
 var cast_time: float = 0.8 setget set_cast_time, get_cast_time
@@ -31,12 +33,14 @@ func cast(caster: NodePath, spatial_to_cast_in: Spatial) -> bool:
 	"""
 	Returns true if cast was successfull, false if cast failed
 	"""
-	# TODO add backfire, random spread
 	if CooldownTimer.is_stopped():
+		# begin casting
 		CooldownTimer.start()
 		WarmupTimer.start()
 		yield(WarmupTimer,"timeout")
 		
+		# shoot projectile barrage
+		# TODO add backfire, random spread
 		BarrageRateTimer.start()
 		for i in projectiles_number:
 			SignalBus.emit_signal("spawn_projectile", caster, projectile, spatial_to_cast_in)
