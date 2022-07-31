@@ -29,7 +29,7 @@ func get_cast_slowdown_modifier() -> float:
 	return cast_slowdown_modifier
 
 
-func cast(caster: NodePath, spatial_to_cast_in: Spatial) -> bool:
+func cast(caster: NodePath, cast_transform: Transform) -> bool:
 	"""
 	Returns true if cast was successfull, false if cast failed
 	"""
@@ -43,7 +43,7 @@ func cast(caster: NodePath, spatial_to_cast_in: Spatial) -> bool:
 		# TODO add backfire, random spread
 		BarrageRateTimer.start()
 		for i in projectiles_number:
-			SignalBus.emit_signal("spawn_projectile", caster, projectile, spatial_to_cast_in)
+			SignalBus.emit_signal("spawn_projectile", caster, projectile, cast_transform)
 			yield(BarrageRateTimer,"timeout")
 		BarrageRateTimer.stop()
 		return true

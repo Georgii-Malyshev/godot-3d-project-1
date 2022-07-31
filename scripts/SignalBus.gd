@@ -24,4 +24,4 @@ extends Node
 
 
 signal spawn_player(spawn_position)
-signal spawn_projectile(original_emitter, projectile_scene, projectile_spawn_spatial)
+signal spawn_projectile(original_emitter, projectile_scene, projectile_spawn_transform)
