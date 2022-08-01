@@ -4,98 +4,36 @@ class_name Player
 # stats
 var max_health: int = 100
 var max_mana: int = 100
+var move_speed: float = 2.5
+var sneak_speed_modifier: float = 0.35
+var run_speed_modifier: float = 5
 
-var current_health: int = max_health setget set_current_health, get_current_health
-var current_mana: int = max_mana setget set_current_mana, get_current_mana
+# camera look
+var min_look_angle: float = -60.0
+var max_look_angle: float = 75.0
+var look_sensitivity: float = 0.60
 
 # physics
 var gravity: float = 18.0
 var snap: Vector3 = Vector3.DOWN
-
-var move_speed: float = 2.5
-var sneak_speed_modifier: float = 0.35
-var run_speed_modifier: float = 5
 var default_speed_modifier: float = 1
 var speed_modifier: float = default_speed_modifier  # gets reset, don't change here
 var speed_modifier_input: float = default_speed_modifier  # gets reset, don't change here
-
-# camera look
-var min_look_angle: float = -85.0
-var max_look_angle: float = 85.0
-var look_sensitivity: float = 0.66
-
 # vectors
 var velocity: Vector3 = Vector3.ZERO
 var mouse_delta: Vector2 = Vector2()
 
+# state
 var is_casting: bool = false
+var current_health: int = max_health setget set_current_health, get_current_health
+var current_mana: int = max_mana setget set_current_mana, get_current_mana
 
-# player components
+# components
 # TODO decouple
 var spell: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
 onready var camera: Node = $FpsCamera
 onready var cast_spatial: Spatial = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
 onready var cast_transform: Transform setget set_cast_transform, get_cast_transform
-
-
-func set_current_health(value: int) -> void:
-# warning-ignore:narrowing_conversion
-	current_health = clamp(value, 0, max_health)
-
-
-func get_current_health() -> int:
-	return current_health
-
-
-func set_current_mana(value: int) -> void:
-# warning-ignore:narrowing_conversion
-	current_mana = clamp(value, 0, max_mana)
-
-
-func get_current_mana() -> int:
-	return current_mana
-
-
-func set_cast_transform(_value: Transform) -> void:
-	print("Attempt to set cast_transform, ignoring")
-
-
-func get_cast_transform() -> Transform:
-	return cast_spatial.get_global_transform()
-
-
-func _input(event):
-	
-	# First-person camera movement
-	
-	if event is InputEventMouseMotion:
-		mouse_delta = event.relative  # get direction and length that the mouse moved
-		# rotate camera along X axis
-		camera.rotation_degrees -= Vector3(rad2deg(mouse_delta.y), 0, 0) * look_sensitivity * get_process_delta_time()
-		
-		# clamp vertical camera rotation
-		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, min_look_angle, max_look_angle)
-		
-		# rotate player along Y axis
-		rotation_degrees -= Vector3(0, rad2deg(mouse_delta.x), 0) * look_sensitivity * get_process_delta_time()
-		
-		# reset the mouse delta vector
-		mouse_delta = Vector2()
-
-	# Actions
-	if Input.is_action_just_pressed("cast_spell"):
-		cast_spell()
-
-
-func cast_spell():
-	var spell_mana_cost: int = spell.get_mana_cost()
-	if (not is_casting) and (current_mana >= spell_mana_cost):
-		# try to cast spell
-		if spell.cast(self.get_path()):
-			is_casting = true
-			set_current_mana(current_mana - spell_mana_cost)
-			$CastSpellTimer.start(spell.get_cast_time())
-			speed_modifier = speed_modifier * spell.get_cast_slowdown_modifier()
 
 
 func _ready():
@@ -150,22 +88,24 @@ func _physics_process (delta):
 	velocity = velocity_itermediate
 
 
-func take_damage(damage):
-	set_current_health (current_health - damage)
+func _input(event):
 	
-	if current_health == 0:
-		die()
-
-func die():
-	print("Player dies!")  # TODO implement player death mechanic
-
-
-func add_health(amount):
-	set_current_health(current_health + amount)
-
-
-func add_mana(amount):
-	set_current_mana(current_mana + amount)
+	# First-person camera movement
+	if event is InputEventMouseMotion:
+		# get direction and length that the mouse moved
+		mouse_delta = event.relative
+		# rotate camera along X axis
+		camera.rotation_degrees -= Vector3(rad2deg(mouse_delta.y), 0, 0) * look_sensitivity * get_process_delta_time()
+		# clamp vertical camera rotation
+		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, min_look_angle, max_look_angle)
+		# rotate player along Y axis
+		rotation_degrees -= Vector3(0, rad2deg(mouse_delta.x), 0) * look_sensitivity * get_process_delta_time()
+		# reset the mouse delta vector
+		mouse_delta = Vector2()
+	
+	# Actions
+	if Input.is_action_just_pressed("cast_spell"):
+		cast_spell()
 
 
 func _reset_speed_modifier():
@@ -179,3 +119,58 @@ func _reset_speed_modifier_input():
 func _on_CastSpellTimer_timeout():
 	is_casting = false
 	_reset_speed_modifier()
+
+
+func set_current_health(value: int) -> void:
+	# warning-ignore:narrowing_conversion
+	current_health = clamp(value, 0, max_health)
+
+
+func get_current_health() -> int:
+	return current_health
+
+
+func set_current_mana(value: int) -> void:
+	# warning-ignore:narrowing_conversion
+	current_mana = clamp(value, 0, max_mana)
+
+
+func get_current_mana() -> int:
+	return current_mana
+
+
+func set_cast_transform(_value: Transform) -> void:
+	print("Attempt to set cast_transform, ignoring")
+
+
+func get_cast_transform() -> Transform:
+	return cast_spatial.get_global_transform()
+
+
+func add_health(amount):
+	set_current_health(current_health + amount)
+
+
+func add_mana(amount):
+	set_current_mana(current_mana + amount)
+
+
+func take_damage(damage):
+	set_current_health (current_health - damage)
+	
+	if current_health == 0:
+		die()
+
+func die():
+	print("Player dies!")  # TODO implement player death mechanic
+
+
+func cast_spell():
+	var spell_mana_cost: int = spell.get_mana_cost()
+	if (not is_casting) and (current_mana >= spell_mana_cost):
+		# try to cast spell
+		if spell.cast(self.get_path()):
+			is_casting = true
+			set_current_mana(current_mana - spell_mana_cost)
+			$CastSpellTimer.start(spell.get_cast_time())
+			speed_modifier = speed_modifier * spell.get_cast_slowdown_modifier()
