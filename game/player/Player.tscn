@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://game/player/SpellcastingRightArm.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/player/Player.gd" type="Script" id=2]
+[ext_resource path="res://game/player/Hud.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.53
@@ -19,6 +20,23 @@ current = true
 fov = 68.0
 near = 0.1
 far = 500.0
+
+[node name="Hud" type="CanvasLayer" parent="FpsCamera"]
+script = ExtResource( 3 )
+
+[node name="HealthLabel" type="RichTextLabel" parent="FpsCamera/Hud"]
+margin_right = 100.0
+margin_bottom = 40.0
+mouse_filter = 2
+scroll_active = false
+
+[node name="ManaLabel" type="RichTextLabel" parent="FpsCamera/Hud"]
+margin_left = 540.0
+margin_top = 2.0
+margin_right = 640.0
+margin_bottom = 42.0
+mouse_filter = 2
+scroll_active = false
 
 [node name="SpellcastingRightArm" parent="FpsCamera" instance=ExtResource( 1 )]
 transform = Transform( 0.998346, 0.0221501, -0.053068, -0.0221813, 0.999754, 0, 0.0530549, 0.00117712, 0.998591, -0.05, 0.03, -0.204225 )

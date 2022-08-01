@@ -5,6 +5,7 @@ class_name Player
 var current_health: int = 66
 var max_health: int = 100
 var current_mana: int = 75
+var max_mana: int = 75
 
 # physics
 var gravity: float = 18.0
