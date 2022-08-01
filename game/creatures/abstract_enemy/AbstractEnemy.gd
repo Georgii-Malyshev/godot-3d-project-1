@@ -2,7 +2,7 @@ extends KinematicBody
 
 # stats
 var max_health: int = 100
-var current_health: int = 100
+var current_health: int = max_health setget set_current_health, get_current_health
 var movement_speed: float = 2.1
 var attack_range: float = 3.0
 
@@ -18,6 +18,14 @@ var distance_to_player: float = 999999
 
 # components
 onready var nav: Node = get_parent()  # TODO decouple from parent?
+
+
+func set_current_health(value: int) -> void:
+	current_health = clamp(value, 0, max_health)
+
+
+func get_current_health() -> int:
+	return current_health
 
 
 func turn_to_player():
@@ -99,10 +107,11 @@ func _move_on_current_path() -> void:
 	# reset movement direction vector
 	var direction : Vector3 = Vector3.ZERO
 	
-	if currently_toggled_path_node_index < current_path.size():  # if current node isn't the last one on the path
+	# if current node isn't the last one on the path
+	if currently_toggled_path_node_index < current_path.size():
 		var pathfinding_direction : Vector3 = (
 			current_path[currently_toggled_path_node_index] - global_transform.origin
-			)
+		)
 		# Enemies that don't fly can't move "deliberately" on Y axis, 
 		# so discard the Y of their "intended" direction of movement
 		pathfinding_direction.y = 0
@@ -122,16 +131,17 @@ func _recalculate_current_path() -> void:
 
 
 func attack_player():
-	pass  # TODO implement attack mechanics
+	pass  # Your custom attack mechanics go here
 
 
 func take_damage(damage):
-	current_health -= damage
-	if current_health <= 0:
+	set_current_health(current_health - damage)
+	if current_health == 0:
 		die()
 
 
 func die():
+	# Your custom death mechanics go here
 	queue_free()
 
 
