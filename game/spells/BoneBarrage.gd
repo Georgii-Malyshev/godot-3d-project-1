@@ -2,7 +2,7 @@ extends "res://game/spells/AbstractSpell.gd"
 
 # Fires a barrage of piercing bone projectiles with some random spread
 
-var projectiles_number: int = 4
+var projectiles_number: int = 5
 
 onready var BarrageRateTimer: Timer = $BarrageRateTimer
 

@@ -7,4 +7,5 @@
 script = ExtResource( 2 )
 
 [node name="BarrageRateTimer" type="Timer" parent="." index="2"]
-wait_time = 0.1
+process_mode = 0
+wait_time = 0.08

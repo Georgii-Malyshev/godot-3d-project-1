@@ -9,8 +9,8 @@ var pierce_counter: int = 0
 
 func _ready():
 	velocity = 25.0
-	damage = 15
-	projectile_expire_time = 1
+	damage = 25
+	projectile_expire_time = 1.2
 	DestroyTimer.set_wait_time(projectile_expire_time)
 	DestroyTimer.start()
 	
