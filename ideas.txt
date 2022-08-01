@@ -5,27 +5,29 @@ Various ideas and themes:
     - Endless grey-and-black stairs and floors, Sokurov's 'The Stone' style;
   Most dreadful spells are also used at some locations/storypoints to move further (E.Y.E. Divine Cybermancy-style);
 
-Skills: 
-  Decaying Touch: 
+Spells (to be renamed): 
+  Blighted Touch: 
     Get withing close-melee distance and touch a single enemy to set decay, making him take continuous medium damage over medium period of time;
-  Silencing stare: 
+  Silence: 
     Stare at the enemy for a few seconds without him leaving the screen to silence him for a long time, not letting him use any magic;
-  Corpse totem: 
+  Corpse Totem: 
     Target a corpse or a pile of bones at a distance to reforge it into a bonestructure that shoot homing bone barrages at enemies;
   Corrupting Bonespikes:
     Target an area on any flat, big enough surface and summon several violently protruding spikes that damage any enemies they hit and apply decay;
   Reap:
     Target a nearby corpse for a few seconds to consume it, regenerating some HP instantly and applying a short-lived HP regen to self;
-  Hexblast:
-    Target an enemy marked by your curses (any debuff/DoT that hasn't worn off yet) to detonate him, instantly expiring all debuffs and dealing damage and AOE damage (the longer debuff ticks the more damage Hexblast deals);
-  Frail:
-    Stare at the target for a few moments to curse it with a long-timed debuff that slows it down, lowers it's resistances&damage output and kills it if has less than 20% of health while the debuff is active;
+  Hex Mark: 
+    Hex a single enemy by staring at him for a short time without breaking line of sight to apply a medium-timed debuff that lowers it's resistances and kills it if has less than 20% of health while the debuff is active;
+  Hex Trigger:
+    Target an enemy marked by your curses (any debuff/DoT that hasn't worn off yet) to detonate him, instantly expiring all debuffs and dealing damage and AOE damage (the longer debuff ticks the more damage this spell deals);
+  Frail Sign:
+    Cast a short-lived AoE sign on the floor that curses any who enter it with a long-timed debuff that slows them down, lowers resistances&damage output;
   Spectral Scythe:
-    A slow-buildup powerful attack in a long melee range and a wde area with a spectral scythe that reaches through walls and applies short-lived Slow debuff;
+    A slow-buildup powerful attack in a long melee range and a wide area with a spectral scythe that reaches through walls and applies short-lived Slow debuff;
   Dark Stab:
     A fast-buildup summoning of a fast spectral dagger that stabs a single target within a medium-melee range, dealing damage and short-lived Dark DoT;
   Whimpers:
-    Summon several whimpering, slow-moving spirits that will home in and fly at the single target, dealing damage and medium-lived Dark DoT;
+    Summon several whimpering, slow-moving spirits that will home in and fly at the single target, dealing damage;
   Bone Barrage: 
     Shoots a violent barrage of fast piercing splintered bones and teeth
     
