@@ -2,19 +2,19 @@ extends KinematicBody
 
 # stats
 var max_health: int = 100
-var current_health: int = max_health setget set_current_health, get_current_health
 var movement_speed: float = 2.1
 var attack_range: float = 3.0
+
+# state
+var current_health: int = max_health setget set_current_health, get_current_health
+var distance_to_player: float = 999999
+var sees_player: bool = false
+var chasing: bool = false
 
 # pathfinding
 var current_target_position: Vector3 = Vector3.ZERO
 var current_path: Array = []
 var currently_toggled_path_node_index: int = 0
-
-# behavior tree-related
-var sees_player: bool = false
-var chasing: bool = false
-var distance_to_player: float = 999999
 
 # components
 onready var nav: Node = get_parent()  # TODO decouple from parent?
@@ -29,9 +29,22 @@ func get_current_health() -> int:
 	return current_health
 
 
-func turn_to_player():
-	# TODO make it a slow turn, not an instant transformation
-	look_at(GlobalVars.get_player_global_position(), Vector3.UP)
+func _physics_process(_delta : float) -> void:
+	
+	# behavior tree-related
+	sees_player = _check_if_player_is_in_sight()
+	# TODO calculate only when necessary?
+	distance_to_player = _calculate_distance_to_player()
+	
+	# apply gravity
+	var direction: Vector3 = Vector3.ZERO
+	direction.y -= GlobalVars.get_global_gravity() * _delta
+	move_and_slide_with_snap(direction.normalized(), Vector3.DOWN, Vector3.UP)
+
+
+func _calculate_distance_to_player() -> float:
+	# TODO consider using global_transform.origin of current node
+	return translation.distance_to(GlobalVars.get_player_global_position())
 
 
 func _check_if_player_is_in_sight() -> bool:
@@ -71,29 +84,6 @@ func _check_if_player_is_in_sight() -> bool:
 	return false
 
 
-func move_to_player() -> void:
-	current_target_position = GlobalVars.get_player_global_position()
-	_move_to_current_target_position()
-
-
-func _physics_process(_delta : float) -> void:
-	
-	# behavior tree-related
-	sees_player = _check_if_player_is_in_sight()
-	# TODO calculate only when necessary?
-	distance_to_player = _calculate_distance_to_player()
-	
-	# apply gravity
-	var direction: Vector3 = Vector3.ZERO
-	direction.y -= GlobalVars.get_global_gravity() * _delta
-	move_and_slide_with_snap(direction.normalized(), Vector3.DOWN, Vector3.UP)
-
-
-func _calculate_distance_to_player() -> float:
-	# TODO consider using global_transform.origin of current node
-	return translation.distance_to(GlobalVars.get_player_global_position())
-
-
 func _move_to_current_target_position() -> void:
 	
 	if $RecalculateCurrentPathTimer.is_stopped():
@@ -131,6 +121,24 @@ func _recalculate_current_path() -> void:
 	currently_toggled_path_node_index = 0
 
 
+func _on_RecalculateCurrentPathTimer_timeout():
+	_recalculate_current_path()
+
+
+func _on_ChasingTimer_timeout():
+	chasing = false
+
+
+func turn_to_player():
+	# TODO make it a slow turn, not an instant transformation
+	look_at(GlobalVars.get_player_global_position(), Vector3.UP)
+
+
+func move_to_player() -> void:
+	current_target_position = GlobalVars.get_player_global_position()
+	_move_to_current_target_position()
+
+
 func attack_player():
 	pass  # Your custom attack mechanics go here
 
@@ -144,11 +152,3 @@ func take_damage(damage):
 func die():
 	# Your custom death mechanics go here
 	queue_free()
-
-
-func _on_RecalculateCurrentPathTimer_timeout():
-	_recalculate_current_path()
-
-
-func _on_ChasingTimer_timeout():
-	chasing = false

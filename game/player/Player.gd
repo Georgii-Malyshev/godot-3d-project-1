@@ -8,6 +8,11 @@ var move_speed: float = 2.5
 var sneak_speed_modifier: float = 0.35
 var run_speed_modifier: float = 5
 
+# state
+var is_casting: bool = false
+var current_health: int = max_health setget set_current_health, get_current_health
+var current_mana: int = max_mana setget set_current_mana, get_current_mana
+
 # camera look
 var min_look_angle: float = -60.0
 var max_look_angle: float = 75.0
@@ -23,17 +28,38 @@ var speed_modifier_input: float = default_speed_modifier  # gets reset, don't ch
 var velocity: Vector3 = Vector3.ZERO
 var mouse_delta: Vector2 = Vector2()
 
-# state
-var is_casting: bool = false
-var current_health: int = max_health setget set_current_health, get_current_health
-var current_mana: int = max_mana setget set_current_mana, get_current_mana
-
 # components
 # TODO decouple
 var spell: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
 onready var camera: Node = $FpsCamera
 onready var cast_spatial: Spatial = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
 onready var cast_transform: Transform setget set_cast_transform, get_cast_transform
+
+
+func set_current_health(value: int) -> void:
+	# warning-ignore:narrowing_conversion
+	current_health = clamp(value, 0, max_health)
+
+
+func get_current_health() -> int:
+	return current_health
+
+
+func set_current_mana(value: int) -> void:
+	# warning-ignore:narrowing_conversion
+	current_mana = clamp(value, 0, max_mana)
+
+
+func get_current_mana() -> int:
+	return current_mana
+
+
+func set_cast_transform(_value: Transform) -> void:
+	print("Attempt to set cast_transform, ignoring")
+
+
+func get_cast_transform() -> Transform:
+	return cast_spatial.get_global_transform()
 
 
 func _ready():
@@ -119,32 +145,6 @@ func _reset_speed_modifier_input():
 func _on_CastSpellTimer_timeout():
 	is_casting = false
 	_reset_speed_modifier()
-
-
-func set_current_health(value: int) -> void:
-	# warning-ignore:narrowing_conversion
-	current_health = clamp(value, 0, max_health)
-
-
-func get_current_health() -> int:
-	return current_health
-
-
-func set_current_mana(value: int) -> void:
-	# warning-ignore:narrowing_conversion
-	current_mana = clamp(value, 0, max_mana)
-
-
-func get_current_mana() -> int:
-	return current_mana
-
-
-func set_cast_transform(_value: Transform) -> void:
-	print("Attempt to set cast_transform, ignoring")
-
-
-func get_cast_transform() -> Transform:
-	return cast_spatial.get_global_transform()
 
 
 func add_health(amount):
