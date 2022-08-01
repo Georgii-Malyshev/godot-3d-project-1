@@ -7,24 +7,25 @@
 
 [sub_resource type="CapsuleMesh" id=2]
 radius = 0.3
-mid_height = 1.59
+mid_height = 1.5
 
 [sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 1, 0, 0, 1 )
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.303463
-height = 1.59071
+height = 1.5
 
 [node name="Slasher" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="ModelMeshInstance" type="MeshInstance" parent="." index="4"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.101, -0.011 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.05418, -0.011 )
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="5"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.10057, -0.0110152 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.05375, -0.0110152 )
 shape = SubResource( 1 )
 
 [node name="FieldOfViewArea" type="Area" parent="." index="6"]
