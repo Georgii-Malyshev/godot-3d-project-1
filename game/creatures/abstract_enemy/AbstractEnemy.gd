@@ -21,6 +21,7 @@ onready var nav: Node = get_parent()  # TODO decouple from parent?
 
 
 func set_current_health(value: int) -> void:
+# warning-ignore:narrowing_conversion
 	current_health = clamp(value, 0, max_health)
 
 

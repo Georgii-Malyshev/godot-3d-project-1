@@ -35,4 +35,5 @@ shape = ExtResource( 5 )
 
 [node name="SlasherBehaviorTree" parent="." index="7" instance=ExtResource( 3 )]
 is_active = true
+_blackboard = NodePath("../Blackboard")
 _agent = NodePath("..")
