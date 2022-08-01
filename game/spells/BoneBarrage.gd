@@ -3,16 +3,27 @@ extends Node
 # Fires a barrage of piercing bone projectiles with some random spread
 
 # stats
-var projectiles_number: int = 4
+var mana_cost: int = 25 setget set_mana_cost, get_mana_cost
 var cast_time: float = 0.8 setget set_cast_time, get_cast_time
 var cast_slowdown_modifier: float = 0.15 setget set_cast_slowdown_modifier, get_cast_slowdown_modifier
 var cast_transform: Transform
 
+var projectiles_number: int = 4
+
 # components
-var projectile: PackedScene = preload("res://game/spells/BoneBarrageProjectile.tscn")
 onready var WarmupTimer: Timer = $WarmupTimer
 onready var CooldownTimer: Timer = $CooldownTimer
 onready var BarrageRateTimer: Timer = $BarrageRateTimer
+
+var projectile: PackedScene = preload("res://game/spells/BoneBarrageProjectile.tscn")
+
+
+func set_mana_cost(_value: int) -> void:
+	print("Attempt to change mana_cost value, ignoring.")
+
+
+func get_mana_cost() -> int:
+	return mana_cost
 
 
 func set_cast_time(_value: float) -> void:

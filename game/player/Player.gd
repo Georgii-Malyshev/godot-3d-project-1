@@ -4,7 +4,7 @@ class_name Player
 # stats
 var current_health: int = 66
 var max_health: int = 100
-var current_mana: int = 15
+var current_mana: int = 75
 
 # physics
 var gravity: float = 18.0
@@ -63,19 +63,19 @@ func _input(event):
 		mouse_delta = Vector2()
 
 	# Actions
-	if Input.is_action_just_pressed("cast_spell1"):
-		cast_spell1()
+	if Input.is_action_just_pressed("cast_spell"):
+		cast_spell()
 
 
-func cast_spell1():
-	# TODO take into account spell's mana cost
-	if (not is_casting) and (current_mana > 0):
+func cast_spell():
+	var spell_mana_cost: int = spell.get_mana_cost()
+	if (not is_casting) and (current_mana >= spell_mana_cost):
 		# try to cast spell
 		if spell.cast(self.get_path()):
 			is_casting = true
+			current_mana -= spell_mana_cost
 			$CastSpellTimer.start(spell.get_cast_time())
 			speed_modifier = speed_modifier * spell.get_cast_slowdown_modifier()
-			current_mana -= 1  # TODO take into account spell's mana cost
 
 
 func _ready():
