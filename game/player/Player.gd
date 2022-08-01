@@ -2,10 +2,11 @@ extends KinematicBody
 class_name Player
 
 # stats
-var current_health: int = 66
 var max_health: int = 100
-var current_mana: int = 75
-var max_mana: int = 75
+var max_mana: int = 100
+
+var current_health: int = max_health setget set_current_health, get_current_health
+var current_mana: int = max_mana setget set_current_mana, get_current_mana
 
 # physics
 var gravity: float = 18.0
@@ -35,6 +36,24 @@ var spell: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
 onready var camera: Node = $FpsCamera
 onready var cast_spatial: Spatial = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
 onready var cast_transform: Transform setget set_cast_transform, get_cast_transform
+
+
+func set_current_health(value: int) -> void:
+# warning-ignore:narrowing_conversion
+	current_health = clamp(value, 0, max_health)
+
+
+func get_current_health() -> int:
+	return current_health
+
+
+func set_current_mana(value: int) -> void:
+# warning-ignore:narrowing_conversion
+	current_mana = clamp(value, 0, max_mana)
+
+
+func get_current_mana() -> int:
+	return current_mana
 
 
 func set_cast_transform(_value: Transform) -> void:
@@ -74,7 +93,7 @@ func cast_spell():
 		# try to cast spell
 		if spell.cast(self.get_path()):
 			is_casting = true
-			current_mana -= spell_mana_cost
+			set_current_mana(current_mana - spell_mana_cost)
 			$CastSpellTimer.start(spell.get_cast_time())
 			speed_modifier = speed_modifier * spell.get_cast_slowdown_modifier()
 
@@ -132,9 +151,9 @@ func _physics_process (delta):
 
 
 func take_damage(damage):
-	current_health -= damage
+	set_current_health (current_health - damage)
 	
-	if current_health <= 0:
+	if current_health == 0:
 		die()
 
 func die():
@@ -142,11 +161,11 @@ func die():
 
 
 func add_health(amount):
-	current_health += amount
+	set_current_health(current_health + amount)
 
 
 func add_mana(amount):
-	current_mana += amount
+	set_current_mana(current_mana + amount)
 
 
 func _reset_speed_modifier():
