@@ -30,14 +30,14 @@ var mouse_delta: Vector2 = Vector2()
 
 # components
 # TODO decouple
-# TODO implement spell switching
-var spell: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
-#var spell: Node = preload("res://game/spells/HexMark.tscn").instance()
+# TODO implement spell switching, call spell's 'equip' method when equipping it
+#var spell: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
+var spell: Node = preload("res://game/spells/HexMark.tscn").instance()
 onready var camera: Node = $FpsCamera
 # TODO switch cast_spatial node based on the type of spell
 # (spawn projectiles from one spatial, cast line-of-sight ray from another etc.)
-onready var cast_spatial: Spatial = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
-#onready var cast_spatial: Spatial = $FpsCamera/CastSpellPoint
+#onready var cast_spatial: Spatial = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
+onready var cast_spatial: Spatial = $FpsCamera/CastSpellPoint
 onready var cast_transform: Transform setget set_cast_transform, get_cast_transform
 
 
@@ -72,6 +72,8 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# make preloaded&instanced scene a child of player
 	add_child(spell)
+	
+	spell.equip(self.get_path())  # TODO delete after implementing spell switching
 
 
 func _physics_process (delta):

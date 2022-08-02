@@ -55,6 +55,11 @@ func get_cast_slowdown_modifier() -> float:
 	return cast_slowdown_modifier
 
 
+func equip(_caster_node_path: NodePath) -> void:
+	# Override in your spell if needed
+	pass
+
+
 func cast(caster_node_path: NodePath) -> bool:
 	"""
 	Returns true if cast was successfull, false if cast failed

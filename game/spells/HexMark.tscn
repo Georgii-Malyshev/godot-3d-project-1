@@ -6,7 +6,9 @@
 [node name="HexMark" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="LineOfSightRayCast" type="RayCast" parent="." index="2"]
-enabled = true
-cast_to = Vector3( 0, 0, 1 )
+[node name="CastingTimer" type="Timer" parent="." index="2"]
+one_shot = true
+
+[node name="RayCast" type="RayCast" parent="." index="3"]
+cast_to = Vector3( 0, 0, -10 )
 debug_shape_custom_color = Color( 0.360784, 0, 1, 1 )
