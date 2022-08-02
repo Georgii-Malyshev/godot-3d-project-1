@@ -15,40 +15,40 @@ onready var WarmupTimer: Timer = $WarmupTimer
 onready var CooldownTimer: Timer = $CooldownTimer
 
 
-func set_mana_cost(_value: int) -> void:
-	print("Attempt to change mana_cost value, ignoring.")
+func set_mana_cost(value: int) -> void:
+	mana_cost = value
 
 
 func get_mana_cost() -> int:
 	return mana_cost
 
 
-func set_cooldown_time(_value: float) -> void:
-	print("Attempt to change cooldown_time value, ignoring.")
+func set_cooldown_time(value: float) -> void:
+	cooldown_time = value
 
 
 func get_cooldown_time() -> float:
 	return cooldown_time
 
 
-func set_warmup_time(_value: float) -> void:
-	print("Attempt to change warmup_time value, ignoring.")
+func set_warmup_time(value: float) -> void:
+	warmup_time = value
 
 
 func get_warmup_time() -> float:
 	return warmup_time
 
 
-func set_cast_time(_value: float) -> void:
-	print("Attempt to change cast_time value, ignoring.")
+func set_cast_time(value: float) -> void:
+	cast_time = value
 
 
 func get_cast_time() -> float:
 	return cast_time
 
 
-func set_cast_slowdown_modifier(_value: float) -> void:
-	print("Attempt to change cast_slowdown_modifier value, ignoring.")
+func set_cast_slowdown_modifier(value: float) -> void:
+	cast_slowdown_modifier = value
 
 func get_cast_slowdown_modifier() -> float:
 	return cast_slowdown_modifier
