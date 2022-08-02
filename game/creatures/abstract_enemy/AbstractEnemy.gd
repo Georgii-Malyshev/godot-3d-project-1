@@ -1,4 +1,5 @@
 extends KinematicBody
+class_name Creature
 
 # stats
 var max_health: int = 100
@@ -10,6 +11,7 @@ var current_health: int = max_health setget set_current_health, get_current_heal
 var distance_to_player: float = 999999
 var sees_player: bool = false
 var chasing: bool = false
+var active_effects: Dictionary = {}
 
 # pathfinding
 var current_target_position: Vector3 = Vector3.ZERO

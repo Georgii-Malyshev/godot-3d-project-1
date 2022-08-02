@@ -30,7 +30,9 @@ var mouse_delta: Vector2 = Vector2()
 
 # components
 # TODO decouple
+# TODO implement spell switching
 var spell: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
+#var spell: Node = preload("res://game/spells/HexMark.tscn").instance()
 onready var camera: Node = $FpsCamera
 # TODO switch cast_spatial node based on the type of spell
 # (spawn projectiles from one spatial, cast line-of-sight ray from another etc.)
@@ -172,8 +174,8 @@ func cast_spell():
 	var spell_mana_cost: int = spell.get_mana_cost()
 	if (not is_casting) and (current_mana >= spell_mana_cost):
 		# try to cast spell
-		if spell.cast(self.get_path()):
-			is_casting = true
-			set_current_mana(current_mana - spell_mana_cost)
-			$CastSpellTimer.start(spell.get_cast_time())
-			speed_modifier = speed_modifier * spell.get_cast_slowdown_modifier()
+		spell.cast(self.get_path())
+		is_casting = true
+		set_current_mana(current_mana - spell_mana_cost)
+		$CastSpellTimer.start(spell.get_cast_time())
+		speed_modifier = speed_modifier * spell.get_cast_slowdown_modifier()

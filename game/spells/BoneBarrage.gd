@@ -23,7 +23,12 @@ func execute_spell(caster_node_path: NodePath) -> bool:
 		caster = get_node(caster_node_path)
 		BarrageRateTimer.start()
 		for i in projectiles_number:
-			SignalBus.emit_signal("spawn_projectile", caster_node_path, projectile, caster.get_cast_transform())
+			SignalBus.emit_signal(
+				"spawn_projectile", 
+				caster_node_path, 
+				projectile, 
+				caster.get_cast_transform()
+			)
 			yield(BarrageRateTimer, "timeout")
 		BarrageRateTimer.stop()
 		return true
