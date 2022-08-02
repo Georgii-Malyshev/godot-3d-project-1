@@ -4,7 +4,7 @@ extends Node
 
 # stats
 var mana_cost: int = 25 setget set_mana_cost, get_mana_cost
-var cooldown_time: float = 1 setget set_cooldown_time, get_cooldown_time
+var cooldown_time: float = 1.0 setget set_cooldown_time, get_cooldown_time
 var warmup_time: float = 0.2 setget set_warmup_time, get_warmup_time
 var cast_time: float = 0.8 setget set_cast_time, get_cast_time
 var cast_slowdown_modifier: float = 0.15 setget set_cast_slowdown_modifier, get_cast_slowdown_modifier

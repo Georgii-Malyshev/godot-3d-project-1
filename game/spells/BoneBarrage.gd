@@ -9,6 +9,14 @@ onready var BarrageRateTimer: Timer = $BarrageRateTimer
 var projectile: PackedScene = preload("res://game/spells/BoneBarrageProjectile.tscn")
 
 
+func _ready():
+	set_mana_cost(25)
+	set_cooldown_time(1.0)
+	set_warmup_time(0.2)
+	set_cast_time(0.8)
+	set_cast_slowdown_modifier(0.15)
+
+
 func execute_spell_at_transform(cast_transform: Transform, caster: NodePath) -> bool:
 		# shoot projectile barrage
 		# TODO add backfire
