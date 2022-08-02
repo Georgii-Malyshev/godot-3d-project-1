@@ -41,6 +41,9 @@ scroll_active = false
 [node name="SpellcastingRightArm" parent="FpsCamera" instance=ExtResource( 1 )]
 transform = Transform( 0.998346, 0.0221501, -0.053068, -0.0221813, 0.999754, 0, 0.0530549, 0.00117712, 0.998591, -0.05, 0.03, -0.204225 )
 
+[node name="CastSpellPoint" type="Spatial" parent="FpsCamera"]
+visible = false
+
 [node name="CastSpellTimer" type="Timer" parent="."]
 one_shot = true
 

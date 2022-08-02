@@ -17,12 +17,13 @@ func _ready():
 	set_cast_slowdown_modifier(0.15)
 
 
-func execute_spell_at_transform(cast_transform: Transform, caster: NodePath) -> bool:
-		# shoot projectile barrage
+func execute_spell(caster_node_path: NodePath) -> bool:
+		# Shoot projectile barrage
 		# TODO add backfire
+		caster = get_node(caster_node_path)
 		BarrageRateTimer.start()
 		for i in projectiles_number:
-			SignalBus.emit_signal("spawn_projectile", caster, projectile, cast_transform)
+			SignalBus.emit_signal("spawn_projectile", caster_node_path, projectile, caster.get_cast_transform())
 			yield(BarrageRateTimer, "timeout")
 		BarrageRateTimer.stop()
 		return true

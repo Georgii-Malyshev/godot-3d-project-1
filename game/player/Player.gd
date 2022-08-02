@@ -32,7 +32,10 @@ var mouse_delta: Vector2 = Vector2()
 # TODO decouple
 var spell: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
 onready var camera: Node = $FpsCamera
+# TODO switch cast_spatial node based on the type of spell
+# (spawn projectiles from one spatial, cast line-of-sight ray from another etc.)
 onready var cast_spatial: Spatial = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
+#onready var cast_spatial: Spatial = $FpsCamera/CastSpellPoint
 onready var cast_transform: Transform setget set_cast_transform, get_cast_transform
 
 

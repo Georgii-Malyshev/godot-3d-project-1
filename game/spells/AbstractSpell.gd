@@ -10,6 +10,7 @@ var cast_time: float = 0.8 setget set_cast_time, get_cast_time
 var cast_slowdown_modifier: float = 0.15 setget set_cast_slowdown_modifier, get_cast_slowdown_modifier
 
 # components
+var caster: Node
 var cast_transform: Transform
 onready var WarmupTimer: Timer = $WarmupTimer
 onready var CooldownTimer: Timer = $CooldownTimer
@@ -54,7 +55,7 @@ func get_cast_slowdown_modifier() -> float:
 	return cast_slowdown_modifier
 
 
-func cast(caster: NodePath) -> bool:
+func cast(caster_node_path: NodePath) -> bool:
 	"""
 	Returns true if cast was successfull, false if cast failed
 	"""
@@ -63,13 +64,12 @@ func cast(caster: NodePath) -> bool:
 		CooldownTimer.start(cooldown_time)
 		WarmupTimer.start(warmup_time)
 		yield(WarmupTimer, "timeout")
-		cast_transform = get_node(caster).get_cast_transform()
-		return execute_spell_at_transform(cast_transform, caster)
+		return execute_spell(caster_node_path)
 	else:
 		return false
 
 
-func execute_spell_at_transform(_cast_transform: Transform, _caster: NodePath) -> bool:
+func execute_spell(_caster_node_path: NodePath) -> bool:
 	# Implement actual actions for your spell to do here
 	# Return true if spell actions were executed successfully
 	return false
