@@ -39,6 +39,7 @@ onready var camera: Node = $FpsCamera
 onready var cast_spatial: Spatial = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
 #onready var cast_spatial: Spatial = $FpsCamera/CastSpellPoint
 onready var cast_transform: Transform setget set_cast_transform, get_cast_transform
+onready var ground_detection_ray_cast: RayCast = $GroundDetectionRayCast
 
 
 func set_current_health(value: int) -> void:
@@ -115,13 +116,17 @@ func _physics_process (delta):
 	velocity.y -= gravity * delta
 	
 	# move the player, snap to the ground, stop on slopes
-	var velocity_itermediate := move_and_slide_with_snap(
-		velocity, snap, Vector3.UP, true, 4, deg2rad(45)
+	var velocity_intermediate := move_and_slide_with_snap(
+		velocity, snap, Vector3.UP, true, 4, deg2rad(30)
 	)
+	
 	if is_on_wall():
-		velocity_itermediate.y = min(0, velocity.y)
-	velocity = velocity_itermediate
-	# TODO fix player sliding down slopes and not being able to get up them if touching a wall during a climb attempt
+		ground_detection_ray_cast.set_enabled(true)
+		ground_detection_ray_cast.force_raycast_update()
+		if not ground_detection_ray_cast.is_colliding():
+			velocity_intermediate.y = min(0, velocity.y)
+	
+	velocity = velocity_intermediate
 
 
 func _input(event):
