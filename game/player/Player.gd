@@ -118,7 +118,7 @@ func _physics_process (delta):
 	
 	# move the player, snap to the ground, stop on slopes
 	var velocity_intermediate := move_and_slide_with_snap(
-		velocity, snap, Vector3.UP, true, 4, deg2rad(30)
+		velocity, snap, Vector3.UP, true, 4, deg2rad(45)
 	)
 	
 	if is_on_wall():
