@@ -4,9 +4,9 @@ class_name Player
 # stats
 var max_health: int = 100
 var max_mana: int = 100
-var move_speed: float = 2.4
-var sneak_speed_modifier: float = 0.3
-var run_speed_modifier: float = 5
+var move_speed: float = 2
+var sneak_speed_modifier: float = 0.35
+var run_speed_modifier: float = 2.7
 
 # state
 var is_casting: bool = false
