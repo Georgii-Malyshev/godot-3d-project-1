@@ -70,4 +70,5 @@ func execute_spell(_caster_node_path: NodePath) -> bool:
 		is_casting = false
 		return true
 	else:
+		print("Invalid target for spell")  # TODO delete
 		return false
