@@ -4,8 +4,8 @@ class_name Player
 # stats
 var max_health: int = 100
 var max_mana: int = 100
-var move_speed: float = 2.5
-var sneak_speed_modifier: float = 0.35
+var move_speed: float = 1.8
+var sneak_speed_modifier: float = 0.3
 var run_speed_modifier: float = 5
 
 # state
@@ -31,13 +31,13 @@ var mouse_delta: Vector2 = Vector2()
 # components
 # TODO decouple
 # TODO implement spell switching, call spell's 'equip' method when equipping it
-#var spell: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
-var spell: Node = preload("res://game/spells/HexMark.tscn").instance()
+var spell: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
+#var spell: Node = preload("res://game/spells/HexMark.tscn").instance()
 onready var camera: Node = $FpsCamera
 # TODO switch cast_spatial node based on the type of spell
 # (spawn projectiles from one spatial, cast line-of-sight ray from another etc.)
-#onready var cast_spatial: Spatial = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
-onready var cast_spatial: Spatial = $FpsCamera/CastSpellPoint
+onready var cast_spatial: Spatial = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
+#onready var cast_spatial: Spatial = $FpsCamera/CastSpellPoint
 onready var cast_transform: Transform setget set_cast_transform, get_cast_transform
 
 
@@ -115,10 +115,13 @@ func _physics_process (delta):
 	velocity.y -= gravity * delta
 	
 	# move the player, snap to the ground, stop on slopes
-	var velocity_itermediate := move_and_slide_with_snap(velocity, snap, Vector3.UP, true, 4, deg2rad(45))
+	var velocity_itermediate := move_and_slide_with_snap(
+		velocity, snap, Vector3.UP, true, 4, deg2rad(45)
+	)
 	if is_on_wall():
 		velocity_itermediate.y = min(0, velocity.y)
 	velocity = velocity_itermediate
+	# TODO fix player sliding down slopes and not being able to get up them if touching a wall during a climb attempt
 
 
 func _input(event):
