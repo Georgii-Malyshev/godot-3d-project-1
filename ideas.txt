@@ -1,3 +1,14 @@
+Gameplay mechanics: 
+  Mana slowly regenerates, but only up to a certain low threshold that allows to cast 1-2 basic spells max;
+  Health slowly regenerates, but only up to a very low threshold (about 15% of max?);
+  Saving only at certain points, Kings Field 4-style;
+  Player gradually grows more powerful combat-wise by finding new spells as you explore the game world;
+  Some spells/items found by exploring/beating certain bosses allow to unlock previously blocked areas;
+  No level-ups-by-XP-gained, max health and max mana are increased only by finding certain items, spell damage stays the same;
+  Enemies encountered early on are more easily defeated as the player gets more spells and items, but as there are no level-ups, they still remain really dangerous;
+
+  The farther away from savepoints, the more risky exploring gets, but returning back to a savepoint prematurely means leaving new interesting placec that you just got to, Yume Nikki-style;
+
 Various ideas and themes:
   Disturbing nightmare-like scenes that appear randomly after death (but not on the first death!), Yume Nikki-style:
     - Morgue;
