@@ -5,7 +5,7 @@ extends "res://game/spells/AbstractSpell.gd"
 # Hex curse applies a medium-timed debuff that lowers target's resistances and 
 # kills it if has less than 20% of health while the debuff is active
 
-var max_distance: float = 50
+var max_distance: float = 100
 var hold_line_of_sight_time: float = 2.0
 
 # components
@@ -21,11 +21,11 @@ onready var hex = "hex_effect"  # TODO add type, create&use an actual "hex" reso
 
 
 func _ready():
-	set_mana_cost(1)
-	set_cooldown_time(0.5)
+	set_mana_cost(20)
+	set_cooldown_time(5)
 	set_warmup_time(0.1)
-	set_cast_time(2.1)
-	set_cast_slowdown_modifier(0.8)
+	set_cast_time(warmup_time + hold_line_of_sight_time)
+	set_cast_slowdown_modifier(0.6)
 
 
 func _physics_process(_delta) -> void:

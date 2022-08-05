@@ -4,7 +4,7 @@ class_name Player
 # stats
 var max_health: int = 100
 var max_mana: int = 100
-var move_speed: float = 1.8
+var move_speed: float = 2.4
 var sneak_speed_modifier: float = 0.3
 var run_speed_modifier: float = 5
 
@@ -40,6 +40,7 @@ onready var animation_player: AnimationPlayer = $FpsCamera/AnimationPlayer
 onready var cast_spatial: Spatial = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
 #onready var cast_spatial: Spatial = $FpsCamera/CastSpellPoint
 onready var cast_transform: Transform setget set_cast_transform, get_cast_transform
+onready var cast_spell_timer: Timer = $CastSpellTimer
 onready var ground_detection_ray_cast: RayCast = $GroundDetectionRayCast
 
 
@@ -189,8 +190,9 @@ func cast_spell():
 	var spell_mana_cost: int = spell.get_mana_cost()
 	if (not is_casting) and (current_mana >= spell_mana_cost):
 		# try to cast spell
-		spell.cast(self.get_path())
-		is_casting = true
-		set_current_mana(current_mana - spell_mana_cost)
-		$CastSpellTimer.start(spell.get_cast_time())
-		speed_modifier = speed_modifier * spell.get_cast_slowdown_modifier()
+		if not spell.get_is_on_cooldown():
+			spell.cast(self.get_path())
+			is_casting = true
+			set_current_mana(current_mana - spell_mana_cost)
+			cast_spell_timer.start(spell.get_cast_time())
+			speed_modifier = speed_modifier * spell.get_cast_slowdown_modifier()

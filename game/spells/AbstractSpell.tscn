@@ -12,3 +12,5 @@ one_shot = true
 [node name="CooldownTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]

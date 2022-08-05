@@ -12,6 +12,7 @@ var cast_slowdown_modifier: float = 0.15 setget set_cast_slowdown_modifier, get_
 # components
 var caster: Node
 var cast_transform: Transform
+var is_on_cooldown: bool = false setget set_is_on_cooldown, get_is_on_cooldown
 onready var WarmupTimer: Timer = $WarmupTimer
 onready var CooldownTimer: Timer = $CooldownTimer
 
@@ -54,6 +55,12 @@ func set_cast_slowdown_modifier(value: float) -> void:
 func get_cast_slowdown_modifier() -> float:
 	return cast_slowdown_modifier
 
+func set_is_on_cooldown(_value: bool) -> void:
+	print("Attempt to change set_is_on_cooldown, ignoring")
+
+func get_is_on_cooldown() -> bool:
+	return not CooldownTimer.is_stopped()
+
 
 func equip(_caster_node_path: NodePath) -> void:
 	# Override in your spell if needed
@@ -67,6 +74,7 @@ func cast(caster_node_path: NodePath) -> bool:
 	if CooldownTimer.is_stopped():
 		# cast spell
 		CooldownTimer.start(cooldown_time)
+		is_on_cooldown = true
 		WarmupTimer.start(warmup_time)
 		yield(WarmupTimer, "timeout")
 		return execute_spell(caster_node_path)
@@ -78,3 +86,7 @@ func execute_spell(_caster_node_path: NodePath) -> bool:
 	# Implement actual actions for your spell to do here
 	# Return true if spell actions were executed successfully
 	return false
+
+
+func _on_CooldownTimer_timeout():
+	is_on_cooldown = false

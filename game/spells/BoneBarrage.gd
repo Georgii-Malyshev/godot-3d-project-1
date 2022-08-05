@@ -10,11 +10,14 @@ var projectile: PackedScene = preload("res://game/spells/BoneBarrageProjectile.t
 
 
 func _ready():
-	set_mana_cost(25)
-	set_cooldown_time(1.0)
+	set_mana_cost(1)
+	set_cooldown_time(2.0)
 	set_warmup_time(0.2)
-	set_cast_time(0.8)
-	set_cast_slowdown_modifier(0.15)
+	set_cast_time(
+		warmup_time 
+		+ (BarrageRateTimer.get_wait_time() * projectiles_number)
+	)
+	set_cast_slowdown_modifier(0.5)
 
 
 func execute_spell(caster_node_path: NodePath) -> bool:
