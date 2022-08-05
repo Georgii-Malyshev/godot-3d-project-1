@@ -3,7 +3,7 @@
 // entity 0
 {
 "classname" "worldspawn"
-"_tb_textures" "textures"
+"_tb_textures" "textures;textures/special"
 // brush 0
 {
 ( -768 -128 0 ) ( -768 -127 0 ) ( -768 -128 1 ) bricks_075b 128 0 0 1 1
@@ -147,5 +147,13 @@
 ( 0 -256 640 ) ( 0 -255 640 ) ( 1 -256 640 ) bricks_075b 0 -128 0 1 1
 ( 0 -256 128 ) ( 1 -256 128 ) ( 0 -256 129 ) bricks_075b 0 0 0 1 1
 ( 0 -256 128 ) ( 0 -256 129 ) ( 0 -255 128 ) bricks_075b 384 0 0 1 1
+}
+// brush 16
+{
+( -832 0 0 ) ( 0 0 416 ) ( 0 -256 416 ) special/clip 64 -192 0 1 1
+( -832 -256 0 ) ( 0 -256 416 ) ( 0 -256 0 ) special/clip 0 0 0 1 1
+( 0 -256 0 ) ( 0 0 0 ) ( -832 0 0 ) special/clip 0 0 0 1 1
+( 0 0 0 ) ( 0 0 416 ) ( -832 0 0 ) special/clip 0 0 0 1 1
+( 0 -256 416 ) ( 0 0 416 ) ( 0 0 0 ) special/clip 0 0 0 1 1
 }
 }
