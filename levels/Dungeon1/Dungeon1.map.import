@@ -1,0 +1,13 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+path="res://.import/Dungeon1.map-417be3d5766e50d14cae80f1ff0403c4.tres"
+
+[deps]
+
+source_file="res://levels/Dungeon1/Dungeon1.map"
+dest_files=[ "res://.import/Dungeon1.map-417be3d5766e50d14cae80f1ff0403c4.tres" ]
+
+[params]
+
