@@ -34,6 +34,7 @@ var mouse_delta: Vector2 = Vector2()
 var spell: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
 #var spell: Node = preload("res://game/spells/HexMark.tscn").instance()
 onready var camera: Node = $FpsCamera
+onready var animation_player: AnimationPlayer = $FpsCamera/AnimationPlayer
 # TODO switch cast_spatial node based on the type of spell
 # (spawn projectiles from one spatial, cast line-of-sight ray from another etc.)
 onready var cast_spatial: Spatial = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
@@ -127,6 +128,10 @@ func _physics_process (delta):
 			velocity_intermediate.y = min(0, velocity.y)
 	
 	velocity = velocity_intermediate
+	
+	# TODO adjust animation speed and/or headbob strength based on movement speed
+	if (velocity.x != 0) or (velocity.z != 0):
+		animation_player.play("HeadBob")
 
 
 func _input(event):
