@@ -1703,8 +1703,9 @@ omni_attenuation = 1.93188
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.873, 20.5248, 4.42998 )
 light_energy = 0.6
 shadow_enabled = true
-omni_range = 4.806
+omni_range = 3.98198
 omni_attenuation = 2.63902
+omni_shadow_mode = 0
 
 [node name="OmniLightTombStaircase2" type="OmniLight" parent="." index="5"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4873, 14.754, 4.68949 )
@@ -1712,6 +1713,7 @@ light_energy = 0.6
 shadow_enabled = true
 omni_range = 5.598
 omni_attenuation = 1.93188
+omni_shadow_mode = 0
 
 [node name="OmniLightTombStaircase3" type="OmniLight" parent="." index="6"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -47.8248, 8.55457, 0.0919436 )
@@ -1724,15 +1726,15 @@ omni_attenuation = 1.93188
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.8601, 20.681, -4.43763 )
 light_energy = 0.6
 shadow_enabled = true
-omni_range = 5.598
+omni_range = 4.27652
 omni_attenuation = 1.93188
+omni_shadow_mode = 0
 
 [node name="OmniLightTombFloor" type="OmniLight" parent="." index="8"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.645, 0 )
-visible = false
-light_energy = 0.1
-omni_range = 34.947
-omni_attenuation = 0.812253
+light_energy = 0.08
+omni_range = 27.796
+omni_attenuation = 0.482969
 
 [node name="PlayerSpawnPoint" type="Spatial" parent="." index="9"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -39.8211, 23.8196, 23.3091 )
