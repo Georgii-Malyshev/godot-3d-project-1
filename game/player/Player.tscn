@@ -55,7 +55,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
 current = true
 fov = 68.0
 near = 0.1
-far = 500.0
+far = 250.0
 
 [node name="Hud" type="CanvasLayer" parent="FpsCamera"]
 script = ExtResource( 3 )
