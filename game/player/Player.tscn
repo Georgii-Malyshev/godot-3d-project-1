@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://game/player/SpellcastingRightArm.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/player/Player.gd" type="Script" id=2]
@@ -19,9 +19,41 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.695345 ),
-"transitions": PoolRealArray( 1, 0.594604, 0.277392 ),
+"transitions": PoolRealArray( 1, 4, 0.31864 ),
 "update": 0,
 "values": [ Vector3( 0, 1.77, 0 ), Vector3( 0, 1.85, 0 ), Vector3( 0, 1.77, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "HeadBobRunning"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0701688, 0.258749 ),
+"transitions": PoolRealArray( 1, 4, 0.31864 ),
+"update": 0,
+"values": [ Vector3( 0, 1.77, 0 ), Vector3( 0, 1.85, 0 ), Vector3( 0, 1.77, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "HeadBobSneaking"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.447879, 1.1 ),
+"transitions": PoolRealArray( 1, 0.366022, 0.31864 ),
+"update": 0,
+"values": [ Vector3( 0, 1.77, 0 ), Vector3( 0, 1.81, 0 ), Vector3( 0, 1.77, 0 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -76,6 +108,8 @@ scroll_active = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FpsCamera"]
 anims/HeadBob = SubResource( 2 )
+anims/HeadBobRunning = SubResource( 4 )
+anims/HeadBobSneaking = SubResource( 5 )
 anims/RESET = SubResource( 3 )
 
 [node name="CastSpellPoint" type="Spatial" parent="FpsCamera"]

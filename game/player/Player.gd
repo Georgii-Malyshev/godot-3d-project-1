@@ -4,12 +4,14 @@ class_name Player
 # stats
 var max_health: int = 100
 var max_mana: int = 100
-var move_speed: float = 2
-var sneak_speed_modifier: float = 0.35
-var run_speed_modifier: float = 2.7
+var move_speed: float = 2.1
+var sneak_speed_modifier: float = 0.4
+var run_speed_modifier: float = 2.5
 
 # state
 var is_casting: bool = false
+var is_running: bool = false setget set_is_running, get_is_running
+var is_sneaking: bool = false setget set_is_sneaking, get_is_sneaking
 var current_health: int = max_health setget set_current_health, get_current_health
 var current_mana: int = max_mana setget set_current_mana, get_current_mana
 
@@ -42,6 +44,32 @@ onready var cast_spatial: Spatial = $FpsCamera/SpellcastingRightArm/ProjectileSp
 onready var cast_transform: Transform setget set_cast_transform, get_cast_transform
 onready var cast_spell_timer: Timer = $CastSpellTimer
 onready var ground_detection_ray_cast: RayCast = $GroundDetectionRayCast
+
+
+func set_is_running(value: bool) -> void:
+	if value:
+		is_sneaking = false
+		is_running = true
+	else:
+		is_running = false
+
+
+func get_is_running() -> bool:
+	return is_running
+
+
+func set_is_sneaking(value: bool) -> void:
+	if value:
+		if not is_running:
+			is_sneaking = true
+		else:
+			print("Attempt to set is_sneaking to true while running, ignoring")
+	else:
+		is_sneaking = false
+
+
+func get_is_sneaking() -> bool:
+	return is_sneaking
 
 
 func set_current_health(value: int) -> void:
@@ -86,6 +114,8 @@ func _physics_process (delta):
 	velocity.x = 0
 	velocity.z = 0
 	_reset_speed_modifier_input()
+	is_running = false
+	is_sneaking = false
 	
 	var input = Vector2()
 	
@@ -99,8 +129,10 @@ func _physics_process (delta):
 		input.x += 1
 	
 	if Input.is_action_pressed("run"):
+		is_running = true
 		speed_modifier_input = run_speed_modifier
 	elif Input.is_action_pressed("sneak"):
+		is_sneaking = true
 		speed_modifier_input = sneak_speed_modifier
 	
 	# normalize diagonal movement speed
@@ -130,14 +162,18 @@ func _physics_process (delta):
 	
 	velocity = velocity_intermediate
 	
-	# TODO adjust animation speed and/or headbob strength based on movement speed
 	if (velocity.x != 0) or (velocity.z != 0):
-		animation_player.play("HeadBob")
+		if is_running:
+			animation_player.play("HeadBobRunning")
+		elif is_sneaking:
+			animation_player.play("HeadBobSneaking")
+		else:
+			animation_player.play("HeadBob")
 
 
 func _input(event):
 	
-	# First-person camera movement
+	# FPS camera movement
 	if event is InputEventMouseMotion:
 		# get direction and length that the mouse moved
 		mouse_delta = event.relative
