@@ -238,11 +238,11 @@ func _on_CastSpellTimer_timeout():
 	_reset_speed_modifier()
 
 
-func add_health(amount):
+func restore_health(amount):
 	set_current_health(current_health + amount)
 
 
-func add_mana(amount):
+func restore_mana(amount):
 	set_current_mana(current_mana + amount)
 
 

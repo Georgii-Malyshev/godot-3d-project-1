@@ -18,6 +18,6 @@ func _on_Pickup_body_entered(body):
 
 func pickup(player):
 	if type == PickupType.Health:
-		player.add_health(amount)
+		player.restore_health(amount)
 	elif type == PickupType.Mana:
-		player.add_mana(amount)
+		player.restore_mana(amount)
