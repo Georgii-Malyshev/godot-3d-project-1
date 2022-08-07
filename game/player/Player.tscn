@@ -121,6 +121,15 @@ transform = Transform( 0.998346, 0.0221501, -0.053068, -0.0221813, 0.999754, 0, 
 [node name="CastSpellTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="ManaRegenTickTimer" type="Timer" parent="."]
+process_mode = 0
+
+[node name="ManaRegenDelayTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 3.0
+one_shot = true
+
 [connection signal="timeout" from="CastSpellTimer" to="." method="_on_CastSpellTimer_timeout"]
+[connection signal="timeout" from="ManaRegenTickTimer" to="." method="_on_ManaRegenTickTimer_timeout"]
 
 [editable path="FpsCamera/SpellcastingRightArm"]

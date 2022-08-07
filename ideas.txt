@@ -1,5 +1,5 @@
 Gameplay mechanics: 
-  Mana slowly regenerates, but only up to a certain low threshold that allows to cast 1-2 basic spells max;
+  Mana slowly regenerates, but only up to a certain low threshold and only if it was not spent in the last few seconds;
   Health slowly regenerates, but only up to a very low threshold (about 15% of max?) and only if no damage was taken in the last few seconds;
   Saving only at certain points, Kings Field 4-style;
   Player gradually grows more powerful combat-wise by finding new spells as you explore the game world;

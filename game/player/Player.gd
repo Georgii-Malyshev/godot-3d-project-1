@@ -1,26 +1,35 @@
 extends KinematicBody
 class_name Player
 
-# stats
+# Stats
 var max_health: int = 100
 var max_mana: int = 100
+
+var health_regen_tick_time: float = 1  # TODO change to 25.0 or something
+var health_regen_threshold: int = (max_health * 0.20)
+var health_regen_per_tick: int = 1
+
+var mana_regen_tick_time: float = 3.0
+var mana_regen_threshold: int = (max_mana * 0.25)
+var mana_regen_per_tick: int = 1
+
 var move_speed: float = 2.1
 var sneak_speed_modifier: float = 0.4
 var run_speed_modifier: float = 2.5
 
-# state
+# State
 var is_casting: bool = false
 var is_running: bool = false setget set_is_running, get_is_running
 var is_sneaking: bool = false setget set_is_sneaking, get_is_sneaking
 var current_health: int = max_health setget set_current_health, get_current_health
 var current_mana: int = max_mana setget set_current_mana, get_current_mana
 
-# camera look
+# Camera look
 var min_look_angle: float = -65.0
 var max_look_angle: float = 45.0
 var look_sensitivity: float = 0.60
 
-# physics
+# Physics
 var gravity: float = 18.0
 var snap: Vector3 = Vector3.DOWN
 var default_speed_modifier: float = 1
@@ -30,20 +39,24 @@ var speed_modifier_input: float = default_speed_modifier  # gets reset, don't ch
 var velocity: Vector3 = Vector3.ZERO
 var mouse_delta: Vector2 = Vector2()
 
-# components
-# TODO decouple
+# Components
+onready var ground_detection_ray_cast: RayCast = $GroundDetectionRayCast
+onready var camera: Node = $FpsCamera
+onready var animation_player: AnimationPlayer = $FpsCamera/AnimationPlayer
+
+onready var mana_regen_tick_timer: Timer = $ManaRegenTickTimer
+onready var mana_regen_delay_timer: Timer = $ManaRegenDelayTimer
+#onready var health_regen_tick_timer: Timer = $HealthRegenTickTimer
+
 # TODO implement spell switching, call spell's 'equip' method when equipping it
 var spell: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
 #var spell: Node = preload("res://game/spells/HexMark.tscn").instance()
-onready var camera: Node = $FpsCamera
-onready var animation_player: AnimationPlayer = $FpsCamera/AnimationPlayer
 # TODO switch cast_spatial node based on the type of spell
 # (spawn projectiles from one spatial, cast line-of-sight ray from another etc.)
 onready var cast_spatial: Spatial = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
 #onready var cast_spatial: Spatial = $FpsCamera/CastSpellPoint
 onready var cast_transform: Transform setget set_cast_transform, get_cast_transform
 onready var cast_spell_timer: Timer = $CastSpellTimer
-onready var ground_detection_ray_cast: RayCast = $GroundDetectionRayCast
 
 
 func set_is_running(value: bool) -> void:
@@ -73,6 +86,8 @@ func get_is_sneaking() -> bool:
 
 
 func set_current_health(value: int) -> void:
+	#if value < current_health:
+	#	health_regen_delay_timer.start()
 	# warning-ignore:narrowing_conversion
 	current_health = clamp(value, 0, max_health)
 
@@ -82,6 +97,8 @@ func get_current_health() -> int:
 
 
 func set_current_mana(value: int) -> void:
+	if value < current_mana:
+		mana_regen_delay_timer.start()
 	# warning-ignore:narrowing_conversion
 	current_mana = clamp(value, 0, max_mana)
 
@@ -101,6 +118,9 @@ func get_cast_transform() -> Transform:
 func _ready():
 	# hide mouse cursor and lock it to the game's window
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	mana_regen_tick_timer.set_wait_time(mana_regen_tick_time)
+	
 	# make preloaded&instanced scene a child of player
 	add_child(spell)
 	
@@ -109,7 +129,7 @@ func _ready():
 
 func _physics_process (delta):
 	
-	# Player movement in space
+	# Player movement
 	
 	velocity.x = 0
 	velocity.z = 0
@@ -169,6 +189,16 @@ func _physics_process (delta):
 			animation_player.play("HeadBobSneaking")
 		else:
 			animation_player.play("HeadBob")
+	
+	# Health & mana regen
+	
+	if current_mana >= mana_regen_threshold:
+		mana_regen_tick_timer.stop()
+	elif (
+		mana_regen_delay_timer.is_stopped()
+		and mana_regen_tick_timer.is_stopped()
+	):
+		mana_regen_tick_timer.start()
 
 
 func _input(event):
@@ -197,6 +227,10 @@ func _reset_speed_modifier():
 
 func _reset_speed_modifier_input():
 	speed_modifier_input = default_speed_modifier
+
+
+func _on_ManaRegenTickTimer_timeout():
+	set_current_mana(current_mana + mana_regen_per_tick)
 
 
 func _on_CastSpellTimer_timeout():
