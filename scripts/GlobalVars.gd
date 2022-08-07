@@ -10,9 +10,9 @@ extends Node
 
 # Global gravity to be used where project's default_gravity doesn't apply
 # (such as for KinematicBody etc.)
-var global_gravity : float = 18.0 setget set_global_gravity, get_global_gravity
-var player_node_path : NodePath = "/root/Main/Player" setget set_player_node_path, get_player_node_path
-var player_global_position : Vector3 =  Vector3.ZERO setget set_player_global_position, get_player_global_position
+var global_gravity: float = 18.0 setget set_global_gravity, get_global_gravity
+var player_node_path: NodePath = "/root/Main/Player" setget set_player_node_path, get_player_node_path
+var player_global_position: Vector3 =  Vector3.ZERO setget set_player_global_position, get_player_global_position
 
 
 func set_global_gravity(_value: float) -> void:
