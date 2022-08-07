@@ -1,61 +1,64 @@
-Gameplay mechanics: 
-  Mana slowly regenerates, but only up to a certain low threshold and only if it was not spent in the last few seconds;
-  Health slowly regenerates, but only up to a very low threshold (about 15% of max?) and only if no damage was taken in the last few seconds;
-  Saving only at certain points, Kings Field 4-style;
-  Player gradually grows more powerful combat-wise by finding new spells as you explore the game world;
-  Some spells/items found by exploring/beating certain bosses allow to unlock previously blocked areas;
-  No level-ups-by-XP-gained, max health and max mana are increased only by finding certain items, spell damage stays the same;
-  Enemies encountered early on are more easily defeated as the player gets more spells and items, but as there are no level-ups, they still remain really dangerous;
+("+" - implemented)
 
-  The farther away from savepoints, the more risky exploring gets, but returning back to a savepoint prematurely means leaving new interesting placec that you just got to, Yume Nikki-style;
+Gameplay mechanics: 
+  + Mana slowly regenerates, but only up to a certain low threshold and only if it was not spent in the last few seconds;
+  + Health slowly regenerates, but only up to a very low threshold (about 15% of max?) and only if no damage was taken in the last few seconds;
+  - Saving only at certain points, Kings Field 4-style;
+  - Player gradually grows more powerful combat-wise by finding new spells as you explore the game world;
+  - Some spells/items found by exploring/beating certain bosses allow to unlock previously blocked areas;
+  - No level-ups-by-XP-gained, max health and max mana are increased only by finding certain items, spell damage stays the same;
+  - Enemies encountered early on are more easily defeated as the player gets more spells and items, but as there are no level-ups, they still remain really dangerous;
+
+  - The farther away from savepoints, the more risky exploring gets, but returning back to a savepoint prematurely means leaving new interesting placec that you just got to, Yume Nikki-style;
   
-  Some areas are dangerous to stand immobile in (enemies can find your or something);
+  - Some areas are dangerous to stand immobile in (enemies can find your or something);
 
 Various ideas and themes:
-  Disturbing nightmare-like scenes that appear randomly after death (but not on the first death!), Yume Nikki-style:
+  - Disturbing nightmare-like scenes that appear randomly after death (but not on the first death!), Yume Nikki-style:
     - Morgue;
     - Sitting at a table with a dead girl, Masodov-style;
     - Endless grey-and-black stairs and floors, Sokurov's 'The Stone' style;
-  Most dreadful spells are also used at some locations/storypoints to move further (E.Y.E. Divine Cybermancy-style);
+  - Most dreadful spells are also used at some locations/storypoints to move further (E.Y.E. Divine Cybermancy-style);
 
 Spells (to be renamed): 
-  Blighted Touch: 
-    Get withing close-melee distance and touch a single enemy to set decay, making him take continuous medium damage over medium period of time;
-  Silence: 
-    Stare at the enemy for a few seconds without him leaving the screen to silence him for a long time, not letting him use any magic;
-  Corpse Totem: 
-    Target a corpse or a pile of bones at a distance to reforge it into a bonestructure that shoot homing bone barrages at enemies;
-  Corrupting Bonespikes:
-    Target an area on any flat, big enough surface and summon several violently protruding spikes that damage any enemies they hit and apply decay;
-  Reap:
-    Target a nearby corpse for a few seconds to consume it, regenerating some HP instantly and applying a short-lived HP regen to self;
-  Hex Mark: 
-    Hex a single enemy by staring at him for a short time without breaking line of sight to apply a medium-timed debuff that lowers it's resistances and kills it if has less than 20% of health while the debuff is active;
-  Hex Trigger:
-    Target an enemy marked by your curses (any debuff/DoT that hasn't worn off yet) to detonate him, instantly expiring all debuffs and dealing damage and AOE damage (the longer debuff ticks the more damage this spell deals);
-  Frail Sign:
-    Cast a short-lived AoE sign on the floor that curses any who enter it with a long-timed debuff that slows them down, lowers resistances&damage output;
-  Spectral Scythe:
-    A slow-buildup powerful attack in a long melee range and a wide area with a spectral scythe that reaches through walls and applies short-lived Slow debuff;
-  Dark Stab:
-    A fast-buildup summoning of a fast spectral dagger that stabs a single target within a medium-melee range, dealing damage and short-lived Dark DoT;
-  Whimpers:
-    Summon several whimpering, slow-moving spirits that will home in and fly at the single target, dealing damage;
-  Bone Barrage: 
+  - Blighted Touch: 
+      Get withing close-melee distance and touch a single enemy to set decay, making him take continuous medium damage over medium period of time;
+  - Silence: 
+      Stare at the enemy for a few seconds without him leaving the screen to silence him for a long time, not letting him use any magic;
+  - Corpse Totem: 
+      Target a corpse or a pile of bones at a distance to reforge it into a bonestructure that shoot homing bone barrages at enemies;
+  - Corrupting Bonespikes:
+      Target an area on any flat, big enough surface and summon several violently protruding spikes that damage any enemies they hit and apply decay;
+  - Reap:
+      Target a nearby corpse for a few seconds to consume it, regenerating some HP instantly and applying a short-lived HP regen to self;
+  + Hex Mark: 
+      Hex a single enemy by staring at him for a short time (holding him in crosshar), applying a medium-timed debuff that lowers it's resistances and kills it if has less than 20% of health while the debuff is active;
+      - Hex effect itself is to be implemented yet
+  - Hex Trigger:
+      Target an enemy marked by your curses (any debuff/DoT that hasn't worn off yet) to detonate him, instantly expiring all debuffs and dealing damage and AOE damage (the longer debuff ticks the more damage this spell deals);
+  - Frail Sign:
+      Cast a short-lived AoE sign on the floor that curses any who enter it with a long-timed debuff that slows them down, lowers resistances&damage output;
+  - Spectral Scythe:
+      A slow-buildup powerful attack in a long melee range and a wide area with a spectral scythe that reaches through walls and applies short-lived Slow debuff;
+  - Dark Stab:
+      A fast-buildup summoning of a fast spectral dagger that stabs a single target within a medium-melee range, dealing damage and short-lived Dark DoT;
+  - Whimpers:
+      Summon several whimpering, slow-moving spirits that will home in and fly at the single target, dealing damage;
+  + Bone Barrage: 
     Shoots a violent barrage of fast piercing splintered bones and teeth
     
 Enemies:
   Most enemies are levitating to use as little animation as humanly possibe;
-  Slashers - pretty easily killed jump-scare screamers with knives or something that can get in close VERY FAST;
-  Levitating skull-somethings that try to keep their distance and build up a curse on you (bloodborne 'Winter Lantern'-style) when you're in their line of sight;
-  Flying skulls (medium speed, have to get in close to attack), easy to kill;
-  Ghosts - flying spectral beings that make horrifying sounds, go right through walls and can build up Curse with melee attacks;
-  Flying something - keeps medium distance, shoots projectiles;
-  Specters - flying dark specters with goat skulls, shoot homing projectiles;
-  Ghouls - close in on you with medium speed and corrupting spikes protrude from their bodies when they are in the medium-melee range;
+  - Slashers - pretty easily killed jump-scare screamers with knives or something that can get in close VERY FAST;
+  - Levitating skull-somethings that try to keep their distance and build up a curse on you (bloodborne 'Winter Lantern'-style) when you're in their line of sight;
+  - Flying skulls (medium speed, have to get in close to attack), easy to kill;
+  - Ghosts - flying spectral beings that make horrifying sounds, go right through walls and can build up Curse with melee attacks;
+  - Flying something - keeps medium distance, shoots projectiles;
+  - Specters - flying dark specters with goat skulls, shoot homing projectiles;
+  - Ghouls - close in on you with medium speed and corrupting spikes protrude from their bodies when they are in the medium-melee range;
 
 Locations: 
-  Cursed Woods
-  Abandoned Village (S.T.A.L.K.E.R. ShoC's 'Bloodsucker Village'-style)
-  Haunted Dungeons
+  - Cursed Woods
+  - Abandoned Village (S.T.A.L.K.E.R. ShoC's 'Bloodsucker Village'-style)
+  - Haunted Dungeons
   
