@@ -8,6 +8,8 @@ Gameplay mechanics:
   Enemies encountered early on are more easily defeated as the player gets more spells and items, but as there are no level-ups, they still remain really dangerous;
 
   The farther away from savepoints, the more risky exploring gets, but returning back to a savepoint prematurely means leaving new interesting placec that you just got to, Yume Nikki-style;
+  
+  Some areas are dangerous to stand immobile in (enemies can find your or something);
 
 Various ideas and themes:
   Disturbing nightmare-like scenes that appear randomly after death (but not on the first death!), Yume Nikki-style:

@@ -5,11 +5,13 @@ class_name Player
 var max_health: int = 100
 var max_mana: int = 100
 
-var health_regen_tick_time: float = 1  # TODO change to 25.0 or something
+var health_regen_delay_time: float = 10.0
+var health_regen_tick_time: float = 20.0
 var health_regen_threshold: int = (max_health * 0.20)
 var health_regen_per_tick: int = 1
 
-var mana_regen_tick_time: float = 3.0
+var mana_regen_delay_time: float = 5.0
+var mana_regen_tick_time: float = 5.0
 var mana_regen_threshold: int = (max_mana * 0.25)
 var mana_regen_per_tick: int = 1
 
@@ -44,9 +46,10 @@ onready var ground_detection_ray_cast: RayCast = $GroundDetectionRayCast
 onready var camera: Node = $FpsCamera
 onready var animation_player: AnimationPlayer = $FpsCamera/AnimationPlayer
 
-onready var mana_regen_tick_timer: Timer = $ManaRegenTickTimer
+onready var health_regen_delay_timer: Timer = $HealthRegenDelayTimer
+onready var health_regen_tick_timer: Timer = $HealthRegenTickTimer
 onready var mana_regen_delay_timer: Timer = $ManaRegenDelayTimer
-#onready var health_regen_tick_timer: Timer = $HealthRegenTickTimer
+onready var mana_regen_tick_timer: Timer = $ManaRegenTickTimer
 
 # TODO implement spell switching, call spell's 'equip' method when equipping it
 var spell: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
@@ -86,8 +89,8 @@ func get_is_sneaking() -> bool:
 
 
 func set_current_health(value: int) -> void:
-	#if value < current_health:
-	#	health_regen_delay_timer.start()
+	if value < current_health:
+		health_regen_delay_timer.start()
 	# warning-ignore:narrowing_conversion
 	current_health = clamp(value, 0, max_health)
 
@@ -119,6 +122,7 @@ func _ready():
 	# hide mouse cursor and lock it to the game's window
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+	health_regen_tick_timer.set_wait_time(health_regen_tick_time)
 	mana_regen_tick_timer.set_wait_time(mana_regen_tick_time)
 	
 	# make preloaded&instanced scene a child of player
@@ -190,15 +194,9 @@ func _physics_process (delta):
 		else:
 			animation_player.play("HeadBob")
 	
-	# Health & mana regen
-	
-	if current_mana >= mana_regen_threshold:
-		mana_regen_tick_timer.stop()
-	elif (
-		mana_regen_delay_timer.is_stopped()
-		and mana_regen_tick_timer.is_stopped()
-	):
-		mana_regen_tick_timer.start()
+	# Passive health & mana regen
+	_try_health_regen()
+	_try_mana_regen()
 
 
 func _input(event):
@@ -228,14 +226,58 @@ func _reset_speed_modifier():
 func _reset_speed_modifier_input():
 	speed_modifier_input = default_speed_modifier
 
+func _try_health_regen() -> void:
+	# Should be called every physics step to work correctly
+	
+	# Stop regeneration if threshold is reached
+	if current_health >= health_regen_threshold:
+		health_regen_tick_timer.stop()
+	# Otherwise keep regenerating
+	elif (
+		health_regen_delay_timer.is_stopped()
+		and health_regen_tick_timer.is_stopped()
+	):
+		health_regen_tick_timer.start()
+
+
+func _try_mana_regen() -> void:
+	# Should be called every physics step to work correctly
+	
+	# Stop regeneration if threshold is reached
+	if current_mana >= mana_regen_threshold:
+		mana_regen_tick_timer.stop()
+	# Otherwise keep regenerating
+	elif (
+		mana_regen_delay_timer.is_stopped()
+		and mana_regen_tick_timer.is_stopped()
+	):
+		mana_regen_tick_timer.start()
+
+
+func _on_HealthRegenTickTimer_timeout():
+	restore_health(health_regen_per_tick)
+
 
 func _on_ManaRegenTickTimer_timeout():
-	set_current_mana(current_mana + mana_regen_per_tick)
+	restore_mana(mana_regen_per_tick)
 
 
 func _on_CastSpellTimer_timeout():
 	is_casting = false
 	_reset_speed_modifier()
+
+
+func lose_health(amount):
+	# TODO move timer logic from setter here
+	set_current_health(current_health - amount)
+	
+	if current_health <= 0:
+		_die()
+
+
+func lose_mana(amount):
+	# TODO move timer logic from setter here
+	set_current_mana(current_mana - amount)
 
 
 func restore_health(amount):
@@ -247,12 +289,10 @@ func restore_mana(amount):
 
 
 func take_damage(damage):
-	set_current_health (current_health - damage)
-	
-	if current_health == 0:
-		die()
+	lose_health(damage)
 
-func die():
+
+func _die():
 	print("Player dies!")  # TODO implement player death mechanic
 
 

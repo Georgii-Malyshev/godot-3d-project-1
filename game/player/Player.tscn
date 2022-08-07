@@ -118,18 +118,27 @@ visible = false
 [node name="SpellcastingRightArm" parent="FpsCamera" instance=ExtResource( 1 )]
 transform = Transform( 0.998346, 0.0221501, -0.053068, -0.0221813, 0.999754, 0, 0.0530549, 0.00117712, 0.998591, -0.05, 0.03, -0.204225 )
 
-[node name="CastSpellTimer" type="Timer" parent="."]
+[node name="HealthRegenDelayTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 10.0
+one_shot = true
+
+[node name="HealthRegenTickTimer" type="Timer" parent="."]
+process_mode = 0
+
+[node name="ManaRegenDelayTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 5.0
 one_shot = true
 
 [node name="ManaRegenTickTimer" type="Timer" parent="."]
 process_mode = 0
 
-[node name="ManaRegenDelayTimer" type="Timer" parent="."]
-process_mode = 0
-wait_time = 3.0
+[node name="CastSpellTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="timeout" from="CastSpellTimer" to="." method="_on_CastSpellTimer_timeout"]
+[connection signal="timeout" from="HealthRegenTickTimer" to="." method="_on_HealthRegenTickTimer_timeout"]
 [connection signal="timeout" from="ManaRegenTickTimer" to="." method="_on_ManaRegenTickTimer_timeout"]
+[connection signal="timeout" from="CastSpellTimer" to="." method="_on_CastSpellTimer_timeout"]
 
 [editable path="FpsCamera/SpellcastingRightArm"]

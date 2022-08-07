@@ -854,7 +854,7 @@ points = PoolVector3Array( 0.833333, 0.666667, -1, 0.833333, -2.58333, -1, 7.333
 
 [node name="QodotMap" type="Spatial" parent="." index="0"]
 script = ExtResource( 1 )
-map_file = "/home/george/dev/godot/godot-3d-project-1/levels/TombFloor1/TombFloor1.map"
+map_file = "/home/malyshevgv/dev/personal_projects/godot-3d-project-1/levels/TombFloor1/TombFloor1.map"
 inverse_scale_factor = 128.0
 entity_fgd = ExtResource( 2 )
 base_texture_dir = "res://textures"
