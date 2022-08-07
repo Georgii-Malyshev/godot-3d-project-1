@@ -216,7 +216,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.37618, 0, 19.8321 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0084, 0, 20.8308 )
 
 [node name="Slasher3" parent="Navigation" index="3" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.92543, 0, 40.1896 )
+transform = Transform( -0.302104, 0, -0.953275, 0, 1, 0, 0.953275, 0, -0.302104, -8.78763, 0, 58.0201 )
 
 [node name="PlayerSpawnPoint" type="Spatial" parent="." index="1"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.39479, 0, 2.13088 )

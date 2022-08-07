@@ -1,30 +1,36 @@
 extends KinematicBody
 class_name Creature
 
-# stats
+# Stats
 var max_health: int = 100
-var movement_speed: float = 2.1
+var movement_speed: float = 2.0
 var attack_range: float = 3.0
+var attack_damage: int = 1
+# make sure to set attack_cooldown_timer's 'wait_time' to this variable
+# in inheriting script's '_ready' process!
+var attack_cooldown_time: float = 1.0
 
-# state
+# State
 var current_health: int = max_health setget _set_current_health, get_current_health
 var distance_to_player: float = 999999
 var sees_player: bool = false
 var chasing: bool = false
 var active_effects: Dictionary = {}
 
-# pathfinding
+# Pathfinding
 var current_target_position: Vector3 = Vector3.ZERO
 var current_path: Array = []
 var currently_toggled_path_node_index: int = 0
 
-# components
+# Components
 onready var nav: Node = get_parent()  # TODO decouple from parent?
 
 onready var fov_area: Area = $FieldOfViewArea
 onready var line_of_sight_ray_cast: RayCast = $LineOfSightRayCast
+
 onready var recalculate_current_path_timer: Timer = $RecalculateCurrentPathTimer
 onready var chasing_timer: Timer = $ChasingTimer
+onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 
 
 func _set_current_health(value: int) -> void:
@@ -153,7 +159,7 @@ func move_to_player() -> void:
 	_move_to_current_target_position()
 
 
-func attack_player():
+func attack():
 	pass  # Your custom attack mechanics go here
 
 

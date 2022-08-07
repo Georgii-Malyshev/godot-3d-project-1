@@ -24,7 +24,7 @@ var projectile_expire_time: float = 3.0
 onready var DestroyTimer: Timer = $DestroyTimer
 
 
-func _process(delta):
+func _process(delta) -> void:
 	# make sure that inheriting projectiles have started DestroyTimer so they don't travel indefinitely
 	assert(not DestroyTimer.is_stopped())
 	# move projectile forwards in a straight line
