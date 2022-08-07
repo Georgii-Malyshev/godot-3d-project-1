@@ -16,8 +16,8 @@ var current_health: int = max_health setget set_current_health, get_current_heal
 var current_mana: int = max_mana setget set_current_mana, get_current_mana
 
 # camera look
-var min_look_angle: float = -60.0
-var max_look_angle: float = 75.0
+var min_look_angle: float = -65.0
+var max_look_angle: float = 45.0
 var look_sensitivity: float = 0.60
 
 # physics
