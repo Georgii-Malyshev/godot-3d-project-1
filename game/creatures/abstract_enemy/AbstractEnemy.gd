@@ -7,7 +7,7 @@ var movement_speed: float = 2.1
 var attack_range: float = 3.0
 
 # state
-var current_health: int = max_health setget set_current_health, get_current_health
+var current_health: int = max_health setget _set_current_health, get_current_health
 var distance_to_player: float = 999999
 var sees_player: bool = false
 var chasing: bool = false
@@ -21,8 +21,13 @@ var currently_toggled_path_node_index: int = 0
 # components
 onready var nav: Node = get_parent()  # TODO decouple from parent?
 
+onready var fov_area: Area = $FieldOfViewArea
+onready var line_of_sight_ray_cast: RayCast = $LineOfSightRayCast
+onready var recalculate_current_path_timer: Timer = $RecalculateCurrentPathTimer
+onready var chasing_timer: Timer = $ChasingTimer
 
-func set_current_health(value: int) -> void:
+
+func _set_current_health(value: int) -> void:
 # warning-ignore:narrowing_conversion
 	current_health = clamp(value, 0, max_health)
 
@@ -51,8 +56,7 @@ func _calculate_distance_to_player() -> float:
 
 func _check_if_player_is_in_sight() -> bool:
 	
-	var ray_cast : Node = $LineOfSightRayCast
-	var fov_overlapping_bodies: Array = $FieldOfViewArea.get_overlapping_bodies()
+	var fov_overlapping_bodies: Array = fov_area.get_overlapping_bodies()
 	
 	# check if player is inside FoV area
 	for body in fov_overlapping_bodies:
@@ -66,30 +70,32 @@ func _check_if_player_is_in_sight() -> bool:
 			var player_global_position_adjusted := (player_global_position + player_height_adjustment)
 			
 			# convert position to cast ray to to coordinates relative to the raycast node itself
-			var player_local_position_adjusted: Vector3 = ray_cast.to_local(player_global_position_adjusted)
+			var player_local_position_adjusted: Vector3 = line_of_sight_ray_cast.to_local(
+				player_global_position_adjusted
+			)
 			
-			ray_cast.set_enabled(true)
-			ray_cast.set_cast_to(player_local_position_adjusted)
+			line_of_sight_ray_cast.set_enabled(true)
+			line_of_sight_ray_cast.set_cast_to(player_local_position_adjusted)
 			
-			if ray_cast.is_colliding():
-				var collider: Object = ray_cast.get_collider()
+			if line_of_sight_ray_cast.is_colliding():
+				var collider: Object = line_of_sight_ray_cast.get_collider()
 				if collider is Player:
 					chasing = true
-					$ChasingTimer.start()
+					chasing_timer.start()
 					return true
 			else:
 				# player is not in sight, exit function
 				return false
 	
 	# player is not in FOV area, disable ray cast
-	ray_cast.set_enabled(false)
+	line_of_sight_ray_cast.set_enabled(false)
 	return false
 
 
 func _move_to_current_target_position() -> void:
 	
-	if $RecalculateCurrentPathTimer.is_stopped():
-		$RecalculateCurrentPathTimer.start()
+	if recalculate_current_path_timer.is_stopped():
+		recalculate_current_path_timer.start()
 		_recalculate_current_path()
 	
 	_move_on_current_path()
@@ -131,6 +137,12 @@ func _on_ChasingTimer_timeout():
 	chasing = false
 
 
+func lose_health(amount):
+	_set_current_health(current_health - amount)
+	if current_health <= 0:
+		_die()
+
+
 func turn_to_player():
 	# TODO make it a slow turn, not an instant transformation
 	look_at(GlobalVars.get_player_global_position(), Vector3.UP)
@@ -146,11 +158,9 @@ func attack_player():
 
 
 func take_damage(damage):
-	set_current_health(current_health - damage)
-	if current_health == 0:
-		die()
+	lose_health(damage)
 
 
-func die():
+func _die():
 	# Your custom death mechanics go here
 	queue_free()

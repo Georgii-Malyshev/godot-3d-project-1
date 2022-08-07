@@ -5,7 +5,7 @@ extends "res://game/spells/AbstractSpell.gd"
 # Hex curse applies a medium-timed debuff that lowers target's resistances and 
 # kills it if has less than 20% of health while the debuff is active
 
-var max_distance: float = 100
+var max_distance: float = 50
 var hold_line_of_sight_time: float = 2.0
 
 # components

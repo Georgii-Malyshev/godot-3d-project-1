@@ -15,7 +15,7 @@ var mana_regen_tick_time: float = 0.5
 var mana_regen_threshold: int = (max_mana * 0.25)
 var mana_regen_per_tick: int = 1
 
-var move_speed: float = 2.1
+var movement_speed: float = 2.1
 var sneak_speed_modifier: float = 0.4
 var run_speed_modifier: float = 2.5
 
@@ -172,8 +172,8 @@ func _physics_process (delta):
 	var right = global_transform.basis.x
 	
 	# set player movement velocity
-	_velocity.z = (forward * input.y + right * input.x).z * move_speed * _speed_modifier_input * _speed_modifier
-	_velocity.x = (forward * input.y + right * input.x).x * move_speed * _speed_modifier_input * _speed_modifier
+	_velocity.z = (forward * input.y + right * input.x).z * movement_speed * _speed_modifier_input * _speed_modifier
+	_velocity.x = (forward * input.y + right * input.x).x * movement_speed * _speed_modifier_input * _speed_modifier
 	
 	# apply _gravity
 	_velocity.y -= _gravity * delta
