@@ -5,9 +5,9 @@ var melee_hit_box: Area
 
 func _ready() -> void:
 	# override inherited stats
-	max_health = 30
+	max_health = 50
 	_set_current_health(max_health)
-	movement_speed = 5.0
+	movement_speed = 5.4
 	attack_range = 1.8
 	attack_damage = 15
 	attack_cooldown_time = 0.8

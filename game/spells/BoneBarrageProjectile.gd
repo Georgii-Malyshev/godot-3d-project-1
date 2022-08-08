@@ -1,6 +1,6 @@
 extends "res://game/spells/AbstractProjectile.gd"
 
-var max_pierce: int = 3
+var max_pierce: int = 2
 var pierce_counter: int = 0
 var spread: float = 0.023
 
@@ -10,8 +10,8 @@ var phi_for_y: float
 
 
 func _ready():
-	velocity = 25.0
-	damage = 25
+	velocity = 29.0
+	damage = 11
 	projectile_expire_time = 0.56
 	DestroyTimer.set_wait_time(projectile_expire_time)
 	DestroyTimer.start()
@@ -25,7 +25,8 @@ func _ready():
 
 
 func _process(delta):
-	# make sure that inheriting projectiles have started DestroyTimer so they don't travel indefinitely
+	# make sure that inheriting projectiles have started DestroyTimer 
+	# so they don't travel indefinitely
 	assert(not DestroyTimer.is_stopped())
 	
 	# move projectile on a Z axis in a straight line 
