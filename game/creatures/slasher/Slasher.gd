@@ -18,9 +18,6 @@ func _ready() -> void:
 	attack_cooldown_timer.set_wait_time(attack_cooldown_time)
 
 func attack():
-	# TODO consider implementing some new behavior in behavior tree 
-	# for when the attack is on cooldown
-	
 	if attack_cooldown_timer.is_stopped():
 		attack_cooldown_timer.start()
 		var hitbox_overlapping_bodies: Array = melee_hit_box.get_overlapping_bodies()
