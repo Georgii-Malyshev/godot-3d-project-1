@@ -12,11 +12,12 @@ func _on_spawn_player(spawn_point: Spatial) -> void:
 
 
 func _on_spawn_projectile(
-	_original_emitter: NodePath, 
+	original_emitter: NodePath, 
 	projectile_scene: PackedScene, 
 	projectile_spawn_transform: Transform
 	) -> void:
 	
 	var projectile: Node = projectile_scene.instance()
 	add_child(projectile)
+	projectile.shooting_actor = original_emitter  # TODO use setter
 	projectile.set_global_transform(projectile_spawn_transform)

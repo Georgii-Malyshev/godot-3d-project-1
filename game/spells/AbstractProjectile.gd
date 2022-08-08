@@ -15,12 +15,14 @@ extends Area
 #		$DestroyTimer.set_wait_time(projectile_expire_time)
 #		DestroyTimer.start()
 
-
+# Stats
 var velocity: float = 6.0
 var damage: int = 15
 # has no effect unless used to explicitly override DestroyTimer's wait_time (see comment above)
 var projectile_expire_time: float = 3.0
 
+# Components
+var shooting_actor: NodePath
 onready var DestroyTimer: Timer = $DestroyTimer
 
 
@@ -31,8 +33,12 @@ func _process(delta) -> void:
 	translation += global_transform.basis.z * velocity * delta
 
 
-func _on_Projectile_body_entered(body):
-	if body.has_method("take_damage"):
+func _on_Projectile_body_entered(body: Node):
+	# TODO stop projectile from going through walls
+	if (
+		body != get_node(shooting_actor)
+		and body.has_method("take_damage")
+	):
 		body.take_damage(damage)
 		destroy()
 
