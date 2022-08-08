@@ -22,8 +22,16 @@ var damage: int = 15
 var projectile_expire_time: float = 3.0
 
 # Components
-var shooting_actor: NodePath
+var shooting_actor: Node setget set_shooting_actor, get_shooting_actor
 onready var DestroyTimer: Timer = $DestroyTimer
+
+
+func set_shooting_actor(node: Node) -> void:
+	shooting_actor = node
+
+
+func get_shooting_actor() -> Node:
+	return shooting_actor
 
 
 func _process(delta) -> void:
@@ -36,7 +44,7 @@ func _process(delta) -> void:
 func _on_Projectile_body_entered(body: Node):
 	# TODO stop projectile from going through walls
 	if (
-		body != get_node(shooting_actor)
+		body != shooting_actor
 		and body.has_method("take_damage")
 	):
 		body.take_damage(damage)

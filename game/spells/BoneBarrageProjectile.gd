@@ -39,10 +39,9 @@ func _process(delta):
 
 func _on_Projectile_body_entered(body: Node):
 	if (
-		body != get_node(shooting_actor)
+		body != shooting_actor
 		and body.has_method("take_damage")
 	):
-		print(body)  # TODO delete
 		body.take_damage(damage)
 		pierce_counter += 1
 		if (pierce_counter > 3):

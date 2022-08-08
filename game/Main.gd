@@ -19,5 +19,5 @@ func _on_spawn_projectile(
 	
 	var projectile: Node = projectile_scene.instance()
 	add_child(projectile)
-	projectile.shooting_actor = original_emitter  # TODO use setter
+	projectile.set_shooting_actor(get_node(original_emitter))
 	projectile.set_global_transform(projectile_spawn_transform)
