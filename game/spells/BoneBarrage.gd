@@ -11,8 +11,8 @@ var projectile: PackedScene = preload("res://game/spells/BoneBarrageProjectile.t
 
 
 func _ready():
-	set_mana_cost(20)
-	set_cooldown_time(2.5)
+	set_mana_cost(25)
+	set_cooldown_time(3)
 	set_warmup_time(0.2)
 	set_cast_time(
 		warmup_time 
@@ -22,29 +22,33 @@ func _ready():
 
 
 func execute_spell(caster_node_path: NodePath) -> bool:
-		# Shoot projectile barrage
-		# TODO add backfire
-		caster = get_node(caster_node_path)
-		BarrageRateTimer.start()
-		for i in projectiles_number:
-			# Randomise projectile spawn point a little
-			cast_transform = caster.get_cast_transform()
-			cast_transform.origin.x = (
-				cast_transform.origin.x 
-				+ rand_range(-rand_modifier, rand_modifier)
-			)
-			cast_transform.origin.y = (
-				cast_transform.origin.y 
-				+ rand_range(-rand_modifier, rand_modifier)
-			)
-			
-			# shoot
-			SignalBus.emit_signal(
-				"spawn_projectile", 
-				caster_node_path, 
-				projectile, 
-				cast_transform
-			)
-			yield(BarrageRateTimer, "timeout")
-		BarrageRateTimer.stop()
-		return true
+	# Shoot projectile barrage
+	# TODO add backfire
+	
+	caster = get_node(caster_node_path)
+	BarrageRateTimer.start()
+	
+	for i in projectiles_number:
+		
+		# Randomise projectile spawn point a little
+		cast_transform = caster.get_cast_transform()
+		cast_transform.origin.x = (
+			cast_transform.origin.x 
+			+ rand_range(-rand_modifier, rand_modifier)
+		)
+		cast_transform.origin.y = (
+			cast_transform.origin.y 
+			+ rand_range(-rand_modifier, rand_modifier)
+		)
+		
+		# shoot
+		SignalBus.emit_signal(
+			"spawn_projectile", 
+			caster_node_path, 
+			projectile, 
+			cast_transform
+		)
+		
+		yield(BarrageRateTimer, "timeout")
+	BarrageRateTimer.stop()
+	return true
