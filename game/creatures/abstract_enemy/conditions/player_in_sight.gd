@@ -2,5 +2,5 @@ extends BTConditional
 
 
 func _pre_tick(agent: Node, _blackboard: Blackboard) -> void:
-	assert("sees_player" in agent)
-	verified = agent.sees_player
+	assert(agent.has_method("get_sees_player"))
+	verified = agent.get_sees_player()

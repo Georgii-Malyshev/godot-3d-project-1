@@ -4,7 +4,7 @@ class_name Creature
 # Stats
 var max_health: int = 100
 var movement_speed: float = 2.0
-var attack_range: float = 3.0
+var attack_range: float = 3.0 setget _set_attack_range, get_attack_range
 var attack_damage: int = 1
 # make sure to set attack_cooldown_timer's 'wait_time' to this variable
 # in inheriting script's '_ready' process!
@@ -12,9 +12,9 @@ var attack_cooldown_time: float = 1.0
 
 # State
 var current_health: int = max_health setget _set_current_health, get_current_health
-var distance_to_player: float = 999999
-var sees_player: bool = false
-var chasing: bool = false
+var distance_to_player: float = 999999 setget _set_distance_to_player, get_distance_to_player
+var sees_player: bool = false setget _set_sees_player, get_sees_player
+var is_chasing: bool = false setget _set_is_chasing, get_is_chasing
 var active_effects: Dictionary = {}
 
 # Pathfinding
@@ -33,6 +33,15 @@ onready var chasing_timer: Timer = $ChasingTimer
 onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 
 
+func _set_attack_range(_value: float) -> void:
+# warning-ignore:narrowing_conversion
+	print("Attempt to set attack_range with setter, ignoring")
+
+
+func get_attack_range() -> float:
+	return attack_range
+
+
 func _set_current_health(value: int) -> void:
 # warning-ignore:narrowing_conversion
 	current_health = clamp(value, 0, max_health)
@@ -42,13 +51,31 @@ func get_current_health() -> int:
 	return current_health
 
 
+func _set_distance_to_player(_value: float) -> void:
+	print("Attempt to set distance_to_player with setter, ignoring")
+
+
+func get_distance_to_player() -> float:
+	return _calculate_distance_to_player()
+
+
+func _set_sees_player(_value: bool) -> void:
+	print("Attempt to set sees_player with setter, ignoring")
+
+
+func get_sees_player() -> bool:
+	return _check_if_player_is_in_sight()
+
+
+func _set_is_chasing(_value: bool) -> void:
+	print("Attempt to set is_chasing with setter, ignoring")
+
+
+func get_is_chasing() -> bool:
+	return is_chasing
+
+
 func _physics_process(_delta : float) -> void:
-	
-	# behavior tree-related
-	sees_player = _check_if_player_is_in_sight()
-	# TODO calculate only when necessary?
-	distance_to_player = _calculate_distance_to_player()
-	
 	# apply gravity
 	var direction: Vector3 = Vector3.ZERO
 	direction.y -= GlobalVars.get_global_gravity() * _delta
@@ -86,7 +113,7 @@ func _check_if_player_is_in_sight() -> bool:
 			if line_of_sight_ray_cast.is_colliding():
 				var collider: Object = line_of_sight_ray_cast.get_collider()
 				if collider is Player:
-					chasing = true
+					is_chasing = true
 					chasing_timer.start()
 					return true
 			else:
@@ -140,7 +167,7 @@ func _on_RecalculateCurrentPathTimer_timeout():
 
 
 func _on_ChasingTimer_timeout():
-	chasing = false
+	is_chasing = false
 
 
 func lose_health(amount):

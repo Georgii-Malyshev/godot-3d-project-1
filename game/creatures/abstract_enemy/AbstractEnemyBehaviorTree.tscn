@@ -46,4 +46,4 @@ script = ExtResource( 8 )
 
 [node name="BTWait" type="Node" parent="BTSelector"]
 script = ExtResource( 6 )
-wait_time = 1.0
+wait_time = 0.1
