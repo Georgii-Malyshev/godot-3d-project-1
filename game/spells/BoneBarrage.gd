@@ -3,6 +3,7 @@ extends "res://game/spells/AbstractSpell.gd"
 # Fires a barrage of piercing bone projectiles with some random spread
 
 var projectiles_number: int = 5
+var rand_modifier: float = 0.05
 
 onready var BarrageRateTimer: Timer = $BarrageRateTimer
 
@@ -26,11 +27,23 @@ func execute_spell(caster_node_path: NodePath) -> bool:
 		caster = get_node(caster_node_path)
 		BarrageRateTimer.start()
 		for i in projectiles_number:
+			# Randomise projectile spawn point a little
+			cast_transform = caster.get_cast_transform()
+			cast_transform.origin.x = (
+				cast_transform.origin.x 
+				+ rand_range(-rand_modifier, rand_modifier)
+			)
+			cast_transform.origin.y = (
+				cast_transform.origin.y 
+				+ rand_range(-rand_modifier, rand_modifier)
+			)
+			
+			# shoot
 			SignalBus.emit_signal(
 				"spawn_projectile", 
 				caster_node_path, 
 				projectile, 
-				caster.get_cast_transform()
+				cast_transform
 			)
 			yield(BarrageRateTimer, "timeout")
 		BarrageRateTimer.stop()

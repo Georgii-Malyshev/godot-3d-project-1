@@ -1,30 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://game/spells/AbstractProjectile.gd" type="Script" id=2]
 
-[sub_resource type="CylinderMesh" id=3]
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 1, 0.329412, 0, 1 )
-emission_enabled = true
-emission = Color( 1, 0.329412, 0, 1 )
-emission_energy = 3.06
-emission_operator = 0
-emission_on_uv2 = false
-
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.03, 0.03, 0.03 )
-
 [node name="AbstractProjectile" type="Area"]
 script = ExtResource( 2 )
-
-[node name="Model" type="MeshInstance" parent="."]
-transform = Transform( 0.00269224, 0, 0, 0, -3.2933e-10, -0.00753419, 0, 0.0178668, -7.80985e-10, 0, 0, 0 )
-mesh = SubResource( 3 )
-material/0 = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 1 )
 
 [node name="DestroyTimer" type="Timer" parent="."]
 process_mode = 0
