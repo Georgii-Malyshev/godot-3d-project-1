@@ -14,6 +14,7 @@ Gameplay mechanics:
   - Some areas are dangerous to stand immobile in (enemies can find your or something);
 
 Various ideas and themes:
+  - Absolutely ZERO fucking text/voice comments from "protagonist"
   - Disturbing nightmare-like scenes that appear randomly after death (but not on the first death!), Yume Nikki-style:
     - Morgue;
     - Sitting at a table with a dead girl, Masodov-style;
