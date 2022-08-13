@@ -23,7 +23,7 @@ var current_path: Array = []
 var currently_toggled_path_node_index: int = 0
 
 # Components
-onready var nav: Node = get_parent()  # TODO decouple from parent?
+onready var nav: Node = get_parent()
 
 onready var fov_area: Area = $FieldOfViewArea
 onready var line_of_sight_ray_cast: RayCast = $LineOfSightRayCast
@@ -83,7 +83,6 @@ func _physics_process(_delta : float) -> void:
 
 
 func _calculate_distance_to_player() -> float:
-	# TODO consider using global_transform.origin of current node
 	return translation.distance_to(GlobalVars.get_player_global_position())
 
 
@@ -177,7 +176,7 @@ func lose_health(amount):
 
 
 func turn_to_player():
-	# TODO make it a slow turn, not an instant transformation
+	# TODO use animation to make it a slow turn, not an instant transformation
 	look_at(GlobalVars.get_player_global_position(), Vector3.UP)
 
 

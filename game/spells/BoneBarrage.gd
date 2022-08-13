@@ -23,7 +23,7 @@ func _ready():
 
 func execute_spell(caster_node_path: NodePath) -> bool:
 	# Shoot projectile barrage
-	# TODO add backfire
+	# TODO add backfire (consider using FPS camera animation)
 	
 	caster = get_node(caster_node_path)
 	BarrageRateTimer.start()

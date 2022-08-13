@@ -42,7 +42,7 @@ func _process(delta) -> void:
 
 
 func _on_Projectile_body_entered(body: Node):
-	# TODO stop projectile from going through walls
+	# TODO use physics layers to stop projectile from going through walls
 	if (
 		body != shooting_actor
 		and body.has_method("take_damage")
