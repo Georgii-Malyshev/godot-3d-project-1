@@ -71,4 +71,5 @@ func execute_spell(_caster_node_path: NodePath) -> bool:
 		return true
 	else:
 		print("Invalid target for spell")  # TODO delete
+		# TODO don't spend mana if trying to cast on an invalid target
 		return false

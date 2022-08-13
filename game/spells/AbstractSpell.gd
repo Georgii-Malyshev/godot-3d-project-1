@@ -1,4 +1,5 @@
 extends Node
+class_name Spell
 
 # Abstract spell; don't use directly, extend it to create actual spells
 

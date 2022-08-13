@@ -22,6 +22,7 @@ var run_speed_modifier: float = 2.5
 # State
 var current_health: int = max_health setget _set_current_health, get_current_health
 var current_mana: int = max_mana setget _set_current_mana, get_current_mana
+var currently_equipped_spell: Spell setget set_currently_equipped_spell, get_currently_equipped_spell
 
 var is_running: bool = false setget _set_is_running, get_is_running
 var is_sneaking: bool = false setget _set_is_sneaking, get_is_sneaking
@@ -52,9 +53,8 @@ onready var health_regen_tick_timer: Timer = $HealthRegenTickTimer
 onready var mana_regen_delay_timer: Timer = $ManaRegenDelayTimer
 onready var mana_regen_tick_timer: Timer = $ManaRegenTickTimer
 
-# TODO implement spell switching, call spell's 'equip' method when equipping it
-var spell: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
-#var spell: Node = preload("res://game/spells/HexMark.tscn").instance()
+var spell_1: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
+var spell_2: Node = preload("res://game/spells/HexMark.tscn").instance()
 # TODO switch cast_spatial node based on the type of spell
 # (spawn projectiles from one spatial, cast line-of-sight ray from another etc.)
 onready var cast_spatial: Spatial = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
@@ -115,6 +115,18 @@ func get_current_mana() -> int:
 	return current_mana
 
 
+func set_currently_equipped_spell(spell: Spell) -> void:
+	if currently_equipped_spell:
+		remove_child(currently_equipped_spell)
+	currently_equipped_spell = spell
+	add_child(currently_equipped_spell)
+	currently_equipped_spell.equip(self.get_path())
+
+
+func get_currently_equipped_spell() -> Spell:
+	return currently_equipped_spell
+
+
 func _set_cast_transform(value: Transform) -> void:
 	cast_transform = value
 
@@ -129,11 +141,6 @@ func _ready():
 	
 	health_regen_tick_timer.set_wait_time(health_regen_tick_time)
 	mana_regen_tick_timer.set_wait_time(mana_regen_tick_time)
-	
-	# make preloaded&instanced scene a child of player
-	add_child(spell)
-	
-	spell.equip(self.get_path())  # TODO delete after implementing spell switching
 
 
 func _physics_process (delta):
@@ -222,6 +229,11 @@ func _input(event):
 	# Actions
 	if Input.is_action_just_pressed("cast_spell"):
 		_cast_spell()
+	
+	if Input.is_action_just_pressed("equip_spell_1"):
+		set_currently_equipped_spell(spell_1)
+	elif Input.is_action_just_pressed("equip_spell_2"):
+		set_currently_equipped_spell(spell_2)
 
 
 func _reset_speed_modifier():
@@ -301,12 +313,12 @@ func _die():
 
 
 func _cast_spell():
-	var spell_mana_cost: int = spell.get_mana_cost()
+	var spell_mana_cost: int = currently_equipped_spell.get_mana_cost()
 	if (not is_casting) and (current_mana >= spell_mana_cost):
 		# try to cast spell
-		if not spell.get_is_on_cooldown():
-			spell.cast(self.get_path())
+		if not currently_equipped_spell.get_is_on_cooldown():
+			currently_equipped_spell.cast(self.get_path())
 			is_casting = true
 			lose_mana(spell_mana_cost)
-			cast_spell_timer.start(spell.get_cast_time())
-			_speed_modifier = _speed_modifier * spell.get_cast_slowdown_modifier()
+			cast_spell_timer.start(currently_equipped_spell.get_cast_time())
+			_speed_modifier = _speed_modifier * currently_equipped_spell.get_cast_slowdown_modifier()
