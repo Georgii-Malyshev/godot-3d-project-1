@@ -112,6 +112,14 @@ anims/HeadBobRunning = SubResource( 4 )
 anims/HeadBobSneaking = SubResource( 5 )
 anims/RESET = SubResource( 3 )
 
+[node name="SpotLight" type="SpotLight" parent="FpsCamera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0189414, 0 )
+light_energy = 0.7
+light_indirect_energy = 0.0
+spot_range = 10.0
+spot_attenuation = 10.1965
+spot_angle = 60.0
+
 [node name="CastSpellPoint" type="Spatial" parent="FpsCamera"]
 visible = false
 
