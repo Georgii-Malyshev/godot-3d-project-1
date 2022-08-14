@@ -53,8 +53,13 @@ onready var health_regen_tick_timer: Timer = $HealthRegenTickTimer
 onready var mana_regen_delay_timer: Timer = $ManaRegenDelayTimer
 onready var mana_regen_tick_timer: Timer = $ManaRegenTickTimer
 
-var spell_1: Node = preload("res://game/spells/BoneBarrage.tscn").instance()
-var spell_2: Node = preload("res://game/spells/HexMark.tscn").instance()
+# TODO use a list of spells learned by player
+#var learned_spells: Array = []
+var spell_1_scene_path: String = "res://game/spells/BoneBarrage.tscn"
+var spell_2_scene_path: String = "res://game/spells/HexMark.tscn"
+var spell_1: Node = load(spell_1_scene_path).instance()
+var spell_2: Node = load(spell_2_scene_path).instance()
+
 # TODO switch cast_spatial node based on the type of spell
 # (spawn projectiles from one spatial, cast line-of-sight ray from another etc.)
 onready var cast_spatial: Spatial = $FpsCamera/SpellcastingRightArm/ProjectileSpawnPoint
