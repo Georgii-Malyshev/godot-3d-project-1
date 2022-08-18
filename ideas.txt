@@ -11,7 +11,7 @@ Gameplay mechanics:
 
   - The farther away from savepoints, the more risky exploring gets, but returning back to a savepoint prematurely means leaving new interesting placec that you just got to, Yume Nikki-style;
   
-  - Some areas are dangerous to stand immobile in (enemies can find your or something);
+  - Some areas are dangerous to stand immobile in (enemies can find your or something, in the swamp you start to slowly sink and attract mosquitoes, in the darkness things start nibbing at your health etc.);
 
 Various ideas and themes:
   - Absolutely ZERO fucking text/voice comments from "protagonist"
@@ -22,41 +22,50 @@ Various ideas and themes:
   - Most dreadful spells are also used at some locations/storypoints to move further (E.Y.E. Divine Cybermancy-style);
 
 Spells (to be renamed): 
-  - Blighted Touch: 
-      Get withing close-melee distance and touch a single enemy to set decay, making him take continuous medium damage over medium period of time;
-  - Silence: 
-      Stare at the enemy for a few seconds without him leaving the screen to silence him for a long time, not letting him use any magic;
-  - Corpse Totem: 
-      Target a corpse or a pile of bones at a distance to reforge it into a bonestructure that shoot homing bone barrages at enemies;
-  - Corrupting Bonespikes:
-      Target an area on any flat, big enough surface and summon several violently protruding spikes that damage any enemies they hit and apply decay;
-  - Reap:
-      Target a nearby corpse for a few seconds to consume it, regenerating some HP instantly and applying a short-lived HP regen to self;
-  + Hex Mark: 
-      Hex a single enemy by staring at him for a short time (holding him in crosshar), applying a medium-timed debuff that lowers it's resistances and kills it if has less than 20% of health while the debuff is active;
-      - Hex effect itself is to be implemented yet
-  - Hex Trigger:
-      Target an enemy marked by your curses (any debuff/DoT that hasn't worn off yet) to detonate him, instantly expiring all debuffs and dealing damage and AOE damage (the longer debuff ticks the more damage this spell deals);
-  - Frail Sign:
-      Cast a short-lived AoE sign on the floor that curses any who enter it with a long-timed debuff that slows them down, lowers resistances&damage output;
-  - Spectral Scythe:
-      A slow-buildup powerful attack in a long melee range and a wide area with a spectral scythe that reaches through walls and applies short-lived Slow debuff;
-  - Dark Stab:
-      A fast-buildup summoning of a fast spectral dagger that stabs a single target within a medium-melee range, dealing damage and short-lived Dark DoT;
-  - Whimpers:
-      Summon several whimpering, slow-moving spirits that will home in and fly at the single target, dealing damage;
-  + Bone Barrage: 
-    Shoots a violent barrage of fast piercing splintered bones and teeth
+
+  Summon weapon:
+    - Poisoned Dagger:
+        Quickly summon a fast dagger that can stab a single target within a short melee range several times before dissapearing, applying poison;
+    - Dark Whip
+        Summon a dark long-reaching spectral whip that can be swung several times before dissapearing;
+    - Spectral Scythe:
+        Summon a slow but powerful spectral scythe that has medium reach, hits wide area, goes through walls and slows enemies it hits;
+
+  Deal direct damage at distance:
+    - Whimpers:
+        Summon several whimpering, slow-moving spirits that will pursue a single target, dealing damage;
+    + Bone Barrage: 
+        Shoots a violent barrage of fast piercing splintered bones
+
+  Use corpses:
+    - Corpse Totem: 
+        Target a corpse or a pile of bones at a distance to reforge it into a bonestructure that shoot homing bone barrages at enemies;
+    - Reap:
+        Target a nearby corpse for a few seconds to consume it, regenerating some HP instantly and applying a short-lived HP regen to self;
+    - Burst Corpse: 
+        Target a corpse at a distance to burst it, dealing damage to anybody close to it;
+
+  Curses and sigils:
+    + Hex Mark: 
+        Hex a single enemy by holding him in crosshar for a short time, applying a medium-timed debuff that lowers it's resistances and kills it if has less than 20% of health while the debuff is active;
+        - Hex effect itself is to be implemented yet
+    - Hex Trigger:
+        Target an enemy marked by your curses (any debuff/DoT that hasn't worn off yet) to detonate him, instantly expiring all debuffs and dealing damage and AOE damage (the longer debuff ticks the more damage this spell deals);
+    - Frail Sigil:
+        Cast a short-lived AoE sign on the floor that curses any who enter it with a long-timed debuff that slows them down, lowers resistances&damage output;
+    - Bonespikes Sigil:
+        Target an area on any flat, big enough surface and place a rune that triggers when anybody enters, summoning several violently protruding spikes;
     
 Enemies:
-  Most enemies are levitating to use as little animation as humanly possibe;
+  A lot of enemies levitate (to use as little animation as humanly possibe);
   - Slashers - pretty easily killed jump-scare screamers with knives or something that can get in close VERY FAST;
+  - Ghouls - close in on you with medium speed and corrupting spikes protrude from their bodies when they are in the medium-melee range;
+
   - Levitating skull-somethings that try to keep their distance and build up a curse on you (bloodborne 'Winter Lantern'-style) when you're in their line of sight;
   - Flying skulls (medium speed, have to get in close to attack), easy to kill;
   - Ghosts - flying spectral beings that make horrifying sounds, go right through walls and can build up Curse with melee attacks;
-  - Flying something - keeps medium distance, shoots projectiles;
-  - Specters - flying dark specters with goat skulls, shoot homing projectiles;
-  - Ghouls - close in on you with medium speed and corrupting spikes protrude from their bodies when they are in the medium-melee range;
+  - Flying something - keeps medium distance, shoots fast bone projectiles;
+  - Specters - flying dark specters with goat skulls, shoot slow homing projectiles;
 
 Locations: 
   - Cursed Woods
