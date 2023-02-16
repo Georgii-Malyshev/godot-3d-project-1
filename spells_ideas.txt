@@ -1,0 +1,46 @@
+Summon weapon:
+  - Poisoned Dagger:
+      Quickly summon a fast dagger that can stab a single target within a short melee range several times before dissapearing, applying poison;
+
+  - Dark Whip
+      Summon a dark long-reaching spectral whip that can be swung several times before dissapearing;
+
+  - Spectral Scythe:
+      Summon a slow but powerful spectral scythe that has medium reach, hits wide area, goes through walls and slows enemies it hits;
+
+
+Deal direct damage at distance:
+  - Whimpers:
+      Summon several whimpering, slow-moving spirits that will pursue a single target, dealing damage;
+
+  + Bone Barrage:
+      Shoots a violent barrage of fast piercing splintered bones
+
+
+Use corpses:
+  - Corpse Totem:
+      Target a corpse or a pile of bones at a distance to reforge it into a bonestructure that shoot homing bone barrages at enemies;
+
+  - Reap:
+      Target a nearby corpse for a few seconds to consume it, regenerating some HP instantly and applying a short-lived HP regen to self;
+
+  - Burst Corpse:
+      Target a corpse at a distance to burst it, dealing damage to anybody close to it;
+
+
+Curses and sigils:
+  - Protective circle: 
+    - Repels and damages enemies entering?
+
+  + Hex Mark:
+      Hex a single enemy by holding him in crosshar for a short time, applying a medium-timed debuff that lowers it's resistances and kills it if has less than 20% of health while the debuff is active;
+      - Hex effect itself is to be implemented yet
+
+  - Hex Trigger:
+      Target an enemy marked by your curses (any debuff/DoT that hasn't worn off yet) to detonate him, instantly expiring all debuffs and dealing damage and AOE damage (the longer debuff ticks the more damage>
+
+  - Frail Sigil:
+      Cast a short-lived AoE sign on the floor that curses any who enter it with a long-timed debuff that slows them down, lowers resistances&damage output;
+
+  - Bonespikes Sigil:
+      Target an area on any flat, big enough surface and place a rune that triggers when anybody enters, summoning several violently protruding spikes;

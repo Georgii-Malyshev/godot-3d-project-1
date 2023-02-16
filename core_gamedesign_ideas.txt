@@ -1,0 +1,39 @@
+- Saving available only at certain points, Kings Field 4-style; 
+  - maybe try implementing manual saving at those point into several rewritable slots
+  - maybe try implementing an unavoidable (apart from loading from an eralier manual save) regular autosave Dark Souls style
+
+- As you move deeper, you actually discover things that you heard about as myths/abstract concepts earlier in the game
+
+- Spendable resources' (health, mana etc) management is important - you can'r reliably know when you'll get a next refreshment/savepoint
+
+- If you run around, enemies hear you long before you see or hear them and they will be more prepared to battle 
+  (face your direction, cast magic etc); that forces the player to move around slowly and try to hear enemies before they hear you; 
+  sneak makes you walk really quiet but still be audible from a short distance
+
+- Dolmens scattered through remote branches of the game's world, each granting (and replacing) a single unique trait that changes 
+  the gameplay a bit (skyrim's mods/Fallout perks style - partial atronach, mana shield, corpse feed etc)
+
+- The "big" gameplay loop is finding unique cursed items (one at a time) and returning them (also one at a time) to the "hub"; 
+  the world becomes "cursed" while you carry the item (Mortal Shell+Sanguine Sanctum style)
+
+- Draw the gameworld's map as a graph descending from a single entrypoint; roots branch out that need to be explored, 
+  some are unexpectedly connected with others and/or bring you back to surface
+
+- Can warp but 
+  1) only after the first boss, 
+  2) only from savepoints, 
+  3) Not when you carry a cursed item
+
+- Same spells are not only used in battle but also unlock progress (destroy barricades, open sigils etc); 
+  - Items also unlock some routes and areas
+
++ No level-ups-by-XP-gained
+
+- You gradually grow more powerful combat-wise by finding new spells and items as you explore the game world
+
+- Enemies encountered early on are more easily defeated as you get more spells and items, 
+  but as there are no level-ups, they still remain dangerous
+
+- Absolutely ZERO fucking text/voice comments from "protagonist"
+
+

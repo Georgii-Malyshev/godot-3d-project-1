@@ -1,0 +1,10 @@
+Enemies:
+  A lot of enemies levitate (to use as little animation as humanly possibe);
+  - Slashers - pretty easily killed jump-scare screamers with knives or something that can get in close VERY FAST;
+  - Ghouls - close in on you with medium speed and corrupting spikes protrude from their bodies when they are in the medium-melee range;
+
+  - Levitating skull-somethings that try to keep their distance and build up a curse on you (bloodborne 'Winter Lantern'-style) when you're in their line of sight;
+  - Flying skulls (medium speed, have to get in close to attack), easy to kill;
+  - Ghosts - flying spectral beings that make horrifying sounds, go right through walls and can build up Curse with melee attacks;
+  - Flying something - keeps medium distance, shoots fast bone projectiles;
+  - Specters - flying dark specters with goat skulls, shoot slow homing projectiles;  

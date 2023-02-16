@@ -1,0 +1,11 @@
++ Mana slowly regenerates, but only up to a certain low threshold and only if it was not spent in the last few seconds
+  - mana regeneration can be altered by some dolmens but with a downside
+
++ Health slowly regenerates, but only up to a very low threshold (about 15% of max?)
+  and only if no damage was taken in the last few seconds;
+  - health regeneration can be altered by some dolmens but with a downside
+
+- Stats are increased by finding certain items, base damage stays the same
+
+- Some areas are dangerous to stand immobile in (enemies can find you,
+  in the swamp you start to slowly sink, in the darkness things start nibbing at your health etc.)
