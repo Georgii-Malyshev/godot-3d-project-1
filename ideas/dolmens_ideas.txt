@@ -1,0 +1,9 @@
+- Mana shield: a certain % of damage gets taken from mana instead of health
+
+- Considerably higher health regen threshold and speed, but considerably lower max health and lower health gain from all sources
+
+- Considerably higher mana regen threshold and speed, but considerably lower max mana and mana gain from all sources
+
+- Higher movement speed, higher damage taken
+
+- Corpse eater: restore some health and mana from corpses, gain considerably less mana and health from other sources
