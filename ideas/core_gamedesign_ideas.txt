@@ -6,6 +6,8 @@
 
 - Spendable resources' (health, mana etc) management is important - you can'r reliably know when you'll get a next refreshment/savepoint
 
++ ZERO economics: NO buying&selling anything, NO "items durability", NO buying resource replenishing items etc.
+
 - If you run around, enemies hear you long before you see or hear them and they will be more prepared to battle 
   (face your direction, cast magic etc); that forces the player to move around slowly and try to hear enemies before they hear you; 
   sneak makes you walk really quiet but still be audible from a short distance
@@ -35,5 +37,3 @@
   but as there are no level-ups, they still remain dangerous
 
 - Absolutely ZERO fucking text/voice comments from "protagonist"
-
-
