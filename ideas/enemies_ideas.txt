@@ -8,3 +8,4 @@ Enemies:
   - Ghosts - flying spectral beings that make horrifying sounds, go right through walls and can build up Curse with melee attacks;
   - Flying something - keeps medium distance, shoots fast bone projectiles;
   - Specters - flying dark specters with goat skulls, shoot slow homing projectiles;  
+  - Auramancers - levitate towards you and try to keep you in their harmful aura
