@@ -1,16 +1,15 @@
 - The game is a horroresque artsy "dungeon crawler" with a "mage/necromancer" protagonist: 
-  - Think Shadow Tower/King's Field, Ultima Underworld etc. but with RPG mechanics simplified and heavy emphasis on exploration
+  - Think Shadow Tower/King's Field, Ultima Underworld, Arx Fatalis etc. but with RPG mechanics simplified and heavy emphasis on exploration and atmosphere
   
-  - Action gameplay should be somewhat reminiscent of Shadow Tower 1 X TES4 Oblivion X Quake 1 X any real-time 
-    game where you can play a debuffing-summoning-DD mage
+  - Action gameplay should be reminiscent of Shadow Tower 1 X TES4 Oblivion X Arx Fatalis but you're playing as a "mage"/"necromancer" in terms of tools available for combat
     
-  - Gameplaywise main focus is dangerous exploration and tense fights with small groups of enemies
+  - Gameplaywise main focus is King's Field-style exploration and tense fights with small groups of enemies
   
 - Saving available only at certain points, Kings Field 4-style; 
   - maybe try implementing manual saving at those point into several rewritable slots
-  - maybe try implementing an unavoidable (apart from loading from an eralier manual save) regular autosave Dark Souls style
+  - maybe try implementing an unavoidable (apart from loading from an eralier manual save) autosave on changing levels and doing important stuff
 
-- As you move deeper, you actually discover things that you heard about as myths/abstract concepts earlier in the game
+- Some levels are NOT self-contained (items/spells found in one area are necessary to progress through another area)
 
 - Spendable resources' (health, mana etc) management is important - you can'r reliably know when you'll get a next refreshment/savepoint
 
