@@ -13,6 +13,8 @@
 
 - Spendable resources' (health, mana etc) management is important - you can'r reliably know when you'll get a next refreshment/savepoint
 
+- Can restore some mana (or one of two types of mana) by using ritual knife to sacrifice own health OR damage enemies
+
 + ZERO economics: NO buying&selling anything, NO "items durability", NO buying resource replenishing items etc.
 
 - If you run around, enemies hear you long before you see or hear them and they will be more prepared to battle 

@@ -1,0 +1,13 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+path="res://.import/Plains.map-49d8429e57bf0ce076503a4b1a697dbf.tres"
+
+[deps]
+
+source_file="res://levels/Plains/Plains.map"
+dest_files=[ "res://.import/Plains.map-49d8429e57bf0ce076503a4b1a697dbf.tres" ]
+
+[params]
+
